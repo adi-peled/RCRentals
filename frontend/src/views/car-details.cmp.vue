@@ -162,7 +162,7 @@ export default {
       console.log(order);
 
       if (!order.buyer.fullName && !order.buyer.email) {
-        return;
+        return
       }
       this.order.price = this.totalPrice;
       this.order.owner = this.car.owner;
