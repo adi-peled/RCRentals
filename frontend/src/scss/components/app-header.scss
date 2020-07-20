@@ -5,16 +5,39 @@
     height: 60px;
     font-size: 2rem;
     background-color: $clr1;
-}
+    
+    a{
+        text-decoration: none;
+        color: white;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        height: 100%;
 
-a {
-    text-decoration: none;
-    color: white;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
+    }
+    // a{
+    //     color: white;
+    //     display: flex; 
+    //     // margin:0;
+    //     align-items: center;
+    //     text-transform:uppercase;
+    //     height: 100%;
+    //     font-weight: bold;
+    //     text-decoration: none;
+    // }
+    // a:after {
+    //     display:flex;
+    //     content: '';
+    //     border-bottom: solid 3px goldenrod;  
+    //     transform: scaleX(0);  
+    //     transition: transform 250ms ease-in-out;
+    //   }
+     
+    // a:hover:after{
+    //     transform: scaleX(1);
+    // }
+    
 }
-
 .logo-name {
     align-self: center;
     font-style: italic;
@@ -25,7 +48,7 @@ a {
     width: 35%;
     justify-content: space-around;
     margin: 0px;
-    height: 50px;
+    height: 100%;
     text-decoration: none;
     font-size: 18px;
     a:hover {
@@ -42,8 +65,76 @@ a {
         font-weight: bold;
         color: white;
         cursor: pointer;
+        
+    }
+    button:focus{
+        outline:none;
     }
     button:hover {
         color: goldenrod;
+
+    }
+}
+.btn-menu{
+    display: none;
+    font-size: 2rem;
+    background-color: inherit;
+    border: none;
+}
+
+
+
+
+
+@media (max-width: 1200px){
+    .nav{
+        width: 40%;
+    }
+}
+
+@media (max-width:1000px){
+    .nav{
+        width: 45%;
+    }
+}
+
+@media (max-width: 900px){
+    .btn-menu{
+        display: block;
+        margin-right: 30px;
+    }
+    .nav{
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-left: 1px solid #c4c4c4;
+        width: 250px;
+        justify-content: end;
+        transform: translateX(100%);
+        transition: transform .8s, box-shadow .3s;
+        z-index: 2;
+    }   
+    .nav button{
+        color: black;
+    }
+    .nav a{
+        color: black;
+        height: 10%;
+    }
+    .nav.menu-open {
+        transform: translateX(0%);
+        box-shadow: -6px 0px 14px rgba(0, 0, 0, 0.2);
+        align-items: center;
+    }
+    .screen.menu-open{
+        cursor: pointer;
+        position: fixed;
+        height: 200%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.404);
+        z-index: 1;
     }
 }
