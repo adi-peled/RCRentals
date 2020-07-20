@@ -7,8 +7,8 @@
       <h3>Pickup date: {{request.pickupDate}}</h3>
       <h3>Number of days: {{request.daysCount}}</h3>
       <h3>Total sum: ${{request.price}}</h3>
-      <button>accept</button>
-      <button>decline</button>
+      <button @click="updateOrderStatus(true)">accept</button>
+      <button @click="updateOrderStatus(false)">decline</button>
     </div>
   </section>
 </template>
@@ -16,9 +16,9 @@
 <script>
 import orderService from "../services/order-service.js";
 export default {
-  props:{
-    info:{
-      type:Object
+  props: {
+    info: {
+      type: Object
     }
   },
   data() {
@@ -29,6 +29,11 @@ export default {
   created() {
     this.requests = this.info.requestedOrders;
   },
+  methods: {
+    updateOrderStatus() {
+      
+    }
+  }
 };
 </script>
 
