@@ -1,0 +1,21 @@
+.car-list {
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.title-list {
+    align-self: center;
+}
+
+.cards-container {
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    grid-template-columns: repeat(auto-fill, 350px);
+    gap: 40px
+}
+
+.car-card {
+    width: 100%;
+}
+

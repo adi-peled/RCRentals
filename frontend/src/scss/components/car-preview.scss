@@ -1,0 +1,65 @@
+.car-preview {
+    .front-img {
+        width: 350px;
+        height: 250px;
+        object-fit: cover;
+    }
+    .details {
+        flex-direction: column;
+        padding-top: 10px;
+    }
+}
+
+.card-img {
+    position: relative;
+}
+
+.price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 5px;
+    background-color: white;
+    border: 1px rgb(195, 195, 195) solid;
+    padding: 5px;
+}
+
+.star {
+    color: $clr1;
+    font-size: 18px;
+}
+
+.like {
+    background-color: white;
+    margin: 3px;
+    padding: 1px;
+    width: 30px;
+    height: 25px;
+    position: absolute;
+    right: 0;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.under-img {
+    .details {
+        width: 59%;
+    }
+    button {
+        flex: auto;
+        border: none;
+        align-self: flex-end;
+        background-color: $clr1;
+        outline: none;
+        color: white;
+        font-size: 12px;
+        cursor: pointer;
+        width: 120px;
+        height: 26px;
+        transition: .5s;
+        &:hover {
+            background-color: lighten($clr1, 10%);
+        }
+    }
+}

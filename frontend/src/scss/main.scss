@@ -1,0 +1,39 @@
+// Setup
+@import 'setup//variables.scss';
+@import "setup/_functions.scss";
+@import "setup/_mixin.scss";
+@import "./setup/_typography.scss";
+// Basics
+@import "basics/_helpers.scss";
+@import "basics/_layout.scss";
+@import "basics/_base.scss";
+@import "basics/_links.scss";
+@import "basics/_buttons.scss";
+// Components
+@import './components/app-header.scss';
+@import './components/car-list.scss';
+@import './components/car-preview.scss';
+@import'./components/app-footer.scss';
+@import './components/car-filter.scss';
+@import './components/profile.scss';
+@import './components/modal.scss';
+//views
+@import './views/about.scss';
+@import './views/home.scss';
+@import './views/signup.scss';
+@import './views/signin.scss';
+@import './views/car-details.scss';
+@import './views/browse-cars.scss';
+* {
+    box-sizing: border-box;
+    font-family: Opensans;
+}
+
+body {
+    margin: 0;
+}
+
+
+.swal2-icon.swal2-success .swal2-success-ring {
+    border: .25em solid #2D383A !important;
+}

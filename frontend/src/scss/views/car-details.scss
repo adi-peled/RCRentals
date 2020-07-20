@@ -1,0 +1,172 @@
+    .car-container {
+        flex-direction: column;
+    }
+    
+    .imgs-container {
+        img {
+            cursor: pointer;
+        }
+        width: 100%;
+        grid-template-columns: repeat(4, rem(300px));
+        // grid-template-rows: rem(200px) rem(200px);
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .features {
+        grid-template-columns: repeat(2, minmax(rem(100px), rem(150px)));
+        grid-template-rows: repeat(2, minmax(rem(30px), rem(45px)));
+        img {
+            width: rem(30px);
+            height: rem(30px);
+            margin-right: 13px;
+        }
+        span {
+            height: 75px;
+        }
+    }
+    
+    .big {
+        grid-row: span 2;
+        grid-column: span 2;
+        object-fit: cover;
+        width: rem(610px);
+        height: rem(410px);
+    }
+    
+    .small {
+        width: rem(300px);
+        height: rem(200px);
+        object-fit: cover;
+    }
+    
+    .car-container {
+        .details {
+            margin-right: 5px;
+            width: 50%;
+        }
+    }
+    
+    .payment-details {
+        margin-left: 5px;
+        justify-content: space-between;
+        width: 50%;
+        flex-direction: column;
+        button {
+            cursor: pointer;
+            width: 50%;
+            font-size: 16px;
+            height: 44px;
+            line-height: 43px;
+            padding: 0 14px;
+            background-color: $clr1;
+            color: #fff;
+            border: 1px solid $clr1;
+            transition: .5s;
+            &:hover {
+                background-color: lighten($clr1, 5%);
+            }
+        }
+    }
+    
+    .free-cancellation {
+        margin-top: 20px;
+    }
+    
+    .order {
+        padding: 15px;
+        img {
+            width: 10%;
+        }
+        .order-details {
+            width: 40%;
+            flex-direction: column;
+        }
+    }
+    
+    .rest-page {
+        width: 75.625rem;
+        flex-direction: column;
+        align-self: center;
+    }
+    
+    .book-modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(253, 251, 251, 0.774);
+        border: 1px grey solid;
+        width: 60%;
+        height: 80%;
+        align-items: center;
+        button {
+            cursor: pointer;
+            padding: 20px;
+            background-color: transparent;
+            font-size: 20px;
+            outline: none;
+            border: none;
+        }
+    }
+    
+    .booking {
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        height: 80%;
+        .number {
+            width: 20%;
+        }
+        input {
+            width: 250px;
+            height: 35px;
+            padding: 3px 10px;
+            font-size: 13px;
+            border: 1px solid #C7C7C7;
+            color: #231F20;
+            border-radius: 0;
+            outline: none;
+        }
+        .date {
+            width: 160px;
+        }
+        input:focus {
+            border: 1px solid $clr1;
+        }
+        label {
+            text-align: left;
+            width: 250px;
+            padding-top: 20px;
+        }
+        button {
+            cursor: pointer;
+            border: 0;
+            background-color: $clr1;
+            color: white;
+            height: 50px;
+            line-height: 49px;
+            font-size: 18px;
+            padding: 0 19px;
+            outline: none;
+        }
+        button:hover {
+            background-color: lighten($color: $clr1, $amount: 20);
+        }
+    }
+    
+    .booking-button {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        p {
+            height: 50px;
+            line-height: 3;
+            background-color: #fff;
+            border: 1px $clr1 solid;
+            padding: 0 35px;
+            span {
+                color: $clr1;
+            }
+        }
+    }

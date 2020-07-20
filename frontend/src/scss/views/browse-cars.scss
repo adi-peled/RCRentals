@@ -1,0 +1,11 @@
+
+.sub-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    @include for-wide-layout{
+        max-width: 1000px;  
+} 
+@include for-1100-layout{
+        max-width: 900px; 
+}
+}

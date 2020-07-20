@@ -1,0 +1,59 @@
+.aboutus-header {
+    height: 100px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow-down {
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 140px;
+}
+
+.about-body {
+    background-image: url('~@/assets/about-hero-1920x1080.jpg');
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 1000px;
+    background-position-x: center;
+    background-position-y: 0px;
+}
+
+// .maor {
+//     background-image: url('~@/assets/maor.jpg');
+//     // background-size: auto;
+//     background-position: 0 0;
+//     background-repeat: no-repeat;
+//     height: 400px;
+//     width: 300;
+//     // background-position-x: center;
+//     background-position-y: 0px;
+// }
+.maor {
+    position: absolute;
+    top: 250px;
+    left: 100px;
+}
+
+.adi {}
+
+.nadav {}
+
+.aboutus {
+    border: 1px solid black;
+    width: 500px;
+    background-color: rgba(128, 128, 128, 0.246);
+    h3 {
+        margin: 0;
+    }
+    p {
+        width: 450px;
+    }
+}

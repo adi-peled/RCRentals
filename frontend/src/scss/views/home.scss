@@ -1,0 +1,164 @@
+.home {
+    width: 1300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-section {
+    justify-content: center;
+}
+
+.bgc-img {
+    background-image: url('~@/assets/drifthero.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 650px;
+    width: 100%;
+}
+
+.text-img {
+    color: lightyellow;
+    padding: 80px;
+    text-align: center;
+    text-transform: none;
+    h1 {
+        font-size: 70px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+    h3 {
+        font-size: 25px;
+        margin: 0;
+        margin-bottom: 15px;
+    }
+}
+
+.browse-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    img {
+        border-radius: 5px 0 0;
+    }
+    div {
+        border-radius: 5px;
+        width: 292px;
+        transition: opacity 0.3s
+    }
+    div:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+    div:hover h3 {
+        color: $clr1;
+    }
+    h3 {
+        font-size: 1.5rem;
+        color: black;
+    }
+}
+.category-head{
+    a{
+        color: gray;
+        font-size: 1.5rem;
+    }
+}
+
+.might-like-category {
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    // grid-row-gap: 15px;
+    // grid-column-gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    div {
+        text-align: left;
+        transition: opacity 0.3s
+    }
+    div:hover {
+        opacity: 0.9;
+        cursor: pointer;
+    }
+    h3 {
+        margin: 0 auto;
+    }
+}
+
+.about-info {
+    div {
+        margin: 0;
+        color: #121214;
+        margin-bottom: 12px;
+        font-size: 16px;
+        letter-spacing: 0;
+        width: 300px;
+    }
+}
+
+.book-bar {
+    height: 40px;
+    background-color: white;
+    width: 500px;
+    margin: 0 auto;
+    text-align: left;
+    border-radius: 15px;
+    margin-top: 150px;
+    input {
+        line-height: 2.8;
+        border: 0;
+        margin-left: 20px;
+    }
+    input:focus {
+        outline: none;
+    }
+}
+
+@media (max-width:1200px) {
+    .bgc-img {
+        height: 500px;
+    }
+}
+
+.main-categories-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.main-categories-img {
+    width: 292px;
+    height: 200px;
+}
+
+#search {
+    background-image: url('~@/assets/img/search.png');
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    background-position: 80px 50%;
+    background-size: 20px 22px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 60%;
+    color: white;
+    background-color: $clr1;
+    width: 15%;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+#search:focus {
+    background-image: none;
+}
+
+#search:focus::placeholder {
+    color: transparent;
+}
+
+::placeholder {
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
