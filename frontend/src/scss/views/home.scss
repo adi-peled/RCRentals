@@ -115,11 +115,6 @@
     }
 }
 
-@media (max-width:1200px) {
-    .bgc-img {
-        height: 500px;
-    }
-}
 
 .main-categories-img {
     object-fit: cover;
@@ -161,4 +156,13 @@
     color: white;
     font-weight: bold;
     text-transform: capitalize;
+}
+@media (max-width:1200px) {
+    .bgc-img {
+             height: 500px;
+            }
+    // .home{
+    //     max-width: 1000px;
+    // }
+    
 }
