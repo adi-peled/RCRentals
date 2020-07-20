@@ -144,7 +144,8 @@ export default {
             imgUrl: this.loggedInUser.imgUrl
           },
           pickupDate: this.order.pickupDate,
-          returnDate: this.order.returnDate
+          returnDate: this.order.returnDate,
+          status: this.order.status
         };
         eventBus.$emit("sendSwal", "Booked !", "success");
         this.saveOrder(this.order);
@@ -162,7 +163,7 @@ export default {
       console.log(order);
 
       if (!order.buyer.fullName && !order.buyer.email) {
-        return
+        return;
       }
       this.order.price = this.totalPrice;
       this.order.owner = this.car.owner;
