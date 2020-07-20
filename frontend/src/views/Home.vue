@@ -7,7 +7,7 @@
       <main class="home">
         <input type="text" id="search" placeholder="Search" />
         <div class="category-head flex space-between">
-          <h2>Browse by category check</h2>
+          <h2>Browse by category</h2>
           <router-link :to="'/car'">See all cars</router-link>
         </div>
         <div class="browse-category flex wrap space-around">
