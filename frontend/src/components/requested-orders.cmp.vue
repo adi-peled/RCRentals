@@ -7,8 +7,8 @@
       <h3>Pickup date: {{request.pickupDate}}</h3>
       <h3>Number of days: {{request.daysCount}}</h3>
       <h3>Total sum: ${{request.price}}</h3>
-      <button @click="updateOrderStatus(true)">accept</button>
-      <button @click="updateOrderStatus(false)">decline</button>
+      <button @click="updateOrderStatus(request,'accept')">accept</button>
+      <button @click="updateOrderStatus(request,'decline')">decline</button>
     </div>
   </section>
 </template>
@@ -30,8 +30,10 @@ export default {
     this.requests = this.info.requestedOrders;
   },
   methods: {
-    updateOrderStatus() {
-      
+    updateOrderStatus(request, status) {
+      request.status = status;
+      console.log(request);
+      // this.$store.dispatch({type:'updateOrder',t})
     }
   }
 };
