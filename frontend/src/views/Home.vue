@@ -7,10 +7,10 @@
       <main class="home">
         <input type="text" id="search" placeholder="Search" />
         <div class="category-head flex space-between">
-          <h2>Browse by category</h2>
+          <h2>Browse by category check</h2>
           <router-link :to="'/car'">See all cars</router-link>
         </div>
-        <h1>hhdaihhiadaihiodhai</h1>
+        <h1>maor azain </h1>
         <div class="browse-category flex wrap space-around">
           <div v-for="category in categorys" :category="category" :key="category">
             <router-link class="col main-categories-container" :to="'/car/'+ category">
