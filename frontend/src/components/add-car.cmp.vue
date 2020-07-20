@@ -1,5 +1,5 @@
 <template>
-  <section>lorem</section>
+  <section>loremasdsadsad</section>
 </template>
 
 <script>
