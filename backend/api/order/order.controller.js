@@ -35,8 +35,22 @@ async function addOrder(req, res) {
     res.send(order)
 }
 
+
+async function updateCar(req, res) {
+    const car = req.body;
+    await carService.update(car)
+    res.json(car)
+}
+
+async function updateOrder(req, res) {
+    const order = req.body
+    await orderService.update(order)
+    res.json(order)
+
+}
 module.exports = {
     getOrders,
     deleteOrder,
-    addOrder
+    addOrder,
+    updateOrder
 }

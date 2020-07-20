@@ -7,8 +7,11 @@
       <h3>Pickup date: {{request.pickupDate}}</h3>
       <h3>Number of days: {{request.daysCount}}</h3>
       <h3>Total sum: ${{request.price}}</h3>
-      <button>accept</button>
-      <button>decline</button>
+      <div v-if="request.status==='pending'">
+        <button @click="updateOrderStatus(request,'accept')">accept</button>
+        <button @click="updateOrderStatus(request,'decline')">decline</button>
+      </div>
+      <div class="request-status" v-else>{{request.status}}</div>
     </div>
   </section>
 </template>
@@ -16,9 +19,9 @@
 <script>
 import orderService from "../services/order-service.js";
 export default {
-  props:{
-    info:{
-      type:Object
+  props: {
+    info: {
+      type: Object
     }
   },
   data() {
@@ -29,6 +32,14 @@ export default {
   created() {
     this.requests = this.info.requestedOrders;
   },
+  methods: {
+    updateOrderStatus(request, status) {
+      request.status = status;
+      console.log(request);
+      this.$store.dispatch({ type: "saveOrder", order: request });
+    }
+  },
+  computed: {}
 };
 </script>
 

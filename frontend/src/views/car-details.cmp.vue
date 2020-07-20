@@ -47,14 +47,20 @@
             <h1>Price: $ {{car.price}} / Day</h1>
             <div>
               <label>Pick Up Date</label>
-            <date-picker v-model="order.pickupDate" :disabled-dates="disabledDates" :full-month-name="false"></date-picker>
+              <date-picker
+                v-model="order.pickupDate"
+                :disabled-dates="disabledDates"
+                :full-month-name="false"
+              ></date-picker>
             </div>
             <div>
               <label>Return Date</label>
-            <date-picker v-model="order.returnDate" :disabled-dates="disabledDates" :full-month-name="false"></date-picker>
-              <p v-if="totalPrice">
-                 Total Price:  ${{totalPrice}}
-                </p>
+              <date-picker
+                v-model="order.returnDate"
+                :disabled-dates="disabledDates"
+                :full-month-name="false"
+              ></date-picker>
+              <p v-if="totalPrice">Total Price: ${{totalPrice}}</p>
             </div>
             <span class="free-cancellation">
               <img src="@/assets/img/like.png" /> Free cancellation
@@ -68,7 +74,7 @@
           <div v-for="review in car.reviews" :key="review.id" class="review flex">
             <img src alt="userImg " />
             <div class="review-details flex">
-                <span class="star">★</span>
+              <span class="star">★</span>
               <span class="reviwer-name">{{review.byUser}}</span>
 
               <span class="reviwe-time">{{new Date(review.createdAt).toLocaleDateString()}}</span>
@@ -86,28 +92,27 @@
 <script>
 import { carService } from "../services/car-service.js";
 import { eventBus } from "../main-services/eventBus.js";
-import guestModal from '../components/modal.vue';
-import datePicker from 'vuejs-datepicker';
+import guestModal from "../components/modal.vue";
+import datePicker from "vuejs-datepicker";
 export default {
   name: "car-details",
   data() {
     return {
-
-  // disabledDates: null,
+      // disabledDates: null,
       car: null,
-      disabledDates:{
-        range:[]
+      disabledDates: {
+        range: []
       },
       bookModal: false,
       email: "",
       fullName: "",
       phoneNumber: "",
       order: {
-        buyer:{},
+        buyer: {},
         pickupDate: "",
         returnDate: "",
         carId: this.$route.params.id,
-        status:'pending'
+        status: "pending"
       }
     };
   },
@@ -125,28 +130,24 @@ export default {
       console.log(this.car.imgUrls, this.car.primaryImgUrl);
     },
     toggleBookModal() {
-      if(!this.order.pickupDate||!this.order.returnDate){
-         eventBus.$emit("sendSwal", "Please fill the form !",'warning');
-        return
+      if (!this.order.pickupDate || !this.order.returnDate) {
+        eventBus.$emit("sendSwal", "Please fill the form !", "warning");
+        return;
       }
       if (!this.loggedInUser) {
         this.bookModal = !this.bookModal;
-      }else{
-        if(!this.order.pickupDate,!this.order.returnDate){
-           eventBus.$emit("sendSwal", "Please fill the form !",'warning');
-          return 
-        }
-        this.order={
-          buyer:{
-            email:this.loggedInUser.email,
-            fullName:this.loggedInUser.fullName,
-            imgUrl:this.loggedInUser.imgUrl
+      } else {
+        this.order = {
+          buyer: {
+            email: this.loggedInUser.email,
+            fullName: this.loggedInUser.fullName,
+            imgUrl: this.loggedInUser.imgUrl
           },
-          pickupDate:this.order.pickupDate,
-          returnDate:this.order.returnDate,
-        }
-        eventBus.$emit("sendSwal", "Booked !",'success');
-        this.saveOrder(this.order)
+          pickupDate: this.order.pickupDate,
+          returnDate: this.order.returnDate
+        };
+        eventBus.$emit("sendSwal", "Booked !", "success");
+        this.saveOrder(this.order);
       }
     },
     getImgUrl(imageName) {
@@ -154,33 +155,34 @@ export default {
       return images("./" + imageName + ".jpg");
     },
     saveOrder(order) {
-      if(!order){
-        this.toggleBookModal()
-        return
+      if (!order) {
+        this.toggleBookModal();
+        return;
       }
-      if(!order.buyer.fullName&&!order.buyer.email){
+      console.log(order);
+
+      if (!order.buyer.fullName && !order.buyer.email) {
         return
       }
       this.order.price = this.totalPrice;
       this.order.owner = this.car.owner;
-        if(!this.loggedInUser){
-          this.order.buyer.email = order.buyer.email;
-          this.order.buyer.fullName = order.buyer.fullName;
-        }
+      if (!this.loggedInUser) {
+        this.order.buyer.email = order.buyer.email;
+        this.order.buyer.fullName = order.buyer.fullName;
+      }
 
-        var range={
-          from:order.pickupDate,
-          to:order.returnDate
-        }
-        this.car.disabledDates.ranges.push(range)
-        console.log(this.car);
-
-        this.$store.dispatch({
-          type: "saveOrder",
-          order: this.order
-        });
-      eventBus.$emit("sendSwal", "Booked !",'success');
-      if(!this.loggedInUser){
+      var range = {
+        from: order.pickupDate,
+        to: order.returnDate
+      };
+      this.car.disabledDates.ranges.push(range);
+      this.$store.dispatch({ type: "saveCar", car: this.car });
+      this.$store.dispatch({
+        type: "saveOrder",
+        order: this.order
+      });
+      eventBus.$emit("sendSwal", "Booked !", "success");
+      if (!this.loggedInUser) {
         this.toggleBookModal();
       }
     }
@@ -190,13 +192,13 @@ export default {
       return this.$store.getters.loggedInUser;
     },
     totalPrice() {
-      var pickupDate=new Date(this.order.pickupDate).getTime()
-      var returnDate=new Date( this.order.returnDate).getTime()
-      var days=(returnDate-pickupDate)/(60*60*24*1000);
-      return this.car.price *days;
+      var pickupDate = new Date(this.order.pickupDate).getTime();
+      var returnDate = new Date(this.order.returnDate).getTime();
+      var days = (returnDate - pickupDate) / (60 * 60 * 24 * 1000);
+      return this.car.price * days;
     }
   },
-  components: {guestModal,datePicker}
+  components: { guestModal, datePicker }
 };
 </script>
 
