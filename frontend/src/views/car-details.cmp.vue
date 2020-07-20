@@ -47,11 +47,11 @@
             <h1>Price: $ {{car.price}} / Day</h1>
             <div>
               <label>Pick Up Date</label>
-            <input v-model="order.pickupDate" type="date">
+            <date-picker v-model="order.pickupDate" :disabled-dates="disabledDates" :full-month-name="false"></date-picker>
             </div>
             <div>
               <label>Return Date</label>
-              <input min="20"  v-model="order.returnDate" type="date">
+            <date-picker v-model="order.returnDate" :disabled-dates="disabledDates" :full-month-name="false"></date-picker>
               <p v-if="totalPrice">
                  Total Price:  ${{totalPrice}}
                 </p>
@@ -86,17 +86,24 @@
 <script>
 import { carService } from "../services/car-service.js";
 import { eventBus } from "../main-services/eventBus.js";
-import guestModal from '../components/modal.vue'
+import guestModal from '../components/modal.vue';
+import datePicker from 'vuejs-datepicker';
 export default {
   name: "car-details",
   data() {
     return {
+
+  // disabledDates: null,
       car: null,
+      disabledDates:{
+        range:[]
+      },
       bookModal: false,
       email: "",
       fullName: "",
       phoneNumber: "",
       order: {
+        buyer:{},
         pickupDate: "",
         returnDate: "",
         carId: this.$route.params.id,
@@ -107,6 +114,8 @@ export default {
   created() {
     const carId = this.$route.params.id;
     carService.getById(carId).then(car => (this.car = car));
+    console.log(this.car);
+    // this.disabledDates=this.car.disabledDates
   },
   methods: {
     switchImg(idx) {
@@ -128,7 +137,6 @@ export default {
           return 
         }
         this.order={
-         price: this.totalPrice,
           buyer:{
             email:this.loggedInUser.email,
             fullName:this.loggedInUser.fullName,
@@ -136,11 +144,9 @@ export default {
           },
           pickupDate:this.order.pickupDate,
           returnDate:this.order.returnDate,
-          owner:this.car.owner
         }
-        console.log(this.order);
         eventBus.$emit("sendSwal", "Booked !",'success');
-        this.saveOrder()
+        this.saveOrder(this.order)
       }
     },
     getImgUrl(imageName) {
@@ -152,33 +158,32 @@ export default {
         this.toggleBookModal()
         return
       }
-      if(!order.fullName||!order.email){
-         return
+        console.log(order.buyer.fullName);
+      if(!order.buyer.fullName&&!order.buyer.email){
+        return
       }
       this.order.price = this.totalPrice;
       this.order.owner = this.car.owner;
-      // this.order.pickupDate = this.order.pickupDate.toLocaleDateString();
-      if (this.loggedInUser) {
-        const user = {
-          email: this.loggedInUser.email,
-          fullName: this.loggedInUser.fullName,
-          imgUrl: this.loggedInUser.imgUrl,
-          _id: this.loggedInUser._id
-        };
-        this.order.buyer = user;
+        if(!this.loggedInUser){
+          this.order.buyer.email = order.buyer.email;
+          this.order.buyer.fullName = order.buyer.fullName;
+        }
+
+        var range={
+          from:order.pickupDate,
+          to:order.returnDate
+        }
+        this.car.disabledDates.ranges.push(range)
+        console.log(this.car);
+
         this.$store.dispatch({
           type: "saveOrder",
           order: this.order
         });
-      } else {
-        this.order.buyer = this.guest;
-        this.$store.dispatch({
-          type: "saveOrder",
-          order: this.order
-        });
-      }
       eventBus.$emit("sendSwal", "Booked !",'success');
-      this.toggleBookModal();
+      if(!this.loggedInUser){
+        this.toggleBookModal();
+      }
     }
   },
   computed: {
@@ -192,7 +197,7 @@ export default {
       return this.car.price *days;
     }
   },
-  components: {guestModal}
+  components: {guestModal,datePicker}
 };
 </script>
 
