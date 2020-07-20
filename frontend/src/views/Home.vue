@@ -10,7 +10,7 @@
           <h2>Browse by category</h2>
           <router-link :to="'/car'">See all cars</router-link>
         </div>
-        <h1>hhdaihhiadaihiodhai</h1>
+        <h1>maor azain </h1>
         <div class="browse-category flex wrap space-around">
           <div v-for="category in categorys" :category="category" :key="category">
             <router-link class="col main-categories-container" :to="'/car/'+ category">
