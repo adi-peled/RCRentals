@@ -158,7 +158,6 @@ export default {
         this.toggleBookModal()
         return
       }
-        console.log(order.buyer.fullName);
       if(!order.buyer.fullName&&!order.buyer.email){
         return
       }
