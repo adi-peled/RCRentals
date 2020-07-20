@@ -31,6 +31,15 @@ export default {
   },
   created() {
     this.requests = this.info.requestedOrders;
+    var pendingRequests = this.requests.filter(
+      request => request.status === "pending"
+    );
+    var answerRequests = this.requests.filter(
+      request => request.status !== "pending"
+    );
+    if (!pendingRequests) pendingRequests = [];
+    if (!answerRequests) answerRequests = [];
+    this.requests = pendingRequests.concat(answerRequests);
   },
   methods: {
     updateOrderStatus(request, status) {

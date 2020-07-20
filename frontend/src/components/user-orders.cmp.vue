@@ -3,7 +3,6 @@
     <h1>Your orders:</h1>
 
     <div v-for="order in orders" :order="order" :key="order._id" class="order-list">
-      {{order}}
       <router-link :to="'/car/details/'+order.carId" class="col">
         <h2>owner: {{order.owner.fullName}}</h2>
         <h2>Pickup date: {{order.pickupDate}}</h2>

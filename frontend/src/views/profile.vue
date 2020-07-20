@@ -4,12 +4,6 @@
       <img src="../assets/default-user.jpg" width="150" />
       <h1>Welcome {{loggedInUser.fullName}}</h1>
       <h2>{{loggedInUser.email}}</h2>
-      <div class="col profile-router" @click="addCar">
-          <div>
-          <i class="el-icon-circle-plus-outline"></i>
-          List your car
-          </div>
-        </div>
       <div class="col profile-router" @click="getFavCars">
         <div>
           <i class="el-icon-star-on"></i>
@@ -66,7 +60,6 @@ import { carService } from "../services/car-service.js";
 import userService from "../services/user-service.js";
 import orderService from "../services/order-service.js";
 import requestedOrders from "../components/requested-orders.cmp.vue";
-import addCar from '../components/add-car.cmp.vue'
 export default {
   name: "profile",
   data() {
@@ -84,9 +77,6 @@ export default {
     async getFavCars() {
       this.tab = "favoriteCars";
       this.info.favCars = this.loggedInUser.favCars;
-    },
-    async addCar(){
-      this.tab = "addCar";
     },
     async getOwnedCars() {
       const cars = await carService.query();
@@ -119,8 +109,7 @@ export default {
     favoriteCars,
     ownedCars,
     userOrders,
-    requestedOrders,
-    addCar
+    requestedOrders
   }
 };
 </script>
