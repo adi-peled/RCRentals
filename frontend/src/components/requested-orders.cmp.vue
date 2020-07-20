@@ -7,8 +7,11 @@
       <h3>Pickup date: {{request.pickupDate}}</h3>
       <h3>Number of days: {{request.daysCount}}</h3>
       <h3>Total sum: ${{request.price}}</h3>
-      <button @click="updateOrderStatus(request,'accept')">accept</button>
-      <button @click="updateOrderStatus(request,'decline')">decline</button>
+      <div v-if="request.status==='pending'">
+        <button @click="updateOrderStatus(request,'accept')">accept</button>
+        <button @click="updateOrderStatus(request,'decline')">decline</button>
+      </div>
+      <div class="request-status" v-else>{{request.status}}</div>
     </div>
   </section>
 </template>
@@ -33,9 +36,10 @@ export default {
     updateOrderStatus(request, status) {
       request.status = status;
       console.log(request);
-      // this.$store.dispatch({type:'updateOrder',t})
+      this.$store.dispatch({ type: "saveOrder", order: request });
     }
-  }
+  },
+  computed: {}
 };
 </script>
 

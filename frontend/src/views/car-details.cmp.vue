@@ -137,10 +137,6 @@ export default {
       if (!this.loggedInUser) {
         this.bookModal = !this.bookModal;
       } else {
-        if ((!this.order.pickupDate, !this.order.returnDate)) {
-          eventBus.$emit("sendSwal", "Please fill the form !", "warning");
-          return;
-        }
         this.order = {
           buyer: {
             email: this.loggedInUser.email,
@@ -163,7 +159,8 @@ export default {
         this.toggleBookModal();
         return;
       }
-      console.log(order.buyer.fullName);
+      console.log(order);
+
       if (!order.buyer.fullName && !order.buyer.email) {
         return;
       }

@@ -34,6 +34,7 @@ function saveOrder(order) {
 }
 
 async function _update(order) {
+
     return await httpService.put(`order/${order._id}`, order)
 
 }

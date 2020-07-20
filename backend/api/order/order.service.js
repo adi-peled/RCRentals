@@ -65,6 +65,19 @@ async function add(order) {
     }
 }
 
+async function update(order) {
+    const collection = await dbService.getCollection('order')
+    order._id = ObjectId(order._id);
+
+    try {
+        await collection.replaceOne({ "_id": order._id }, { $set: order })
+        return order
+    } catch (err) {
+        console.log(`ERROR: cannot update car ${order._id}`)
+        throw err;
+    }
+}
+
 // function _buildCriteria(filterBy) {
 //     const criteria = {};
 //     return criteria;
@@ -73,7 +86,8 @@ async function add(order) {
 module.exports = {
     query,
     remove,
-    add
+    add,
+    update
 }
 
 
