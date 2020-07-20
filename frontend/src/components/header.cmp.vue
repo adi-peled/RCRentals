@@ -7,7 +7,7 @@
     </router-link>
      <button @click="toggle" class="btn-menu">☰</button>
     <div class="flex nav"  :class="{'menu-open': open}">
-      <router-link to="/">List your car</router-link>
+      <router-link :to="'/profile/addcar/'+loggedInUser._id">List your car</router-link>
       <router-link to="/about">About</router-link>
       <router-link to="/car/  ">All Cars</router-link>
 
@@ -30,8 +30,12 @@ export default {
   name: "app-header",
   data(){
     return{
-      open: false
+      open: false,
+      id:'',
     }
+  },
+  created(){
+    this.id=this.loggedInUser._id
   },
   methods: {
     logout() {
