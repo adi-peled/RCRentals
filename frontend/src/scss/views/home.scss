@@ -13,7 +13,7 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    height: 650px;
+    height: 500px;
     width: 100%;
 }
 
@@ -64,6 +64,7 @@
         color: gray;
         font-size: 1.5rem;
     }
+    align-items: center;
 }
 
 .might-like-category {
@@ -161,8 +162,17 @@
     .bgc-img {
              height: 500px;
             }
-    // .home{
-    //     max-width: 1000px;
-    // }
+    .home{
+        max-width: 850px;
+        justify-content: space-around;
+    }
+    .category-head{
+        max-width: 850px;
+        font-size: 0.9rem;
+    }
+    .category-head a{
+        font-size: 1.2rem;
+    }
     
 }
+
