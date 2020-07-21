@@ -36,9 +36,9 @@ export default {
   //   this.id=this.loggedInUser._id
   // },
   methods: {
-    addCar() {
-      eventBus.$emit("addcar");
-      this.$router.push("/profile/addcar/" + this.loggedInUser._id);
+    addCar(){
+      this.$router.push({ path: 'profile/addcar', params: { userId: this.loggedInUser._id } })
+
     },
     logout() {
       ("ff");
