@@ -33,7 +33,6 @@
         </div>
         <i class="el-icon-arrow-right"></i>
       </div>
-    
     </div>
     <div class="profile-info">
       <component :is="tab" :info="info" class="profile-cars"></component>
@@ -49,8 +48,8 @@ import { carService } from "../services/car-service.js";
 import userService from "../services/user-service.js";
 import orderService from "../services/order-service.js";
 import requestedOrders from "../components/requested-orders.cmp.vue";
-import addCar from '../components/add-car.cmp.vue';
-import {eventBus} from '../main-services/eventBus.js'
+import addCar from "../components/add-car.cmp.vue";
+import { eventBus } from "../main-services/eventBus.js";
 export default {
   name: "profile",
   data() {
@@ -69,6 +68,10 @@ export default {
       this.tab = "favoriteCars";
       this.info.favCars = this.loggedInUser.favCars;
     },
+    async addCar() {
+      this.tab = "addCar";
+    },
+
     async getOwnedCars() {
       const cars = await carService.query();
       this.ownedCars = cars.filter(
@@ -94,14 +97,15 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
-    eventBus.$on('addcar',this.addCar())
+    eventBus.$on("addcar", this.addCar());
     //  this.$store.dispatch({ type: "getOrders" });
   },
   components: {
     favoriteCars,
     ownedCars,
     userOrders,
-    requestedOrders
+    requestedOrders,
+    addCar
   }
 };
 </script>
