@@ -13,37 +13,33 @@
           />
         </div>
         <div>
-          <span>Sort By Model</span>
-          <el-select
-            class="select-type"
-            @change="setFilter"
-            v-model="filterBy.model"
-            placeholder="Select"
-          >
-            <el-option
-              v-for="item in modelOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
+          <span>price:</span>
+          <span>${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
+
+          <div class="block">
+            <el-slider
+              @change="setFilter"
+              v-model="filterBy.rangePrice"
+              range
+              show-stops
+              :max="3000"
+            ></el-slider>
+          </div>
         </div>
         <div>
-          <span>Sort By Price</span>
+          <span>model:</span>
+          <span>{{filterBy.rangeModel[0]}} - {{filterBy.rangeModel[1]}}</span>
 
-          <el-select
-            class="select-type"
-            @change="setFilter"
-            v-model="filterBy.price"
-            placeholder="Select"
-          >
-            <el-option
-              v-for="item in priceOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
+          <div class="block">
+            <el-slider
+              :min="2000"
+              @change="setFilter"
+              v-model="filterBy.rangeModel"
+              range
+              show-stops
+              :max="2021"
+            ></el-slider>
+          </div>
         </div>
         <div>
           <span>Sort By Type</span>
@@ -77,29 +73,10 @@ export default {
         location: "",
         model: "",
         tag: "",
-        price: "",
+        rangePrice: [150, 1200],
+        rangeModel: [2006, 2018],
         available: ""
       },
-      modelOptions: [
-        {
-          value: "asc",
-          label: "Old To New"
-        },
-        {
-          value: "desc",
-          label: "New To Old"
-        }
-      ],
-      priceOptions: [
-        {
-          value: "asc",
-          label: "Low To High"
-        },
-        {
-          value: "desc",
-          label: "High To Low"
-        }
-      ],
       tagsOptions: [
         {
           value: "",
@@ -133,9 +110,18 @@ export default {
       return this.$store.getters.cars;
     }
   },
+  created() {
+    this.filterBy.tag = this.$route.params.category;
+    this.setFilter();
+  },
   methods: {
     setFilter() {
       this.$emit("filter", this.filterBy);
+      console.log(this.$route.params.category);
+      if (this.filterBy.tag === "") return;
+      if (this.$route.params.category !== this.filterBy.tag) {
+        this.$router.push(`${this.filterBy.tag}`);
+      }
     }
   },
   components: {}

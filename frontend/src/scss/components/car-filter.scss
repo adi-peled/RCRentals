@@ -44,6 +44,11 @@
     justify-content: center;
 }
 
+.car-filter{
+    flex-direction: column;
+
+}
+
 .el-select-dropdown__item {
     color: $clr1 !important;
 }

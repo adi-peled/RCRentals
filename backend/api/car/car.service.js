@@ -24,14 +24,12 @@ module.exports = {
 
 
 async function query(filterBy = {}) {
-    console.log('filter:', filterBy);
 
     const criteria = _buildCriteria(filterBy)
     // var prop = (filterBy.sort === 'price') ? 'price' : 'name';
     // var order = (filterBy.order === 'desc') ? -1 : 1;
     // var sortBy = {[prop]: order}
 
-    console.log('critrea', criteria);
     const collection = await dbService.getCollection('car')
     try {
         const cars = await collection.find(criteria).toArray();
@@ -43,64 +41,26 @@ async function query(filterBy = {}) {
 }
 
 function _buildCriteria(filterBy) {
-    const criteria = {
-    };
-    if (filterBy.price) {
-        criteria.price = [{ price: { $lt: filterBy.price.high } }, { price: { $gt: filterBy.price.low } }]
-    }
-    if (filterBy.model) {
-        criteria.model = [{ model: { $lt: filterBy.model.old } }, { model: { $gt: filterBy.model.new } }]
-    }
+    const criteria =
+        ({
+            $and: [{
+                $and: [{ price: { $lt: Number(filterBy.maxPrice) } },
+                { price: { $gt: Number(filterBy.minPrice) } }]
+            },
+            {
+                $and: [{ model: { $lt: Number(filterBy.maxModel) } },
+                { model: { $gt: Number(filterBy.minModel) } }]
+            }]
+        })
+
     if (filterBy.tag) {
         criteria.tags = filterBy.tag
-        // db.getCollection('car').find({'tags': 'sport'})
     }
-
-    // db.getCollection('car').find({$and:[{$and: [{price: {$lt : 12342412}},{price: {$gt:444}}]},{$and: [{model: {$lt : 2021}},{model: {$gt:2011}}]}]})
-
-    // if (filterBy.type) {
-    //     var filterType = new RegExp(filterBy.type, 'i');
-    //     criteria.type = { $regex: filterName }
-    // }
-    // // if (filterBy.name) criteria.name = {'$regex': `.*${filterBy.name}.*\i`}
-    // if (filterBy.type !== 'all') criteria.type = filterBy.type
-    // if (filterBy.inStock !== 'all') {
-    //     criteria.inStock = (filterBy.inStock === 'inStock') ? true : false
-    // }
+    console.log('critrea', criteria);
     return criteria;
 }
 
 
-
-
-
-
-// function _filterBy(cars, filterBy) {
-//     console.log('fil:', filterBy);
-//     var filteredCars = cars
-//     if (filterBy.location) filteredCars = filteredCars.filter(car => car.location.city === filterBy.location)
-//     if (filterBy.price === 'asc') {
-//         filteredCars = filteredCars.sort((a, b) => (a.price > b.price) ? 1 : -1)
-//     } else if (filterBy.price === 'desc') {
-//         filteredCars = filteredCars.sort((a, b) => (a.price < b.price) ? 1 : -1)
-//     }
-//     if (filterBy.model === 'asc') {
-//         filteredCars = filteredCars.sort((a, b) => (a.model > b.model) ? 1 : -1)
-//     } else if (filterBy.model === 'desc') {
-//         filteredCars = filteredCars.sort((a, b) => (a.model < b.model) ? 1 : -1)
-//     }
-//     console.log('cars:', filteredCars);
-//     return filteredCars
-// }
-
-
-// if (filterBy.type_like) filteredToys = filteredToys.filter((toy) => toy.type === filterBy.type_like)
-// if (filterBy.name_like) filteredToys = filteredToys.filter((toy) => toy.name.toLowerCase().includes(filterBy.name_like))
-// if (filterBy._order === 'asc') {
-//     filteredToys = filteredToys.sort((a, b) => (a.name > b.name) ? 1 : -1)
-// } else if (filterBy._order === 'desc') {
-//     filteredToys = filteredToys.sort((a, b) => (a.name < b.name) ? 1 : -1)
-// }
 async function getById(carId) {
     const collection = await dbService.getCollection('car')
     try {
