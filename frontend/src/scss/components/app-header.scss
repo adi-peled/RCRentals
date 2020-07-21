@@ -127,9 +127,12 @@
         transition: transform .8s, box-shadow .3s;
         z-index: 2;
     }   
-    // .nav button{
-    //     color: black;
-    // }
+    .nav button{
+        color: black;
+        height: 10%;
+        width: 100%;
+        border-bottom: 1px solid grey;
+    }
     .nav a{
         color: black;
         height: 10%;
