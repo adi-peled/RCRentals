@@ -87,7 +87,7 @@
         <div v-if="car.reviews" class="Reviews">
           <h4>Reviews</h4>
           <div v-for="review in car.reviews" :key="review.id" class="review flex">
-            <img src alt="userImg" />
+            <img  class="review-img" src="@/assets/profile.jpg" />
             <div class="review-details flex">
               <div class="raiting flex">
                 <span v-for="(star,idx) in review.rating" :key="idx" class="star flex">★</span>
