@@ -17,7 +17,8 @@
             <div>
               <h1 class="capi">{{car.vendor.company}} {{car.vendor.series}} {{car.model}}</h1>
               <h3>
-                {{car.reviews[0].rating}}
+                <span v-if="car.reviews">{{calcRating}}</span>
+                <span v-else>no rating yet</span>
                 <span class="star">★</span>
                 <span class="capi">(50) {{car.owner.fullName}}</span>
               </h3>
@@ -41,6 +42,18 @@
               </div>
               <p>{{car.desc}}</p>
             </div>
+
+            <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
+            <form class="review-add flex" v-if="addingReview">
+              <textarea name id cols="20" rows="3" v-model="review.txt"></textarea>
+              <div class="block">
+                <el-rate v-model="  review.rating" :colors="colors"></el-rate>
+              </div>
+              <div class="review-btns flex">
+                <button class="btn-review" @click.prevent="saveReview">save</button>
+                <button class="btn-review" @click="toggleReview">close</button>
+              </div>
+            </form>
           </div>
           <div class="payment-details flex">
             <h2>location: {{car.location.city}}</h2>
@@ -70,29 +83,15 @@
           {{car.owner.fulName}}
         </div>
 
-        <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
-        <button class="btn-review flex" v-else @click="toggleReview">close</button>
-
-        <form v-if="addingReview">
-          <textarea name id cols="30" rows="10" v-model="review.txt"></textarea>
-          <select v-model="review.rating">
-            <option value="1">★</option>
-            <option value="2">★★</option>
-            <option value="3">★★★</option>
-            <option value="4">★★★★</option>
-            <option value="5">★★★★★</option>
-          </select>
-          <button class="btn-review" @click.prevent="saveReview">save</button>
-        </form>
         <div v-if="car.reviews" class="Reviews">
           <h4>Reviews</h4>
-          <div v-for="review in car.reviews" :key="review.id" class="review flex">
-            <img  class="review-img" src="@/assets/profile.jpg" />
+          <div v-for="review in showReviews" :key="review.id" class="review flex">
+            <img class="review-img" src="@/assets/profile.jpg" />
             <div class="review-details flex">
-              <div class="raiting flex">
-                <span v-for="(star,idx) in review.rating" :key="idx" class="star flex">★</span>
+              <div class="rating flex">
+                <span v-for="(star,idx) in  (review.rating)" :key="idx" class="star">★</span>
               </div>
-              <div class="flex">
+              <div class="flex review-name-date">
                 <span class="reviwer-name">{{review.byUser.fullName}}</span>
 
                 <span class="reviwe-time">{{new Date(review.createdAt).toLocaleDateString()}}</span>
@@ -100,6 +99,14 @@
               <p>{{review.txt}}</p>
             </div>
           </div>
+          <button
+            @click="showMoreReviews(true)"
+            v-if="!showMore&&car.reviews.length>5"
+          >See more feedback</button>
+          <button
+            v-else-if="showMore&&car.reviews.length>5"
+            @click="showMoreReviews(false)"
+          >See less</button>
         </div>
       </div>
     </div>
@@ -134,10 +141,13 @@ export default {
         status: "pending"
       },
       review: {
-        rating: "",
+        rating: null,
         txt: ""
       },
-      addingReview: false
+      colors: ["2D383A", "#2D383A", "#2D383A"],
+      addingReview: false,
+      count: 5,
+      showMore: false
     };
   },
   created() {
@@ -192,6 +202,17 @@ export default {
       this.car.reviews.push(this.review);
       console.log(this.review);
       this.$store.dispatch({ type: "saveCar", car: this.car });
+      this.review = {};
+      this.toggleReview();
+    },
+    showMoreReviews(boolean) {
+      if (boolean) {
+        this.count = this.car.reviews.length;
+      } else {
+        this.count = 5;
+      }
+      console.log(this.showMore);
+      this.showMore = boolean;
     },
 
     saveOrder(order) {
@@ -236,6 +257,17 @@ export default {
       var returnDate = new Date(this.order.returnDate).getTime();
       var days = (returnDate - pickupDate) / (60 * 60 * 24 * 1000);
       return this.car.price * days;
+    },
+    calcRating() {
+      const sum = this.car.reviews.reduce((acc, review) => {
+        acc += Number(review.rating);
+        return acc;
+      }, 0);
+      return (sum / this.car.reviews.length).toFixed(1);
+    },
+    showReviews() {
+      // return this.car.reviews.slice(this.car.reviews.length - this.count);
+      return this.car.reviews.slice(0, this.count);
     }
   },
   components: { guestModal, datePicker }
