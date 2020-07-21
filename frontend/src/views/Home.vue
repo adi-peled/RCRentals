@@ -8,7 +8,7 @@
         <input type="text" id="search" placeholder="Search" />
         <div class="category-head flex space-between">
           <h2>Browse by category</h2>
-          <router-link :to="'/car'">See all cars</router-link>
+          <router-link :to="'/car/'">See all cars</router-link>
         </div>
         <div class="browse-category flex wrap space-around">
           <div v-for="category in categorys" :category="category" :key="category">
@@ -24,7 +24,7 @@
           <el-carousel-item v-for="car in cars.slice(cars.length-3)"  :key="car._id">
             <h3 class="medium"><carPreview :car="car"></carPreview></h3>
           </el-carousel-item>
-        </el-carousel> -->
+        </el-carousel>-->
         <div class="might-like-category">
           <carPreview
             @updateUserFavs="updateUserFavs"

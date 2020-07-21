@@ -86,6 +86,7 @@ export default {
       this.ownedCars = cars.filter(
         car => this.loggedInUser._id === car.owner._id
       );
+      console.log("cars:", cars, "owned", this.ownedCars);
       this.tab = "ownedCars";
       this.info.ownedCars = this.ownedCars;
     },
