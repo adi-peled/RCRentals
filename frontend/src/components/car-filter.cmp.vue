@@ -17,7 +17,7 @@
               v-model="filterBy.location"
             />
         </div>-->
-        <div v-if="sort.seeType">
+        <div class="type" v-if="sort.seeType">
           <span>Type:</span>
 
           <el-select
@@ -36,26 +36,30 @@
           </el-select>
         </div>
         <div v-if="sort.seePrice">
-          <span>Price:</span>
-          <span>${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
+          <span>Price: ${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
 
-          <div class="block">
+          <div class="block flex">
+            <span class="min">min:0</span>
+
             <el-slider
+              class="el-slider"
               @change="setFilter"
               v-model="filterBy.rangePrice"
               range
               show-stops
               :max="3000"
             ></el-slider>
+            <span>max: 3000</span>
           </div>
         </div>
 
         <div v-if="sort.seeModel">
-          <span>Model:</span>
-          <span>{{filterBy.rangeModel[0]}} - {{filterBy.rangeModel[1]}}</span>
+          <span>Model: {{filterBy.rangeModel[0]}} - {{filterBy.rangeModel[1]}}</span>
 
-          <div class="block">
+          <div class="block flex">
+            <span class="min">min:2000</span>
             <el-slider
+              class="el-slider"
               :min="2000"
               @change="setFilter"
               v-model="filterBy.rangeModel"
@@ -63,6 +67,7 @@
               show-stops
               :max="2021"
             ></el-slider>
+            <span>max: 2021</span>
           </div>
         </div>
       </div>
