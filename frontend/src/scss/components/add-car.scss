@@ -1,0 +1,110 @@
+add-car-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.first-div-caradd {
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+    div {
+        button {
+            width: 200%;
+            height: 50px;
+        }
+    }
+    .el-input__inner {
+        height: 50px;
+    }
+}
+
+.add-car-form {
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 50%;
+    .add-car-input {}
+    label {}
+    .add-car-drop {
+        display: flex;
+        flex-direction: column;
+        input {}
+    }
+    button {
+        cursor: pointer;
+        width: 100%;
+        background-color: $clr1;
+        color: white;
+        font-weight: bold;
+        align-self: center;
+    }
+}
+
+.el-select .el-input__inner:focus {
+    border: 1px solid $clr1 !important;
+}
+
+.el-input.is-active .el-input__inner,
+.el-input__inner:focus {
+    border: 1px solid $clr1 !important;
+}
+
+.el-button--primary:focus,
+.el-button--primary:hover {
+    background-color: lighten($clr1, 10%) !important;
+    border-color: $clr1 !important;
+}
+
+.el-upload-list--picture .el-upload-list__item-status-label {
+    background-color: $clr1 !important;
+}
+
+.el-button--primary {
+    border-color: $clr1 !important;
+}
+
+@media (max-width: 1600px) {
+    .first-div-caradd {
+        div {
+            button {
+                width: 150%;
+                height: 50px;
+            }
+        }
+        .el-input__inner {
+            height: 50px;
+        }
+    }
+}
+
+@media (max-width: 1400px) {
+    .first-div-caradd {
+        div {
+            button {
+                width: 120%;
+                height: 50px;
+            }
+        }
+        .el-input__inner {
+            height: 50px;
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .first-div-caradd {
+        div {
+            button {
+                height: 40%;
+                width: 100%;
+            }
+        }
+        .el-input__inner {
+            height: 40%;
+            padding: 10px;
+        }
+    }
+}

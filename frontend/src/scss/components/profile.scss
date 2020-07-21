@@ -4,64 +4,62 @@
     column-gap: 10px;
     row-gap: 1em;
     text-align: center;
-    min-height: 80vh;
     h1 {
         font-size: 2rem;
     }
     h2 {
         color: grey;
     }
-    .profile-nav{
+    .profile-nav {
         margin-top: 30px;
     }
-    .order-list{
+    .order-list {
         text-align: left;
         // font-size: 0.9rem;
         border-bottom: 1px solid grey;
-        h2{
+        h2 {
             color: black;
             font-size: 1rem;
         }
-        h3{
+        h3 {
             font-size: 1rem;
         }
-        button{
+        button {
             border-radius: 20px;
             border: unset;
             transition: opacity 0.3s;
             margin: 10px;
         }
-        button.accept{
-             background-color: green;
-             color: ivory;
-             
-         }
-        button:hover{
+        button.accept {
+            background-color: green;
+            color: ivory;
+        }
+        button:hover {
             opacity: 0.8;
-         }
-        button.decline{
-             background-color: red;
-             color: ivory;
-         }
+        }
+        button.decline {
+            background-color: red;
+            color: ivory;
+        }
     }
-    .price{
+    .price {
         bottom: unset;
         right: unset;
         color: black;
     }
-    .details{
+    .details {
         justify-content: center;
         color: black;
     }
-    .car-preview{
+    .car-preview {
         margin-bottom: 10px;
         transition: opacity 0.3s;
         width: 600px;
     }
-    .car-preview:hover{
-        opacity:0.9;
+    .car-preview:hover {
+        opacity: 0.9;
     }
-    .owned-cars{
+    .owned-cars {
         align-items: center;
         color: black;
     }
@@ -74,12 +72,11 @@
     //     display: grid;
     //     margin-top: 40px;
     // }
-    .profile-info{
+    .profile-info {
         display: grid;
         grid-column: span 2;
-        margin-top: 180px;
     }
-    .profile-cars button{
+    .profile-cars button {
         padding: 15px;
         cursor: pointer;
         font-size: 1rem;
@@ -105,61 +102,62 @@
     }
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1200px) {
     .profile {
-        .profile-router{
+        .profile-router {
             font-size: 1.3rem;
         }
-        .profile-router i{
+        .profile-router i {
             font-size: 1.3rem;
         }
-        h1{
+        h1 {
             font-size: 1.6rem;
         }
-        h2{
+        h2 {
             font-size: 1.4rem;
         }
     }
 }
-@media (max-width:900px){
+
+@media (max-width:900px) {
     .profile {
-    .profile-router{
-        font-size: 1rem;
+        .profile-router {
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 1.4rem;
+        }
+        h2 {
+            font-size: 1.2rem;
+        }
     }
-    h1{
-        font-size: 1.4rem;
-    }
-    h2{
-        font-size: 1.2rem;
-    }
-}
 }
 
-@media (max-width:500px){
-    .profile{
-        grid-template-columns: repeat(1,1fr);
-       .profile-info{
+@media (max-width:500px) {
+    .profile {
+        grid-template-columns: repeat(1, 1fr);
+        .profile-info {
             margin-top: unset;
-       }
-       .car-preview{
-        max-width: 300px;   
-       }
+        }
+        .car-preview {
+            max-width: 300px;
+        }
     }
-    .owned-cars{
+    .owned-cars {
         flex-direction: column;
     }
-    .selected-route i{
+    .selected-route i {
         transform: rotate(90deg);
     }
-    .profile-cars h1{
+    .profile-cars h1 {
         text-align: left;
     }
-    .profile .under-img{
+    .profile .under-img {
         flex-direction: column;
         text-align: left;
         margin-top: 30px;
     }
-    .request-btn{
+    .request-btn {
         display: flex;
         justify-content: space-around;
     }

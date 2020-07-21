@@ -19,6 +19,7 @@
 @import './components/modal.scss';
 @import './components//requested-orders.scss';
 @import './components/carousel.scss';
+@import './components/add-car.scss';
 //views
 @import './views/about.scss';
 @import './views/home.scss';
@@ -26,7 +27,6 @@
 @import './views/signin.scss';
 @import './views/car-details.scss';
 @import './views/browse-cars.scss';
-
 * {
     box-sizing: border-box;
     font-family: Opensans;
@@ -36,11 +36,10 @@ body {
     margin: 0;
 }
 
-
 .swal2-icon.swal2-success .swal2-success-ring {
     border: .25em solid #2D383A !important;
 }
 
-a{
+a {
     text-decoration: none;
 }
