@@ -8,11 +8,7 @@
      <button @click="toggle" class="btn-menu">☰</button>
     <div class="flex nav"  :class="{'menu-open': open}"> </div>
     <div  @click="toggle" class="flex nav"  :class="{'menu-open': open}">
-<<<<<<< HEAD
       <button @click="addCar">List your car</button>
-=======
-      <!-- <router-link :to="'/profile/addcar/'+loggedInUser._id">List your car</router-link> -->
->>>>>>> ad4b396957766877d2e13c219b23fbf50b5eafca
       <router-link to="/about">About</router-link>
       <router-link to="/car/  ">All Cars</router-link>
 
