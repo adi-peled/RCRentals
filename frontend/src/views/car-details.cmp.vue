@@ -49,7 +49,7 @@
                 <div class="block">
                   <el-rate v-model="  review.rating" :colors="colors"></el-rate>
                 </div>
-                <textarea name id cols="20" rows="3" v-model="review.txt"></textarea>
+                <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
               </div>
               <div class="review-btns flex">
                 <button class="btn-review" @click.prevent="saveReview">save</button>
