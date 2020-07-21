@@ -8,14 +8,9 @@
      <button @click="toggle" class="btn-menu">☰</button>
     <div class="flex nav"  :class="{'menu-open': open}"> </div>
     <div  @click="toggle" class="flex nav"  :class="{'menu-open': open}">
-<<<<<<< HEAD
       <button @click="addCar">List your car</button>
-=======
-      <!-- <router-link :to="'/profile/addcar/'+loggedInUser._id">List your car</router-link> -->
->>>>>>> ad4b396957766877d2e13c219b23fbf50b5eafca
       <router-link to="/about">About</router-link>
       <router-link to="/car/  ">All Cars</router-link>
-
       <template v-if="!loggedInUser">
         <router-link to="/login">Log In</router-link>
         <router-link to="/signUp">Sign Up</router-link>
@@ -24,12 +19,10 @@
         <router-link :to="'/profile/'+loggedInUser._id">My Profile</router-link>
         <button @click="logout">Log out</button>
       </template>
-
       <!-- <router-link to="/profile"> <img src="@/assets/default-user.jpg" alt=""> </router-link> -->
     </div>
   </section>
 </template>
-
 <script>
 import {eventBus} from '../main-services/eventBus.js'
 export default {
@@ -66,6 +59,5 @@ export default {
   }
 };
 </script>
-
 <style>
 </style>
