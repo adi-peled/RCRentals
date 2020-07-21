@@ -11,7 +11,6 @@
             class="location"
             v-model="filterBy.location"
           />
-
         </div>
         <div>
           <span>Sort By Model</span>
@@ -52,12 +51,12 @@
           <el-select
             class="select-type"
             @change="setFilter"
-            v-model="filterBy.type"
+            v-model="filterBy.tag"
             placeholder="Select"
           >
             <el-option
-            class="capi"
-              v-for="item in typeOptions"
+              class="capi"
+              v-for="item in tagsOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value"
@@ -77,7 +76,7 @@ export default {
       filterBy: {
         location: "",
         model: "",
-        type: "",
+        tag: "",
         price: "",
         available: ""
       },
@@ -101,7 +100,7 @@ export default {
           label: "High To Low"
         }
       ],
-      typeOptions: [
+      tagsOptions: [
         {
           value: "",
           label: "All"

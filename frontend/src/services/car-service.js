@@ -18,8 +18,8 @@ async function query(filterBy = "") {
         return await httpService.get(`car`)
     } else {
         console.log(filterBy);
-        const { price, type, location, available, model } = filterBy;
-        return await httpService.get('car' + `?price=${price}&type=${type}&location=${location}&model=${model}&=${available}`)
+        const { price, tag, location, available, model } = filterBy;
+        return await httpService.get('car' + `?price=${price}&tag=${tag}&location=${location}&model=${model}&=${available}`)
     }
 }
 async function getById(id) {
