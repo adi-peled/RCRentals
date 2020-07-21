@@ -150,10 +150,12 @@ export default {
       showMore: false
     };
   },
-  created() {
+  async created() {
     const carId = this.$route.params.id;
-    carService.getById(carId).then(car => (this.car = car));
-    // this.disabledDates=this.car.disabledDates
+    const car = await carService.getById(carId)
+    this.car = car
+    console.log(car,'hellow its me your best refrence')
+    this.disabledDates=this.car.disabledDates
   },
   methods: {
     switchImg(idx) {

@@ -1,44 +1,45 @@
 <template>
-  <section>
+  <section class="add-car-section">
       
 
-    <form @submit.prevent="addCar">
-        <el-upload :limit="5"  v-model="fileList" class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList" list-type="picture"> <el-button size="small" type="primary">Click to upload</el-button><div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div></el-upload>
-        <div>
-            <label>Car Tag</label>
-            <el-select v-model="carTag" placeholder="Tag">
+    <form class="add-car-form" @submit.prevent="addCar">
+        <div class="flex first-div-caradd">
+        <el-upload :limit="5"  v-model="fileList" class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList" list-type="picture"> <el-button size="small" type="primary">Click to upload</el-button></el-upload>
+            <div>
+                <el-select v-model="carTag" placeholder="Tag">
                 <el-option v-for="item in tags" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
+            </div>
         </div>
-        <div>
+        <div class="add-car-drop">
             <label>Car Condition</label>
             <el-select v-model="carCondition" placeholder="Condition">
                 <el-option v-for="item in conditions" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
         </div>
-        <div>
+        <div class="add-car-drop">
             <label>Car Model</label>
             <el-select v-model="carModel" placeholder="Model">
                 <el-option v-for="item in years" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
         </div>
-        <div> 
+        <div class="add-car-input"> 
             <Label>Car Company</Label>
-            <el-input placeholder="Company" v-model="carCompany"></el-input>
+            <el-input  placeholder="Company" v-model="carCompany"></el-input>
         </div>
-        <div> 
+        <div class="add-car-input"> 
             <Label>Car Searies</Label>
-            <el-input placeholder="Searies" v-model="carSearies"></el-input>
+            <el-input  placeholder="Searies" v-model="carSearies"></el-input>
         </div>
-        <div> 
+        <div class="add-car-input" > 
             <Label>Car Price $/Day</Label>
             <el-input-number v-model="carPrice" :min="1" ></el-input-number>        
         </div>
-        <div> 
+        <div class="add-car-input"> 
             <Label>Car Description (optional)</Label>
-            <el-input placeholder="Descrition" v-model="carDescrition"></el-input>
+            <el-input  placeholder="Descrition" v-model="carDescrition"></el-input>
         </div>
-        <button>Click Me</button>
+        <button>List Car </button>
     </form>
 
 
@@ -81,7 +82,7 @@ data(){
         carModel:'',
         carCompany:'',
         carSearies:'',
-        carPrice:'',
+        carPrice:200,
         carDescrition:'',
          fileList: [],
     }
