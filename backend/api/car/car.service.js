@@ -52,11 +52,16 @@ function _buildCriteria(filterBy) {
                 { model: { $gt: Number(filterBy.minModel) } }]
             }]
         })
-
     if (filterBy.tag) {
         criteria.tags = filterBy.tag
     }
-    console.log('critrea', criteria);
+    // if (filterBy.location) {
+    //     criteria.location = {
+    //         city: filterBy.location
+    //     }
+    //     // db.getCollection('car').find({location:{city:"tel aviv",lat:54354.0,lng:23423.0}})
+    // }
+    // if(filterBy) 
     return criteria;
 }
 

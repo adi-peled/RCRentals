@@ -1,6 +1,6 @@
 .car-filter {
     .el-input__inner:focus {
-        border-color: $clr1;
+        // border-color: $clr1;
     }
     .el-input__inner::placeholder {
         color: $clr1;
@@ -25,16 +25,16 @@
         transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
         width: 221px;
     }
-    @include for-normal-layout {
-        display: grid;
-        grid-template-columns: repeat(2, 250px);
-    }
-    @include for-narrow-layout {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        background-color: yellowgreen;
-    }
+    // @include for-normal-layout {
+    //     display: grid;
+    //     grid-template-columns: repeat(2, 250px);
+    // }
+    // @include for-narrow-layout {
+    //     display: flex;
+    //     justify-content: center;
+    //     flex-direction: column;
+    //     background-color: yellowgreen;
+    // }
     input {
         margin-top: 5px;
     }
@@ -45,9 +45,36 @@
 }
 
 .car-filter{
-    flex-direction: column;
+    .block{
+width: 244px;
+    }
+    align-items: center;
+flex-direction: column;
+height: 210px;
+.btns{
+    width: 30%;
+    margin-bottom: 10px;
+    justify-content: space-around;
+ button{
 
+     cursor: pointer;
+     border: 0;
+outline: none;
+padding: 5px;
+width: 60px;
+transition: .9s;
+color: white;
+background-color: lighten($clr1, 20%);
+&:hover{
+background-color: lighten($clr1, 10%);
 }
+
+ }   
+}
+}
+
+
+
 
 .el-select-dropdown__item {
     color: $clr1 !important;
