@@ -1,52 +1,24 @@
 <template>
   <section>
-    <div class="filter-container flex">
-      <div class="car-filter flex">
-        <div>
-          <span>Search Location</span>
-          <input
-            @change="setFilter"
-            type="text"
-            placeholder="enter city"
-            class="location"
-            v-model="filterBy.location"
-          />
-        </div>
-        <div>
-          <span>Sort By Model</span>
-          <el-select
-            class="select-type"
-            @change="setFilter"
-            v-model="filterBy.model"
-            placeholder="Select"
-          >
-            <el-option
-              v-for="item in modelOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
-        </div>
-        <div>
-          <span>Sort By Price</span>
-
-          <el-select
-            class="select-type"
-            @change="setFilter"
-            v-model="filterBy.price"
-            placeholder="Select"
-          >
-            <el-option
-              v-for="item in priceOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
-        </div>
-        <div>
-          <span>Sort By Type</span>
+    <div class="car-filter flex">
+      <div class="btns flex">
+        <button @click="toggleTypeSort">Type</button>
+        <button @click="togglePriceSort">Price</button>
+        <button @click="toggleModelSort">Model</button>
+      </div>
+      <div class="sorts">
+        <!-- <div >
+            <span>Search Location</span>
+            <input
+              @change="setFilter"
+              type="text"
+              placeholder="enter city"
+              class="location"
+              v-model="filterBy.location"
+            />
+        </div>-->
+        <div v-if="sort.seeType">
+          <span>Type:</span>
 
           <el-select
             class="select-type"
@@ -63,6 +35,36 @@
             ></el-option>
           </el-select>
         </div>
+        <div v-if="sort.seePrice">
+          <span>Price:</span>
+          <span>${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
+
+          <div class="block">
+            <el-slider
+              @change="setFilter"
+              v-model="filterBy.rangePrice"
+              range
+              show-stops
+              :max="3000"
+            ></el-slider>
+          </div>
+        </div>
+
+        <div v-if="sort.seeModel">
+          <span>Model:</span>
+          <span>{{filterBy.rangeModel[0]}} - {{filterBy.rangeModel[1]}}</span>
+
+          <div class="block">
+            <el-slider
+              :min="2000"
+              @change="setFilter"
+              v-model="filterBy.rangeModel"
+              range
+              show-stops
+              :max="2021"
+            ></el-slider>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -73,33 +75,19 @@ export default {
   name: "car-filter",
   data() {
     return {
+      sort: {
+        seePrice: false,
+        seeModel: false,
+        seeType: false
+      },
       filterBy: {
         location: "",
         model: "",
         tag: "",
-        price: "",
+        rangePrice: [0, 3000],
+        rangeModel: [2000, 2021],
         available: ""
       },
-      modelOptions: [
-        {
-          value: "asc",
-          label: "Old To New"
-        },
-        {
-          value: "desc",
-          label: "New To Old"
-        }
-      ],
-      priceOptions: [
-        {
-          value: "asc",
-          label: "Low To High"
-        },
-        {
-          value: "desc",
-          label: "High To Low"
-        }
-      ],
       tagsOptions: [
         {
           value: "",
@@ -133,9 +121,27 @@ export default {
       return this.$store.getters.cars;
     }
   },
+  created() {
+    if (!this.$route.params.category) {
+      this.filterBy.tag = "";
+    } else {
+      this.filterBy.tag = this.$route.params.category;
+    }
+    this.setFilter();
+  },
   methods: {
     setFilter() {
+      console.log(this.filterBy);
       this.$emit("filter", this.filterBy);
+    },
+    togglePriceSort() {
+      this.sort.seePrice = !this.sort.seePrice;
+    },
+    toggleModelSort() {
+      this.sort.seeModel = !this.sort.seeModel;
+    },
+    toggleTypeSort() {
+      this.sort.seeType = !this.sort.seeType;
     }
   },
   components: {}
