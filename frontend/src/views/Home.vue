@@ -12,7 +12,7 @@
         </div>
         <div class="browse-category flex wrap space-around">
           <div v-for="category in categorys" :category="category" :key="category">
-            <router-link class="col main-categories-container" :to="'/car/'+ category">
+            <router-link class="col main-categories-container" :to="'/car/'+category">
               <img class="main-categories-img" :src="getImgUrl(category)" />
               <h3 class="capi">{{category}}</h3>
             </router-link>
