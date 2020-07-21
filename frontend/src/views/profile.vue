@@ -104,7 +104,6 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
-    
   },
   components: {
     favoriteCars,
