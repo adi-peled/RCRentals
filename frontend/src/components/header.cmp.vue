@@ -19,33 +19,32 @@
         <router-link :to="'/profile/'+loggedInUser._id">My Profile</router-link>
         <button @click="logout">Log out</button>
       </template>
-      <!-- <router-link to="/profile"> <img src="@/assets/default-user.jpg" alt=""> </router-link> -->
     </div>
   </section>
 </template>
 <script>
-import {eventBus} from '../main-services/eventBus.js'
+import { eventBus } from "../main-services/eventBus.js";
 export default {
   name: "app-header",
-  data(){
-    return{
+  data() {
+    return {
       open: false,
-      id:'',
-    }
+      id: ""
+    };
   },
-  created(){
-    this.id=this.loggedInUser._id
-  },
+  // created(){
+  //   this.id=this.loggedInUser._id
+  // },
   methods: {
-    addCar(){
-      eventBus.$emit('addcar')
-      this.$router.push('/profile/addcar/'+this.loggedInUser._id)
+    addCar() {
+      eventBus.$emit("addcar");
+      this.$router.push("/profile/addcar/" + this.loggedInUser._id);
     },
     logout() {
       ("ff");
       this.$store.dispatch({ type: "logout" });
     },
-      toggle() {
+    toggle() {
       this.open = !this.open;
     },
     close() {

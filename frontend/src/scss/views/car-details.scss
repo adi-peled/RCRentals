@@ -170,3 +170,40 @@
             }
         }
     }
+
+
+.review-details{
+    flex-direction: column;
+}
+
+.review-btns {
+flex-direction: column;
+}
+
+    .btn-review{
+        width: 100px;
+    }
+
+
+    .review-add{
+        margin: 0;
+    }
+    .review-img{
+        width: 70px;
+        height: 50px;
+    }
+
+    .reviwe-time{
+        font-size: 14px;
+    }
+
+    .reviwer-name{
+        font-size: 16px;
+    }
+
+
+    .review-name-date{
+        justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    }

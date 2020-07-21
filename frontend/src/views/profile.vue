@@ -78,6 +78,7 @@ export default {
     async addCar() {
       this.tab = "addCar";
     },
+
     async getOwnedCars() {
       const cars = await carService.query();
       this.ownedCars = cars.filter(
