@@ -69,15 +69,34 @@
           </div>
           {{car.owner.fulName}}
         </div>
-        <div class="Reviews">
+
+        <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
+        <button class="btn-review flex" v-else @click="toggleReview">close</button>
+
+        <form v-if="addingReview">
+          <textarea name id cols="30" rows="10" v-model="review.txt"></textarea>
+          <select v-model="review.rating">
+            <option value="1">★</option>
+            <option value="2">★★</option>
+            <option value="3">★★★</option>
+            <option value="4">★★★★</option>
+            <option value="5">★★★★★</option>
+          </select>
+          <button class="btn-review" @click.prevent="saveReview">save</button>
+        </form>
+        <div v-if="car.reviews" class="Reviews">
           <h4>Reviews</h4>
           <div v-for="review in car.reviews" :key="review.id" class="review flex">
-            <img src alt="userImg " />
+            <img src alt="userImg" />
             <div class="review-details flex">
-              <span class="star">★</span>
-              <span class="reviwer-name">{{review.byUser}}</span>
+              <div class="raiting flex">
+                <span v-for="(star,idx) in review.rating" :key="idx" class="star flex">★</span>
+              </div>
+              <div class="flex">
+                <span class="reviwer-name">{{review.byUser.fullName}}</span>
 
-              <span class="reviwe-time">{{new Date(review.createdAt).toLocaleDateString()}}</span>
+                <span class="reviwe-time">{{new Date(review.createdAt).toLocaleDateString()}}</span>
+              </div>
               <p>{{review.txt}}</p>
             </div>
           </div>
@@ -113,13 +132,17 @@ export default {
         returnDate: "",
         carId: this.$route.params.id,
         status: "pending"
-      }
+      },
+      review: {
+        rating: "",
+        txt: ""
+      },
+      addingReview: false
     };
   },
   created() {
     const carId = this.$route.params.id;
     carService.getById(carId).then(car => (this.car = car));
-    console.log(this.car);
     // this.disabledDates=this.car.disabledDates
   },
   methods: {
@@ -155,6 +178,22 @@ export default {
       var images = require.context("../assets/cars/", false, /\.jpg$/);
       return images("./" + imageName + ".jpg");
     },
+    toggleReview() {
+      this.addingReview = !this.addingReview;
+    },
+    saveReview() {
+      this.review.byUser = {
+        fullName: this.loggedInUser.fullName,
+        imgUrl: this.loggedInUser.imgUrl,
+        email: this.loggedInUser.email
+      };
+      this.review.id = "r" + Math.floor(Math.random() * 999 + 1);
+      this.review.createdAt = Date.now();
+      this.car.reviews.push(this.review);
+      console.log(this.review);
+      this.$store.dispatch({ type: "saveCar", car: this.car });
+    },
+
     saveOrder(order) {
       if (!order) {
         this.toggleBookModal();
