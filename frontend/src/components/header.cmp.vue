@@ -5,9 +5,8 @@
       <img class="header-logo-img" src="@/assets/logo.png" />
       <span class="logo-name">RCRentals</span>
     </router-link>
-     <button @click="toggle" class="btn-menu">☰</button>
-    <!-- <div class="flex nav"  :class="{'menu-open': open}"> </div> -->
-    <div  @click="toggle" class="flex nav"  :class="{'menu-open': open}">
+    <button @click="toggle" class="btn-menu">☰</button>
+    <div @click="toggle" class="flex nav" :class="{'menu-open': open}">
       <button @click="addCar">List your car</button>
       <router-link to="/about">About</router-link>
       <router-link to="/car/  ">All Cars</router-link>
@@ -36,9 +35,11 @@ export default {
   //   this.id=this.loggedInUser._id
   // },
   methods: {
-    addCar(){
-      this.$router.push({ path: 'profile/addcar', params: { userId: this.loggedInUser._id } })
-
+    addCar() {
+      this.$router.push({
+        path: "profile/addcar",
+        params: { userId: this.loggedInUser._id }
+      });
     },
     logout() {
       this.$store.dispatch({ type: "logout" });

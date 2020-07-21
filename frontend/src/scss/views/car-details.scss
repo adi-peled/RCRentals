@@ -46,6 +46,14 @@
             width: 50%;
         }
     }
+.car-info{
+
+    .details{
+        flex-direction: column;
+        justify-content: space-between;
+
+    }
+}
     
     .payment-details {
         margin-left: 5px;
@@ -54,7 +62,8 @@
         flex-direction: column;
         button {
             cursor: pointer;
-            width: 50%;
+            width: 30%;
+
             font-size: 16px;
             height: 44px;
             line-height: 43px;
@@ -178,13 +187,19 @@
 
 .review-btns {
 flex-direction: column;
+justify-content: space-evenly;
 }
 
     .btn-review{
         width: 100px;
+        outline: none;
+        padding: 0;
+        background-color: lighten($clr1, 20%);
+        color: white;
+        &:hover{
+        background-color: lighten($clr1, 10%);
+        }
     }
-
-
     .review-add{
         margin: 0;
     }

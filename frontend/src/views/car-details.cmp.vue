@@ -13,7 +13,7 @@
       </div>
       <div class="rest-page flex">
         <div class="car-info flex">
-          <div class="details">
+          <div class="details flex">
             <div>
               <h1 class="capi">{{car.vendor.company}} {{car.vendor.series}} {{car.model}}</h1>
               <h3>
@@ -45,9 +45,11 @@
 
             <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
             <form class="review-add flex" v-if="addingReview">
-              <textarea name id cols="20" rows="3" v-model="review.txt"></textarea>
-              <div class="block">
-                <el-rate v-model="  review.rating" :colors="colors"></el-rate>
+              <div class="add-details">
+                <div class="block">
+                  <el-rate v-model="  review.rating" :colors="colors"></el-rate>
+                </div>
+                <textarea name id cols="20" rows="3" v-model="review.txt"></textarea>
               </div>
               <div class="review-btns flex">
                 <button class="btn-review" @click.prevent="saveReview">save</button>
@@ -152,10 +154,10 @@ export default {
   },
   async created() {
     const carId = this.$route.params.id;
-    const car = await carService.getById(carId)
-    this.car = car
-    console.log(car,'hellow its me your best refrence')
-    this.disabledDates=this.car.disabledDates
+    const car = await carService.getById(carId);
+    this.car = car;
+    console.log(car, "hellow its me your best refrence");
+    this.disabledDates = this.car.disabledDates;
   },
   methods: {
     switchImg(idx) {

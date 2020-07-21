@@ -13,12 +13,11 @@
 export default {
   name: "browse-cars",
   created() {
-    this.category = this.$route.params.category;
     this.$store.dispatch({ type: "loadCars" });
-    console.log("car");
+
   },
   data() {
-    return {category:""};
+    return { category: "" };
   },
   methods: {
     removeCar(id) {
