@@ -41,7 +41,6 @@
 .logo-name {
     align-self: center;
     font-style: italic;
-
 }
 
 .nav {
@@ -91,13 +90,13 @@
 
 @media (max-width: 1200px){
     .nav{
-        width: 40%;
+        width: 45%;
     }
 }
 
 @media (max-width:1000px){
     .nav{
-        width: 45%;
+        width: 50%;
     }
 }
 
@@ -152,5 +151,10 @@
         width: 100%;
         background-color: rgba(0, 0, 0, 0.404);
         z-index: 1;
+    }
+}
+@media (max-width: 500px){
+    .logo-name{
+        font-size: 1.5rem;
     }
 }

@@ -6,7 +6,7 @@
       <span class="logo-name">RCRentals</span>
     </router-link>
      <button @click="toggle" class="btn-menu">☰</button>
-    <div class="flex nav"  :class="{'menu-open': open}"> </div>
+    <!-- <div class="flex nav"  :class="{'menu-open': open}"> </div> -->
     <div  @click="toggle" class="flex nav"  :class="{'menu-open': open}">
       <button @click="addCar">List your car</button>
       <router-link to="/about">About</router-link>
