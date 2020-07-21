@@ -27,7 +27,7 @@ export default {
     swalMsg(msg,sentIcon){
     const Toast = Swal.mixin({
     toast: true,
-    position: 'center',
+    position: 'top-end',
     showConfirmButton: false,
     timer: 1000,
     timerProgressBar: true,

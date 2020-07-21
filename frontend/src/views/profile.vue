@@ -106,8 +106,6 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
-    eventBus.$on("addcar", this.addCar());
-    //  this.$store.dispatch({ type: "getOrders" });
   },
   components: {
     favoriteCars,
