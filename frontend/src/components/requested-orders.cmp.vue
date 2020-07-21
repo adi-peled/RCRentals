@@ -7,7 +7,7 @@
       <h3>Pickup date: {{request.pickupDate}}</h3>
       <h3>Number of days: {{request.daysCount}}</h3>
       <h3>Total sum: ${{request.price}}</h3>
-      <div v-if="request.status==='pending'">
+      <div class="request-btn" v-if="request.status==='pending'">
         <button class="accept" @click="updateOrderStatus(request,'accept')">accept</button>
         <button class="decline" @click="updateOrderStatus(request,'decline')">decline</button>
       </div>
