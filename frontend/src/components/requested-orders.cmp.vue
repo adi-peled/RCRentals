@@ -8,8 +8,8 @@
       <h3>Number of days: {{request.daysCount}}</h3>
       <h3>Total sum: ${{request.price}}</h3>
       <div v-if="request.status==='pending'">
-        <button @click="updateOrderStatus(request,'accept')">accept</button>
-        <button @click="updateOrderStatus(request,'decline')">decline</button>
+        <button class="accept" @click="updateOrderStatus(request,'accept')">accept</button>
+        <button class="decline" @click="updateOrderStatus(request,'decline')">decline</button>
       </div>
       <div class="request-status" v-else>{{request.status}}</div>
     </div>
@@ -31,6 +31,15 @@ export default {
   },
   created() {
     this.requests = this.info.requestedOrders;
+    var pendingRequests = this.requests.filter(
+      request => request.status === "pending"
+    );
+    var answerRequests = this.requests.filter(
+      request => request.status !== "pending"
+    );
+    if (!pendingRequests) pendingRequests = [];
+    if (!answerRequests) answerRequests = [];
+    this.requests = pendingRequests.concat(answerRequests);
   },
   methods: {
     updateOrderStatus(request, status) {

@@ -5,7 +5,11 @@
     <div class="car-preview">
       <div class="card-img">
         <img
-            v-if="!isLiked&&loggedInUser" @click="toggleLike" class="like" src="@/assets/hearts/opa.png"/>
+          v-if="!isLiked&&loggedInUser"
+          @click="toggleLike"
+          class="like"
+          src="@/assets/hearts/opa.png"
+        />
         <img
           v-else-if="isLiked&&loggedInUser"
           @click="toggleLike"
@@ -22,8 +26,7 @@
         <div class="details flex">
           <div class="capi">{{car.vendor.company}} {{car.vendor.series}} {{car.model}}</div>
           <div>
-            {{car.reviews[0].rating}}
-            <span class="star">★</span>
+            <span class="star">★ {{calcRating}}</span>
             <span class="capi">(50) {{car.owner.fullName}}</span>
           </div>
         </div>
@@ -73,6 +76,13 @@ export default {
       } else {
         return false;
       }
+    },
+    calcRating() {
+      const sum = this.car.reviews.reduce((acc, review) => {
+        acc += Number(review.rating);
+        return acc;
+      }, 0);
+      return (sum / this.car.reviews.length).toFixed(1);
     }
   }
 };

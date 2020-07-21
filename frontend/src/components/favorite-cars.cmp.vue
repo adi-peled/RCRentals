@@ -1,10 +1,21 @@
 <template>
   <section class="profile-cars">
     <h1>Your favorite cars:</h1>
-    <div v-for="car in favCars" :car="car" :key="car._id">
-      <router-link :to="'/car/details/'+ car._id" class="col">
-        <img :src="getImgUrl(car.primaryImgUrl)" height="200" />
-        <h2>{{car.vendor.company}} {{car.vendor.series}} price:{{car.price}}</h2>
+    <div class="car-preview" v-for="car in favCars" :car="car" :key="car._id">
+      <router-link :to="'/car/details/'+car._id">
+        <div class="under-img flex">
+          <div class="price">${{car.price}}/day</div>
+          <img class="front-img" :src="getImgUrl(car.primaryImgUrl)" />
+          <div class="details flex">
+            <div class="capi">{{car.vendor.company}} {{car.vendor.series}} {{car.model}}</div>
+            <div>
+              <div>Location:{{car.location.city}}</div>
+              {{car.reviews[0].rating}}
+              <span class="star">★</span>
+              <span class="capi">(50) {{car.owner.fullName}}</span>
+            </div>
+          </div>
+        </div>
       </router-link>
     </div>
   </section>

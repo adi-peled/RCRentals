@@ -18,6 +18,7 @@
 @import './components/profile.scss';
 @import './components/modal.scss';
 @import './components//requested-orders.scss';
+@import './components/carousel.scss';
 //views
 @import './views/about.scss';
 @import './views/home.scss';
@@ -25,6 +26,7 @@
 @import './views/signin.scss';
 @import './views/car-details.scss';
 @import './views/browse-cars.scss';
+
 * {
     box-sizing: border-box;
     font-family: Opensans;

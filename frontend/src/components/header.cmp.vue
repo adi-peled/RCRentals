@@ -11,7 +11,6 @@
       <button @click="addCar">List your car</button>
       <router-link to="/about">About</router-link>
       <router-link to="/car/  ">All Cars</router-link>
-
       <template v-if="!loggedInUser">
         <router-link to="/login">Log In</router-link>
         <router-link to="/signUp">Sign Up</router-link>
@@ -20,25 +19,22 @@
         <router-link :to="'/profile/'+loggedInUser._id">My Profile</router-link>
         <button @click="logout">Log out</button>
       </template>
-
-      <!-- <router-link to="/profile"> <img src="@/assets/default-user.jpg" alt=""> </router-link> -->
     </div>
   </section>
 </template>
-
 <script>
-import {eventBus} from '../main-services/eventBus.js'
+import { eventBus } from "../main-services/eventBus.js";
 export default {
   name: "app-header",
-  data(){
-    return{
+  data() {
+    return {
       open: false,
-      id:'',
-    }
+      id: ""
+    };
   },
-  created(){
-    this.id=this.loggedInUser._id
-  },
+  // created(){
+  //   this.id=this.loggedInUser._id
+  // },
   methods: {
     addCar(){
       this.$router.push({ path: 'profile/addcar', params: { userId: this.loggedInUser._id } })
@@ -48,7 +44,7 @@ export default {
       ("ff");
       this.$store.dispatch({ type: "logout" });
     },
-      toggle() {
+    toggle() {
       this.open = !this.open;
     },
     close() {
@@ -62,6 +58,5 @@ export default {
   }
 };
 </script>
-
 <style>
 </style>

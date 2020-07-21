@@ -2,10 +2,12 @@
   <section class="profile-cars">
     <h1>Owned cars:</h1>
     <div v-for="car in cars" :car="car" :key="car._id">
-      <router-link :to="'/car/details/'+ car._id" class="col">
+      <router-link :to="'/car/details/'+ car._id" class="owned-cars flex">
         <img :src="require(`@/assets/cars/${car.primaryImgUrl}.jpg`)" height="200" />
-        <h2>{{car.vendor.company}} {{car.vendor.series}}</h2>
-        <h2>{{car.location.city}}</h2>
+        <div>
+          <h3>{{car.vendor.company}} {{car.vendor.series}}</h3>
+          <h3>{{car.location.city}}</h3>
+        </div>
       </router-link>
     </div>
   </section>
@@ -15,9 +17,9 @@
 import { carService } from "../services/car-service.js";
 export default {
   name: "owned-cars",
-  props:{
-    info:{
-      type:Object
+  props: {
+    info: {
+      type: Object
     }
   },
   data() {
@@ -33,7 +35,7 @@ export default {
     }
   },
   created() {
-    this.cars = this.info.ownedCars
+    this.cars = this.info.ownedCars;
   },
   computed: {
     // loggedInUser() {
