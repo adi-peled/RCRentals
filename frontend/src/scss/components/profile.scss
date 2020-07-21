@@ -136,5 +136,29 @@
 @media (max-width:500px) {
     .profile {
         grid-template-columns: repeat(1, 1fr);
+        .profile-info {
+            margin-top: unset;
+        }
+        .car-preview {
+            max-width: 300px;
+        }
+    }
+    .owned-cars {
+        flex-direction: column;
+    }
+    .selected-route i {
+        transform: rotate(90deg);
+    }
+    .profile-cars h1 {
+        text-align: left;
+    }
+    .profile .under-img {
+        flex-direction: column;
+        text-align: left;
+        margin-top: 30px;
+    }
+    .request-btn {
+        display: flex;
+        justify-content: space-around;
     }
 }

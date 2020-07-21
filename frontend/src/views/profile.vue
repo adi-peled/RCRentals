@@ -4,41 +4,43 @@
       <img src="../assets/default-user.jpg" width="150" />
       <h1>Welcome {{loggedInUser.fullName}}</h1>
       <h2>{{loggedInUser.email}}</h2>
-      <div class="col profile-router" @click="addCar">
-        <div>
-          <i class="el-icon-circle-plus-outline"></i>
-          List your car
+      <div>
+        <div class="col profile-router" @click="addCar">
+          <div>
+            <i class="el-icon-circle-plus-outline"></i>
+            List your car
+          </div>
+          <i class="el-icon-arrow-right"></i>
         </div>
-        <i class="el-icon-arrow-right"></i>
-      </div>
-      <div class="col profile-router" @click="getFavCars">
-        <div>
-          <i class="el-icon-star-on"></i>
-          My favorite cars
+        <div class="col profile-router" @click="getFavCars">
+          <div>
+            <i class="el-icon-star-on"></i>
+            My favorite cars
+          </div>
+          <i class="el-icon-arrow-right"></i>
         </div>
-        <i class="el-icon-arrow-right"></i>
-      </div>
-      <div class="col profile-router" @click="getOwnedCars">
-        <div>
-          <i class="el-icon-coordinate"></i>
-          My cars
+        <div class="col profile-router" @click="getOwnedCars">
+          <div>
+            <i class="el-icon-coordinate"></i>
+            My cars
+          </div>
+          <!-- <button @click="getOwnedCars">My cars</button> -->
+          <i class="el-icon-arrow-right"></i>
         </div>
-        <!-- <button @click="getOwnedCars">My cars</button> -->
-        <i class="el-icon-arrow-right"></i>
-      </div>
-      <div class="col profile-router" @click="getUserOrders">
-        <div>
-          <i class="el-icon-s-order"></i>
-          My orders
+        <div class="col profile-router" @click="getUserOrders">
+          <div>
+            <i class="el-icon-s-order"></i>
+            My orders
+          </div>
+          <i class="el-icon-arrow-right"></i>
         </div>
-        <i class="el-icon-arrow-right"></i>
-      </div>
-      <div class="col profile-router" @click="getRequestedOrders">
-        <div>
-          <i class="el-icon-collection"></i>
-          Requested orders
+        <div class="col profile-router" @click="getRequestedOrders">
+          <div>
+            <i class="el-icon-collection"></i>
+            Requested orders
+          </div>
+          <i class="el-icon-arrow-right"></i>
         </div>
-        <i class="el-icon-arrow-right"></i>
       </div>
     </div>
     <div class="profile-info">
@@ -104,8 +106,6 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
-    eventBus.$on("addcar", this.addCar());
-    //  this.$store.dispatch({ type: "getOrders" });
   },
   components: {
     favoriteCars,
