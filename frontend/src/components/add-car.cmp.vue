@@ -4,7 +4,7 @@
 
     <form class="add-car-form" @submit.prevent="addCar">
         <div class="flex first-div-caradd">
-        <el-upload :limit="5"  v-model="fileList" class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList" list-type="picture"> <el-button size="small" type="primary">Click to upload</el-button></el-upload>
+        <el-upload :limit="5"  v-model="fileList" class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/"  :on-success="onUploadImg" :on-remove="handleRemove" :file-list="fileList" list-type="picture"> <el-button size="small" type="primary">Click to upload</el-button></el-upload>
             <div>
                 <el-select v-model="carTag" placeholder="Tag">
                 <el-option v-for="item in tags" :key="item.value" :label="item.label" :value="item.value"></el-option>
@@ -43,11 +43,11 @@
     </form>
 
 
-
   </section>
 </template>
 
 <script>
+import {uploadImg} from '../main-services/imgUpload.service.js'
 export default {
 data(){
     return {
@@ -85,9 +85,14 @@ data(){
         carPrice:200,
         carDescrition:'',
          fileList: [],
+         imgsUrl:[]
     }
 } ,
     methods:{
+       async onUploadImg(response,file){
+          const img =await uploadImg(file.raw)
+          console.log(img);
+        },
             addCar(){
                 var car = {
                     tags:this.carTag,
