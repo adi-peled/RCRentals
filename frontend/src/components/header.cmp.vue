@@ -36,9 +36,9 @@ export default {
   //   this.id=this.loggedInUser._id
   // },
   methods: {
-    addCar() {
-      this.$router.push("/profile/addcar/" + this.loggedInUser._id);
-      // router.push({ name: 'user', params: { userId: '123', type: } })
+    addCar(){
+      this.$router.push({ path: 'profile/addcar', params: { userId: this.loggedInUser._id } })
+
     },
     logout() {
       this.$store.dispatch({ type: "logout" });
