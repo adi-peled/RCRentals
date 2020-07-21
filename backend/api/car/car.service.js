@@ -29,10 +29,11 @@ async function query(filterBy = {}) {
     // var prop = (filterBy.sort === 'price') ? 'price' : 'name';
     // var order = (filterBy.order === 'desc') ? -1 : 1;
     // var sortBy = {[prop]: order}
-
+    console.log(criteria);
     const collection = await dbService.getCollection('car')
     try {
         const cars = await collection.find(criteria).toArray();
+        console.log('carsservc', cars);
         return cars
     } catch (err) {
         console.log('ERROR: cannot find cars')
@@ -41,17 +42,20 @@ async function query(filterBy = {}) {
 }
 
 function _buildCriteria(filterBy) {
-    const criteria =
-        ({
-            $and: [{
-                $and: [{ price: { $lt: Number(filterBy.maxPrice) } },
-                { price: { $gt: Number(filterBy.minPrice) } }]
-            },
-            {
-                $and: [{ model: { $lt: Number(filterBy.maxModel) } },
-                { model: { $gt: Number(filterBy.minModel) } }]
-            }]
-        })
+    var criteria = {}
+    if (filterBy.minPrice) {
+        criteria =
+            ({
+                $and: [{
+                    $and: [{ price: { $lt: Number(filterBy.maxPrice) } },
+                    { price: { $gt: Number(filterBy.minPrice) } }]
+                },
+                {
+                    $and: [{ model: { $lt: Number(filterBy.maxModel) } },
+                    { model: { $gt: Number(filterBy.minModel) } }]
+                }]
+            })
+    }
     if (filterBy.tag) {
         criteria.tags = filterBy.tag
     }

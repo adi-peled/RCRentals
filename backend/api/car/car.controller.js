@@ -12,6 +12,7 @@ async function getCars(req, res) {
     console.log('cars query:', req.query);
     try {
         const cars = await carService.query(req.query)
+        console.log(cars);
         res.send(cars)
     } catch (err) {
         throw err;
