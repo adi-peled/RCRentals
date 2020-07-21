@@ -5,10 +5,13 @@
       <img class="header-logo-img" src="@/assets/logo.png" />
       <span class="logo-name">RCRentals</span>
     </router-link>
-     <button @click="toggle" class="btn-menu">☰</button>
-    <div class="flex nav"  :class="{'menu-open': open}"> </div>
-    <div  @click="toggle" class="flex nav"  :class="{'menu-open': open}">
+    <button @click="toggle" class="btn-menu">☰</button>
+    <div class="flex nav" :class="{'menu-open': open}"></div>
+    <div @click="toggle" class="flex nav" :class="{'menu-open': open}">
+      <button @click="addCar">List your car</button>
+
       <!-- <router-link :to="'/profile/addcar/'+loggedInUser._id">List your car</router-link> -->
+
       <router-link to="/about">About</router-link>
       <router-link to="/car/  ">All Cars</router-link>
 
@@ -27,23 +30,28 @@
 </template>
 
 <script>
+import { eventBus } from "../main-services/eventBus.js";
 export default {
   name: "app-header",
-  data(){
-    return{
+  data() {
+    return {
       open: false,
-      id:'',
-    }
+      id: ""
+    };
   },
   // created(){
   //   this.id=this.loggedInUser._id
   // },
   methods: {
+    addCar() {
+      eventBus.$emit("addcar");
+      this.$router.push("/profile/addcar/" + this.loggedInUser._id);
+    },
     logout() {
       ("ff");
       this.$store.dispatch({ type: "logout" });
     },
-      toggle() {
+    toggle() {
       this.open = !this.open;
     },
     close() {
