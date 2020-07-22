@@ -3,7 +3,8 @@
       <app-header></app-header>
 
       <router-view></router-view>
-      
+      <chat class="chat" v-if="chatting"></chat>
+      <div class="chatimg" @click="toggleChat"><img  src="@/assets/img/chat.png" alt=""></div>
       <app-footer></app-footer>
   </div>
 </template>
@@ -12,12 +13,19 @@
   import appHeader from './components/header.cmp.vue'
   import appFooter from './components/footer.cmp.vue'
   import {eventBus} from './main-services/eventBus.js'
+  import chat from './components/chat-io.cmp.vue'
 export default {
 
 
   components :{
     appHeader,
-    appFooter
+    appFooter,
+    chat
+  },
+  data(){
+    return {
+      chatting:false
+    }
   },
   created(){
 
@@ -34,16 +42,19 @@ export default {
     onOpen: (toast) => {
     toast.addEventListener('mouseenter', Swal.stopTimer)
     toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
+  },
 
+})
 Toast.fire({
   icon: sentIcon,
   title: msg
 })
-
-    }
+},
+  toggleChat(){
+    this.chatting=!this.chatting
   }
+    
+}
 }
 </script>>
 <style lang="scss">

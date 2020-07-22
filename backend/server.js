@@ -4,7 +4,6 @@ const cors = require('cors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-
 const app = express()
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
@@ -18,6 +17,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }))
+
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(__dirname, 'public')));

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { carStore } from '../store/car-store.js'
 import { userStore } from '../store/user-store.js'
 import { orderStore } from '../store/order-store.js'
+import socketStore from '../store/socket-store.js'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     modules: {
         carStore,
         userStore,
-        orderStore
+        orderStore,
+        socketStore
     }
 })

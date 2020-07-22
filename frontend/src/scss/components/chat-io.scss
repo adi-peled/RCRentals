@@ -1,0 +1,33 @@
+.chat {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid grey;
+    ul {
+        height: 300px;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    li {
+        list-style: none;
+    }
+    input {
+        width: 90%;
+        outline: none;
+    }
+    button {
+        outline: none;
+        width: 10%;
+        color: white;
+        background-color: $clr1;
+    }
+}
+
+.chatimg {
+    img {
+        width: 80px;
+        cursor: pointer;
+    }
+}

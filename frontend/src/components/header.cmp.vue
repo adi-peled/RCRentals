@@ -10,6 +10,7 @@
       <button @click="addCar">List your car</button>
       <router-link to="/about">About</router-link>
       <router-link to="/car/">All Cars</router-link>
+        <router-link to="/chat">Chat</router-link>
       <template v-if="!loggedInUser">
         <router-link to="/login">Log In</router-link>
         <router-link to="/signUp">Sign Up</router-link>

@@ -1,16 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+//Views
 import Home from '../views/Home.vue';
 import signUp from '../views/signup.vue';
 import logIn from '../views/login.vue';
 import profile from '../views/profile.vue';
 import browseCars from '../views/browse-cars.cmp.vue';
 import carDetails from '../views/car-details.cmp.vue';
+//Components
 import ownedCars from '../components/owned-cars.cmp.vue';
 import favCars from '../components/favorite-cars.cmp.vue';
 import userReviews from '../components/user-reviews.cmp.vue';
 import userOrders from '../components/user-orders.cmp.vue';
 import addCar from '../components/add-car.cmp.vue'
+import chat from '../components/chat-io.cmp.vue'
 import requestedOrders from '../components/requested-orders.cmp.vue'
 Vue.use(VueRouter)
 
@@ -23,6 +26,11 @@ const routes = [{
         path: '/signup',
         name: 'signUp',
         component: signUp
+    },
+    {
+        path: '/chat',
+        name: 'Chat',
+        component: chat
     },
     {
         path: '/login',
