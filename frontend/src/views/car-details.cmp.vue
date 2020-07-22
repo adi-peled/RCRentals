@@ -61,7 +61,7 @@
             </form>
           </div>
           <div class="payment-details right flex">
-            <h2 class="capi">location: {{car.city}}</h2>
+            <h2 class="capi">location: {{car.location.city}}</h2>
             <h1>Price: $ {{car.price}} / Day</h1>
             <div>
               <label>Pick Up Date</label>
