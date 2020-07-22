@@ -31,9 +31,6 @@ export default {
   },
   created() {
     this.orders = this.info.orders;
-    // const userId = this.$route.params.id;
-    // orderService.getOrdersByBuyerId(userId)
-    //   .then(orders => (this.orders = orders));
   },
   computed: {
     //  car(){

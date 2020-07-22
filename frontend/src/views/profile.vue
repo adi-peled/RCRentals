@@ -72,11 +72,11 @@ export default {
     }
   },
   methods: {
-    async getFavCars() {
+     getFavCars() {
       this.tab = "favoriteCars";
       this.info.favCars = this.loggedInUser.favCars;
     },
-    async addCar() {
+    addCar() {
       this.tab = "addCar";
     },
 

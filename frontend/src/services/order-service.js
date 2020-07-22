@@ -13,11 +13,6 @@ async function _add(order) {
 
 }
 
-async function query() {
-    return await httpService.get(`order`)
-}
-
-
 async function getOrders() {
     return await httpService.get(`order`)
 }

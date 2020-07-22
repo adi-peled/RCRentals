@@ -49,8 +49,13 @@ export const carStore = {
         },
         async saveCar({ commit }, { car }) {
             const type = (car._id) ? 'updateCar' : 'addCar';
-            const savedCar = await carService.saveCar(car)
-            commit({ type, savedCar })
+            try{
+                const savedCar = await carService.saveCar(car)
+                commit({ type, savedCar })
+            } catch(err){
+                console.log(err);
+
+            }
         },
 
     },
