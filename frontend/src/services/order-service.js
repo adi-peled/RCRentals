@@ -5,7 +5,7 @@ export default {
     remove,
     getOrders,
     getOrdersByBuyerId,
-    query
+    
 }
 async function _add(order) {
     console.log(order);
