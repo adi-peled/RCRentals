@@ -33,6 +33,7 @@
 <script>
 import { eventBus } from "../main-services/eventBus.js";
 export default {
+  name:'modal',
   props: ["totalPrice"],
   data() {
     return {

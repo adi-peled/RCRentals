@@ -24,7 +24,6 @@
             <i class="el-icon-coordinate"></i>
             My cars
           </div>
-          <!-- <button @click="getOwnedCars">My cars</button> -->
           <i class="el-icon-arrow-right"></i>
         </div>
         <div class="col profile-router" @click="getUserOrders">
@@ -86,7 +85,6 @@ export default {
       this.ownedCars = cars.filter(
         car => this.loggedInUser._id === car.owner._id
       );
-      console.log("cars:", cars, "owned", this.ownedCars);
       this.tab = "ownedCars";
       this.info.ownedCars = this.ownedCars;
     },
