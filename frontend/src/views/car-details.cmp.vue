@@ -7,7 +7,7 @@
           v-for="(img,idx) in car.imgUrls"
           @click="switchImg(idx)"
           :class="{small:true, big:false}"
-          :src="getImgUrl(car.imgUrls[idx])"
+          :src="getImgUrl(car.imgUrls[idx].url)"
           :key="idx"
         />
       </div>
@@ -120,7 +120,7 @@
 <script>
 import { carService } from "../services/car-service.js";
 import { eventBus } from "../main-services/eventBus.js";
-import guestModal from "../components/modal.vue";
+import guestModal from "../components/modal.cmp.vue";
 import datePicker from "vuejs-datepicker";
 export default {
   name: "car-details",
