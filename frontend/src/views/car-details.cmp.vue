@@ -2,9 +2,9 @@
   <section v-if="car">
     <div class="flex car-container">
       <div class="imgs-container grid">
-        <img :class="{ small:false ,big:true}" :src="primeUrl[0].url" />
+        <img :class="{ small:false ,big:true}" :src="car.imgsUrl[0].url" />
         <img
-          v-for="(img,idx) in car.imgsUrl"
+          v-for="(img,idx) in car.imgsUrl.slice(1, car.imgsUrl.length)"
           @click="switchImg(idx)"
           :class="{small:true, big:false}"
           :src="img.url"
@@ -162,11 +162,8 @@ export default {
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
-    this.primeUrl = car.imgsUrl.splice(0, 1);
-    console.log(this.primeUrl);
-    console.log(this.car);
-    console.log(car, "hellow its me your best refrence");
     this.disabledDates = this.car.disabledDates;
+    console.log(this.car);
   },
   methods: {
     switchImg(idx) {
@@ -206,6 +203,7 @@ export default {
       this.addingReview = !this.addingReview;
     },
     saveReview() {
+      console.log("car", this.car);
       this.review.byUser = {
         fullName: this.loggedInUser.fullName,
         imgUrl: this.loggedInUser.imgUrl,
@@ -218,6 +216,7 @@ export default {
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.review = {};
       this.toggleReview();
+      console.log(this.car);
     },
     showMoreReviews(boolean) {
       if (boolean) {
