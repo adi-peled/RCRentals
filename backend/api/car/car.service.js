@@ -26,9 +26,6 @@ module.exports = {
 async function query(filterBy = {}) {
 
     const criteria = _buildCriteria(filterBy)
-    // var prop = (filterBy.sort === 'price') ? 'price' : 'name';
-    // var order = (filterBy.order === 'desc') ? -1 : 1;
-    // var sortBy = {[prop]: order}
     console.log(criteria);
     const collection = await dbService.getCollection('car')
     try {
@@ -47,12 +44,12 @@ function _buildCriteria(filterBy) {
         criteria =
             ({
                 $and: [{
-                    $and: [{ price: { $lt: Number(filterBy.maxPrice) } },
-                    { price: { $gt: Number(filterBy.minPrice) } }]
+                    $and: [{ price: { $lte: Number(filterBy.maxPrice) } },
+                    { price: { $gte: Number(filterBy.minPrice) } }]
                 },
                 {
-                    $and: [{ model: { $lt: Number(filterBy.maxModel) } },
-                    { model: { $gt: Number(filterBy.minModel) } }]
+                    $and: [{ model: { $lte: Number(filterBy.maxModel) } },
+                    { model: { $gte: Number(filterBy.minModel) } }]
                 }]
             })
     }

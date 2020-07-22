@@ -1,4 +1,9 @@
 .car-filter {
+
+.type{
+    margin-bottom: 10px;
+}
+
     .el-input__inner:focus {
         // border-color: $clr1;
     }
@@ -46,8 +51,14 @@
 
 .car-filter{
     .block{
-width: 244px;
+        margin-top: 10px;
+        .min{
+            
+    text-align: left;
+width: 80px;
+        }
     }
+    text-align: center;
     align-items: center;
 flex-direction: column;
 height: 210px;
@@ -74,6 +85,12 @@ background-color: lighten($clr1, 10%);
 }
 
 
+
+.el-slider{
+    margin-left: 15px;
+    margin-right: 15px;
+ width: 400px;   
+}
 
 
 .el-select-dropdown__item {
