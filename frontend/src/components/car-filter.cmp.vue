@@ -60,7 +60,7 @@
             <span class="min">min:2000</span>
             <el-slider
               class="el-slider"
-              :min="2000"
+              :min="1970"
               @change="setFilter"
               v-model="filterBy.rangeModel"
               range
@@ -90,7 +90,7 @@ export default {
         model: "",
         tag: "",
         rangePrice: [0, 3000],
-        rangeModel: [2000, 2021],
+        rangeModel: [1970, 2021],
         available: ""
       },
       tagsOptions: [
