@@ -105,6 +105,7 @@ methods:{
         fullName:this.loggedInUser.fullName,
         imgUrl:this.loggedInUser.imgUrl
     },
+    this.car.reviews=[]
       this.$store.dispatch({ type: "saveCar", car:this.car });
       this.resetCar();
       this.$refs.upload.clearFiles();

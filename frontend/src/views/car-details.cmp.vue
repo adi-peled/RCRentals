@@ -2,12 +2,12 @@
   <section v-if="car">
     <div class="flex car-container">
       <div class="imgs-container grid">
-        <img :class="{ small:false ,big:true}" :src="getImgUrl(car.primaryImgUrl)" />
-        <img
-          v-for="(img,idx) in car.imgUrls"
+        <img :class="{ small:false ,big:true}" :src="primeUrl[0].url" />
+        <img 
+          v-for="(img,idx) in car.imgsUrl"
           @click="switchImg(idx)"
           :class="{small:true, big:false}"
-          :src="getImgUrl(car.imgUrls[idx])"
+          :src="img.url"
           :key="idx"
         />
       </div>
@@ -15,7 +15,7 @@
         <div class="car-info flex">
           <div class="details flex">
             <div>
-              <h1 class="capi">{{car.vendor.company}} {{car.vendor.series}} {{car.model}}</h1>
+              <h1 class="capi">{{car.company}} {{car.series}} {{car.model}}</h1>
               <h3>
                 <span v-if="car.reviews">{{calcRating}}</span>
                 <span v-else>no rating yet</span>
@@ -61,7 +61,7 @@
             </form>
           </div>
           <div class="payment-details right flex">
-            <h2 class="capi">location: {{car.location.city}}</h2>
+            <h2 class="capi">location: {{car.city}}</h2>
             <h1>Price: $ {{car.price}} / Day</h1>
             <div>
               <label>Pick Up Date</label>
@@ -133,6 +133,7 @@ export default {
     return {
       // disabledDates: null,
       car: null,
+      primeUrl:null,
       disabledDates: {
         range: []
       },
@@ -161,6 +162,9 @@ export default {
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
+    this.primeUrl=car.imgsUrl.splice(0,1)
+    console.log(this.primeUrl);
+    console.log(this.car);
     console.log(car, "hellow its me your best refrence");
     this.disabledDates = this.car.disabledDates;
   },
