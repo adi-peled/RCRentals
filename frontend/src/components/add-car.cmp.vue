@@ -31,7 +31,7 @@
             <Label>Car Searies</Label>
             <el-input  placeholder="Searies" v-model="carSearies"></el-input>
         </div>
-        <div class="add-car-input" > 
+        <div class="add-car-input add-car-price" > 
             <Label>Car Price $/Day</Label>
             <el-input-number v-model="carPrice" :min="1" ></el-input-number>        
         </div>
