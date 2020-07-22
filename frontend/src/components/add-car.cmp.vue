@@ -78,8 +78,10 @@ export default {
         car:{
           condition:'',
           model:'',
-          company:'',
-          searies:'',
+          vendor:{
+            company:'',
+            searies:''
+          },
           price:200,
           descrition:'',
           imgsUrl:[]
@@ -99,7 +101,9 @@ methods:{
         doorsCount : 4.0,
         kpl : 12.0
         },
-    this.car.city='LA',
+      this.car.location={
+        city:'LA',
+      }
     this.car.owner={
         _id:this.loggedInUser._id,
         fullName:this.loggedInUser.fullName,
@@ -118,15 +122,16 @@ resetCar(){
   this.car={
           condition:'',
           model:'',
-          company:'',
-          searies:'',
+          vendor:{
+            company:'',
+            searies:''
+          },
           price:200,
           descrition:'',
           imgsUrl:[]
         }
-         
+}         
         
-}
 },
   computed:{
       years(){
