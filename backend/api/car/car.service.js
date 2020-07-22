@@ -26,14 +26,11 @@ module.exports = {
 async function query(filterBy = {}) {
 
     const criteria = _buildCriteria(filterBy)
-    console.log(criteria);
     const collection = await dbService.getCollection('car')
     try {
         const cars = await collection.find(criteria).toArray();
-        console.log('carsservc', cars);
         return cars
     } catch (err) {
-        console.log('ERROR: cannot find cars')
         throw err;
     }
 }
