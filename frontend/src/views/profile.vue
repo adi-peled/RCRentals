@@ -69,7 +69,7 @@ export default {
     }
   },
   methods: {
-     getFavCars() {
+    getFavCars() {
       this.tab = "favoriteCars";
       this.info.favCars = this.loggedInUser.favCars;
     },
@@ -103,6 +103,9 @@ export default {
   created() {
     this.$store.dispatch({ type: "loadCars" });
     this.$store.dispatch({ type: "getOrders" });
+    if (this.$route.params.id === "addcar") {
+      this.addCar();
+    }
   },
   components: {
     favoriteCars,

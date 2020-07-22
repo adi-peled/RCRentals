@@ -7,7 +7,7 @@
           v-for="(img,idx) in car.imgUrls"
           @click="switchImg(idx)"
           :class="{small:true, big:false}"
-          :src="getImgUrl(car.imgUrls[idx].url)"
+          :src="getImgUrl(car.imgUrls[idx])"
           :key="idx"
         />
       </div>
@@ -20,7 +20,10 @@
                 <span v-if="car.reviews">{{calcRating}}</span>
                 <span v-else>no rating yet</span>
                 <span class="star">★</span>
-                <span class="capi">(50) {{car.owner.fullName}}</span>
+                <span class="capi">
+                  <span class="count">(50)</span>
+                  {{car.owner.fullName}}
+                </span>
               </h3>
               <div class="features grid">
                 <span>
@@ -57,12 +60,13 @@
               </div>
             </form>
           </div>
-          <div class="payment-details flex">
-            <h2>location: {{car.location.city}}</h2>
+          <div class="payment-details right flex">
+            <h2 class="capi">location: {{car.location.city}}</h2>
             <h1>Price: $ {{car.price}} / Day</h1>
             <div>
               <label>Pick Up Date</label>
               <date-picker
+                class="right"
                 v-model="order.pickupDate"
                 :disabled-dates="disabledDates"
                 :full-month-name="false"
@@ -71,6 +75,7 @@
             <div>
               <label>Return Date</label>
               <date-picker
+                class="right"
                 v-model="order.returnDate"
                 :disabled-dates="disabledDates"
                 :full-month-name="false"
@@ -186,6 +191,7 @@ export default {
         };
         eventBus.$emit("sendSwal", "Booked !", "success");
         this.saveOrder(this.order);
+        this.order = {};
       }
     },
     getImgUrl(imageName) {

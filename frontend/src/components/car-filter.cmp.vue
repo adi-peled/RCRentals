@@ -7,7 +7,7 @@
         <button @click="toggleModelSort">Model</button>
         <!-- <button @click="toggleFiltersort">Filter</button> -->
       </div>
-      <div class="sorts flex col align-center">
+      <div class="sorts flex col align-center"  v-if="sort.seeType||sort.seePrice||sort.seeModel">
         <!-- <div >
             <span>Search Location</span>
             <input

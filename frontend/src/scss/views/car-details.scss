@@ -42,6 +42,7 @@
     
     .car-container {
         .details {
+
             margin-right: 5px;
             width: 50%;
         }
@@ -49,6 +50,9 @@
 .car-info{
 
     .details{
+        .count{
+            color: gray;
+        }
         height: 415px;
         flex-direction: column;
         justify-content: space-between;
@@ -64,7 +68,7 @@
         button {
             cursor: pointer;
             width: 30%;
-
+            align-self: flex-end;
             font-size: 16px;
             height: 44px;
             line-height: 43px;
