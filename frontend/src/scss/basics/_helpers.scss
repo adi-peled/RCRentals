@@ -11,6 +11,9 @@
     text-align: center;
     font-size: 35px;
 }
+.align-center{
+    align-items: center;
+}
 
 .space-between {
     justify-content: space-between;
@@ -34,6 +37,9 @@
 
 .capi {
     text-transform: capitalize;
+}
+.bold{
+    font-weight: bold;
 }
 
 // media-helpers
