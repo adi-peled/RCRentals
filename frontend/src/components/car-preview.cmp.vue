@@ -18,7 +18,7 @@
         />
         <div class="price bold">${{car.price}}/day</div>
         <router-link :to="'/car/details/'+car._id">
-          <img class="front-img" :src="getImgUrl(car.primaryImgUrl)" />
+          <img class="front-img" :src="car.imgsUrl[0].url" />
         </router-link>
       </div>
 
@@ -26,9 +26,9 @@
         <div class="details flex">
           <div class="details flex">
             <span class="flex align-center bold capi">
-              {{car.vendor.company}}-{{car.vendor.series}}-{{car.model}}
+              {{car.company}}-{{car.series}}-{{car.model}}
             </span>
-            <span>{{car.location.city}}</span>
+            <span>{{car.city}}</span>
           </div>
           <div>
             <div class="capi under-img-details">
@@ -48,11 +48,7 @@
 <script>
 export default {
   name: "car-preview",
-  props: {
-    car: {
-      type: Object
-    }
-  },
+  props: ['car'],
   data() {
     return {
       isLike: null
@@ -71,6 +67,7 @@ export default {
     }
   },
   created() {
+    console.log(this.car);
     this.isLike = this.isLiked;
   },
 
