@@ -39,7 +39,7 @@
           <span>Price: ${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
 
           <div class="block flex">
-            <span class="min">min:0</span>
+            <span class="min">min:$0</span>
 
             <el-slider
               class="el-slider"
@@ -49,7 +49,7 @@
               show-stops
               :max="3000"
             ></el-slider>
-            <span>max: 3000</span>
+            <span>max: $3000</span>
           </div>
         </div>
 

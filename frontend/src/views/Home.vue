@@ -5,7 +5,6 @@
     </div>
     <section class="flex home-section">
       <main class="home">
-        <input type="text" id="search" placeholder="Search" />
         <div class="category-head flex space-between">
           <h2>Browse by category</h2>
           <router-link :to="'/car/'">See all cars</router-link>

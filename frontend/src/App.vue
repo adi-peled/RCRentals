@@ -1,50 +1,47 @@
 <template>
-  <div >
-      <app-header></app-header>
+  <div>
+    <app-header></app-header>
 
-      <router-view></router-view>
-      
-      <app-footer></app-footer>
+    <router-view></router-view>
+
+    <app-footer></app-footer>
   </div>
 </template>
 <script>
-  import Swal from 'sweetalert2'
-  import appHeader from './components/header.cmp.vue'
-  import appFooter from './components/footer.cmp.vue'
-  import {eventBus} from './main-services/eventBus.js'
+import Swal from "sweetalert2";
+import appHeader from "./components/header.cmp.vue";
+import appFooter from "./components/footer.cmp.vue";
+import { eventBus } from "./main-services/eventBus.js";
 export default {
-
-
-  components :{
+  components: {
     appHeader,
     appFooter
   },
-  created(){
-
-     eventBus.$on('sendSwal',this.swalMsg)
-
-  },methods:{
-    swalMsg(msg,sentIcon){
-    const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    onOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
-
-Toast.fire({
-  icon: sentIcon,
-  title: msg
-})
-
+  created() {
+    eventBus.$on("sendSwal", this.swalMsg);
+  },
+  methods: {
+    swalMsg(msg, sentIcon) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        onOpen: toast => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        }
+      });
+      Toast.fire({
+        icon: sentIcon,
+        title: msg
+      });
     }
   }
-}
+};
+
+
 </script>>
 <style lang="scss">
 #app {
