@@ -52,9 +52,6 @@
 import favoriteCars from "../components/favorite-cars.cmp.vue";
 import ownedCars from "../components/owned-cars.cmp.vue";
 import userOrders from "../components/user-orders.cmp.vue";
-import { carService } from "../services/car-service.js";
-import userService from "../services/user-service.js";
-import orderService from "../services/order-service.js";
 import requestedOrders from "../components/requested-orders.cmp.vue";
 import addCar from "../components/add-car.cmp.vue";
 import { eventBus } from "../main-services/eventBus.js";
@@ -81,7 +78,7 @@ export default {
     },
 
     async getOwnedCars() {
-      const cars = await carService.query();
+      const cars = await this.$store.getters.cars;
       this.ownedCars = cars.filter(
         car => this.loggedInUser._id === car.owner._id
       );
@@ -89,14 +86,14 @@ export default {
       this.info.ownedCars = this.ownedCars;
     },
     async getUserOrders() {
-      const orders = await orderService.query();
+      const orders = await this.$store.getters.orders;
       this.info.orders = orders.filter(
         order => order.buyer.fullName === this.loggedInUser.fullName
       );
       this.tab = "userOrders";
     },
     async getRequestedOrders() {
-      const orders = await orderService.query();
+      const orders = await this.$store.getters.orders;
       this.info.requestedOrders = orders.filter(
         order => order.owner.fullName === this.loggedInUser.fullName
       );
@@ -105,6 +102,7 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
+    this.$store.dispatch({ type: "getOrders" });
   },
   components: {
     favoriteCars,
