@@ -15,6 +15,14 @@
     align-items: center;
     justify-content: space-between;
 }
+
+
+.mini-details{
+    justify-content: space-between;
+    .city{
+        font-size: 17px;
+    }
+}
 .card-img {
     position: relative;
 }
@@ -49,6 +57,7 @@
 }
 
 .under-img {
+
     .details {
         width: 100%;
     }

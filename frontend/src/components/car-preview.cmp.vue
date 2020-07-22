@@ -24,11 +24,11 @@
 
       <div class="under-img flex">
         <div class="details flex">
-          <div class="details flex">
-            <span class="flex align-center bold capi">
-              {{car.vendor.company}}-{{car.vendor.series}}-{{car.model}}
-            </span>
-            <span>{{car.location.city}}</span>
+          <div class="mini-details flex">
+            <span
+              class="flex align-center bold capi"
+            >{{car.vendor.company}}-{{car.vendor.series}}-{{car.model}}</span>
+            <span class="city capi">{{car.location.city}}</span>
           </div>
           <div>
             <div class="capi under-img-details">
