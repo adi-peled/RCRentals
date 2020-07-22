@@ -6,26 +6,32 @@
     }
     .details {
         flex-direction: column;
-        padding-top: 10px;
+        // padding-top: 10px;
     }
+    font-size: 1.4rem;
 }
-
+.under-img-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .card-img {
     position: relative;
 }
 
 .price {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 5px;
+    right: 5px;
     margin: 5px;
+    margin-bottom: 10px;
     background-color: white;
     border: 1px rgb(195, 195, 195) solid;
-    padding: 5px;
+    padding: 5px 10px;
 }
 
 .star {
-    color: $clr1;
+    color: #f66c39;
     font-size: 18px;
 }
 
@@ -44,7 +50,7 @@
 
 .under-img {
     .details {
-        width: 59%;
+        width: 100%;
     }
     button {
         flex: auto;

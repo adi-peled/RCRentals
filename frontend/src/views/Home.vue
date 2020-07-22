@@ -5,7 +5,6 @@
     </div>
     <section class="flex home-section">
       <main class="home">
-        <input type="text" id="search" placeholder="Search" />
         <div class="category-head flex space-between">
           <h2>Browse by category</h2>
           <router-link :to="'/car/'">See all cars</router-link>
@@ -28,7 +27,7 @@
         <div class="might-like-category">
           <carPreview
             @updateUserFavs="updateUserFavs"
-            v-for="car in cars.slice(cars.length-3)"
+            v-for="car in cars.slice(cars.length-4)"
             :car="car"
             :key="car._id"
           ></carPreview>

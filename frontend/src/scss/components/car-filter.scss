@@ -1,4 +1,9 @@
 .car-filter {
+
+.type{
+    margin-bottom: 10px;
+}
+
     .el-input__inner:focus {
         // border-color: $clr1;
     }
@@ -46,11 +51,17 @@
 
 .car-filter{
     .block{
-width: 244px;
+        margin-top: 10px;
+        .min{
+            
+    text-align: left;
+width: 80px;
+        }
     }
+    text-align: center;
     align-items: center;
 flex-direction: column;
-height: 210px;
+height: 30%;
 .btns{
     width: 30%;
     margin-bottom: 10px;
@@ -68,12 +79,28 @@ background-color: lighten($clr1, 20%);
 &:hover{
 background-color: lighten($clr1, 10%);
 }
-
- }   
+}   
 }
 }
+.sorts{
+    border: 1px solid grey;
+    padding: 15px;
+    border-radius: 20px;
+    .el-slider__bar{
+        background-color: gray;
+    }
+    .el-slider__button{
+        border: 2px solid gray
+    }
+}
 
 
+
+.el-slider{
+    margin-left: 15px;
+    margin-right: 15px;
+ width: 250px;   
+}
 
 
 .el-select-dropdown__item {

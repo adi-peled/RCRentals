@@ -5,18 +5,13 @@ export default {
     remove,
     getOrders,
     getOrdersByBuyerId,
-    query
+    
 }
 async function _add(order) {
     console.log(order);
     return await httpService.post(`order/`, order)
 
 }
-
-async function query() {
-    return await httpService.get(`order`)
-}
-
 
 async function getOrders() {
     return await httpService.get(`order`)

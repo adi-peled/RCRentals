@@ -8,7 +8,6 @@
     <button @click="toggle" class="btn-menu">☰</button>
     <div @click="toggle" class="flex nav" :class="{'menu-open': open}">
       <button @click="addCar">List your car</button>
-      <router-link to="/about">About</router-link>
       <router-link to="/car/">All Cars</router-link>
         <router-link to="/chat">Chat</router-link>
       <template v-if="!loggedInUser">
@@ -26,7 +25,7 @@
 import { eventBus } from "../main-services/eventBus.js";
 export default {
   name: "app-header",
-  data() {
+  data() { 
     return {
       open: false,
       id: ""

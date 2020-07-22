@@ -2,7 +2,7 @@
   <section class="profile">
     <div class="profile-nav">
       <img src="../assets/default-user.jpg" width="150" />
-      <h1>Welcome {{loggedInUser.fullName}}</h1>
+      <h1 class="capi">Welcome {{loggedInUser.fullName}}</h1>
       <h2>{{loggedInUser.email}}</h2>
       <div>
         <div class="col profile-router" @click="addCar">
@@ -24,7 +24,6 @@
             <i class="el-icon-coordinate"></i>
             My cars
           </div>
-          <!-- <button @click="getOwnedCars">My cars</button> -->
           <i class="el-icon-arrow-right"></i>
         </div>
         <div class="col profile-router" @click="getUserOrders">
@@ -53,9 +52,6 @@
 import favoriteCars from "../components/favorite-cars.cmp.vue";
 import ownedCars from "../components/owned-cars.cmp.vue";
 import userOrders from "../components/user-orders.cmp.vue";
-import { carService } from "../services/car-service.js";
-import userService from "../services/user-service.js";
-import orderService from "../services/order-service.js";
 import requestedOrders from "../components/requested-orders.cmp.vue";
 import addCar from "../components/add-car.cmp.vue";
 import { eventBus } from "../main-services/eventBus.js";
@@ -73,32 +69,31 @@ export default {
     }
   },
   methods: {
-    async getFavCars() {
+     getFavCars() {
       this.tab = "favoriteCars";
       this.info.favCars = this.loggedInUser.favCars;
     },
-    async addCar() {
+    addCar() {
       this.tab = "addCar";
     },
 
     async getOwnedCars() {
-      const cars = await carService.query();
+      const cars = await this.$store.getters.cars;
       this.ownedCars = cars.filter(
         car => this.loggedInUser._id === car.owner._id
       );
-      console.log("cars:", cars, "owned", this.ownedCars);
       this.tab = "ownedCars";
       this.info.ownedCars = this.ownedCars;
     },
     async getUserOrders() {
-      const orders = await orderService.query();
+      const orders = await this.$store.getters.orders;
       this.info.orders = orders.filter(
         order => order.buyer.fullName === this.loggedInUser.fullName
       );
       this.tab = "userOrders";
     },
     async getRequestedOrders() {
-      const orders = await orderService.query();
+      const orders = await this.$store.getters.orders;
       this.info.requestedOrders = orders.filter(
         order => order.owner.fullName === this.loggedInUser.fullName
       );
@@ -107,6 +102,7 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
+    this.$store.dispatch({ type: "getOrders" });
   },
   components: {
     favoriteCars,

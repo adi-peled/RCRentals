@@ -16,7 +16,7 @@
           class="like"
           src="@/assets/hearts/redheart.png"
         />
-        <div class="price">${{car.price}}/day</div>
+        <div class="price bold">${{car.price}}/day</div>
         <router-link :to="'/car/details/'+car._id">
           <img class="front-img" :src="getImgUrl(car.primaryImgUrl)" />
         </router-link>
@@ -24,10 +24,20 @@
 
       <div class="under-img flex">
         <div class="details flex">
-          <div class="capi">{{car.vendor.company}} {{car.vendor.series}} {{car.model}}</div>
+          <div class="details flex">
+            <span class="flex align-center bold capi">
+              {{car.vendor.company}}-{{car.vendor.series}}-{{car.model}}
+            </span>
+            <span>{{car.location.city}}</span>
+          </div>
           <div>
-            <span class="star">★ {{calcRating}}</span>
-            <span class="capi">(50) {{car.owner.fullName}}</span>
+            <div class="capi under-img-details">
+              {{car.owner.fullName}}
+              <div>
+                <span class="star">★{{calcRating}}</span>
+                <span class="capi total-rating">(50)</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

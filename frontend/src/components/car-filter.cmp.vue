@@ -1,12 +1,13 @@
 <template>
   <section>
-    <div class="car-filter flex">
+    <div class="car-filter flex col align-center">
       <div class="btns flex">
         <button @click="toggleTypeSort">Type</button>
         <button @click="togglePriceSort">Price</button>
         <button @click="toggleModelSort">Model</button>
+        <!-- <button @click="toggleFiltersort">Filter</button> -->
       </div>
-      <div class="sorts">
+      <div class="sorts flex col align-center">
         <!-- <div >
             <span>Search Location</span>
             <input
@@ -17,9 +18,8 @@
               v-model="filterBy.location"
             />
         </div>-->
-        <div v-if="sort.seeType">
+        <div class="type" v-if="sort.seeType">
           <span>Type:</span>
-
           <el-select
             class="select-type"
             @change="setFilter"
@@ -36,11 +36,10 @@
           </el-select>
         </div>
         <div v-if="sort.seePrice">
-          <span>Price:</span>
-          <span>${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
-
-          <div class="block">
+          <span>Price range: ${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
+          <div class="block flex align-center">
             <el-slider
+              class="el-slider"
               @change="setFilter"
               v-model="filterBy.rangePrice"
               range
@@ -48,14 +47,19 @@
               :max="3000"
             ></el-slider>
           </div>
+          <div class="flex space-between">
+            <span class="min">min:{{filterBy.rangePrice[0]}}$</span>
+            <span>max:{{filterBy.rangePrice[1]}}$</span>
+          </div>
         </div>
 
         <div v-if="sort.seeModel">
-          <span>Model:</span>
-          <span>{{filterBy.rangeModel[0]}} - {{filterBy.rangeModel[1]}}</span>
+          <span>Model: {{filterBy.rangeModel[0]}} - {{filterBy.rangeModel[1]}}</span>
 
-          <div class="block">
+          <div class="block flex flex align-center">
+            <span class="min">min:2000</span>
             <el-slider
+              class="el-slider"
               :min="2000"
               @change="setFilter"
               v-model="filterBy.rangeModel"
@@ -63,6 +67,7 @@
               show-stops
               :max="2021"
             ></el-slider>
+            <span>max: 2021</span>
           </div>
         </div>
       </div>
@@ -144,6 +149,11 @@ export default {
     },
     toggleTypeSort() {
       this.sort.seeType = !this.sort.seeType;
+    },
+    toggleFiltersort() {
+      this.sort.seeType = !this.sort.seeType;
+      this.sort.seeModel = !this.sort.seeModel;
+      this.sort.seePrice = !this.sort.seePrice;
     }
   },
   components: {}

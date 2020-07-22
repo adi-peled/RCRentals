@@ -1,6 +1,6 @@
 <template>
-  <div >
-      <app-header></app-header>
+  <div>
+    <app-header></app-header>
 
       <router-view></router-view>
       <chat class="chat" v-if="chatting"></chat>
@@ -15,9 +15,7 @@
   import {eventBus} from './main-services/eventBus.js'
   import chat from './components/chat-io.cmp.vue'
 export default {
-
-
-  components :{
+  components: {
     appHeader,
     appFooter,
     chat

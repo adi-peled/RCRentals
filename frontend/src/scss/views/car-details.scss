@@ -49,6 +49,7 @@
 .car-info{
 
     .details{
+        height: 415px;
         flex-direction: column;
         justify-content: space-between;
 
@@ -191,6 +192,9 @@ justify-content: space-evenly;
 }
 
     .btn-review{
+        margin-top: 5px;
+        justify-content: center;
+        text-align: center;
         width: 100px;
         outline: none;
         padding: 0;
@@ -201,6 +205,7 @@ justify-content: space-evenly;
         }
     }
     .review-add{
+        flex-direction: column;
         margin: 0;
     }
     .review-img{
