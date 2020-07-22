@@ -76,16 +76,19 @@
 }
 
 .might-like-category {
-    // display: grid;
-    // grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    // grid-row-gap: 15px;
-    // grid-column-gap: 10px;
-    .car-preview .front-img{
-        width: 425px;
-    }
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    .car-preview {
+        .front-img{
+            width: 325px;
+            height: 200px;
+
+        }
+        .card-img{
+            width: 292px;
+        }
+    }
     div {
         text-align: left;
         transition: opacity 0.3s
@@ -168,6 +171,8 @@
     color: transparent;
 }
 
+
+
 ::placeholder {
     color: white;
     font-weight: bold;
@@ -215,6 +220,7 @@
     .might-like-category {
         flex-direction: column;
         margin: 0 auto;
+
     }
     .about-info{
         flex-direction: column;

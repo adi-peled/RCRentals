@@ -27,7 +27,7 @@
         <div class="might-like-category">
           <carPreview
             @updateUserFavs="updateUserFavs"
-            v-for="car in cars.slice(cars.length-3)"
+            v-for="car in cars.slice(cars.length-4)"
             :car="car"
             :key="car._id"
           ></carPreview>
