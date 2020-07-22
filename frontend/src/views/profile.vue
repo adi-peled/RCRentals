@@ -2,7 +2,7 @@
   <section class="profile">
     <div class="profile-nav">
       <img src="../assets/default-user.jpg" width="150" />
-      <h1>Welcome {{loggedInUser.fullName}}</h1>
+      <h1 class="capi">Welcome {{loggedInUser.fullName}}</h1>
       <h2>{{loggedInUser.email}}</h2>
       <div>
         <div class="col profile-router" @click="addCar">

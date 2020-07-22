@@ -17,9 +17,18 @@
     grid-template-columns: repeat(auto-fill, 350px);
     gap: 40px
 }
+.total-rating{
+    color: grey;
+}
 
 .car-card {
     width: 100%;
+    border-bottom: 1px solid grey;
+    text-transform: capitalize;
+
+}
+.car-card:hover{
+    color: gray;
 }
 
 @media (max-width: 500px){

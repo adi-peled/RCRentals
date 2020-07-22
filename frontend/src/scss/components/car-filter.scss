@@ -61,7 +61,7 @@ width: 80px;
     text-align: center;
     align-items: center;
 flex-direction: column;
-height: 210px;
+height: 30%;
 .btns{
     width: 30%;
     margin-bottom: 10px;
@@ -79,9 +79,19 @@ background-color: lighten($clr1, 20%);
 &:hover{
 background-color: lighten($clr1, 10%);
 }
-
- }   
+}   
 }
+}
+.sorts{
+    border: 1px solid grey;
+    padding: 15px;
+    border-radius: 20px;
+    .el-slider__bar{
+        background-color: gray;
+    }
+    .el-slider__button{
+        border: 2px solid gray
+    }
 }
 
 

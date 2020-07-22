@@ -2,7 +2,7 @@
   <section class="profile-cars">
     <h1>Requests:</h1>
     <div v-for="request in requests" :request="request" :key="request._id" class="order-list">
-      <h3>From: {{request.buyer.fullName}}</h3>
+      <h3 class="capi">From: {{request.buyer.fullName}}</h3>
       <h3>Contact: {{request.buyer.email}}</h3>
       <h3>Pickup date: {{request.pickupDate}}</h3>
       <h3>Number of days: {{request.daysCount}}</h3>
