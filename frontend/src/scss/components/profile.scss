@@ -63,6 +63,14 @@
         align-items: center;
         color: black;
     }
+    .add-car-price{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .add-car-form input{
+        padding: 5px;
+    }
     // a{
     //     align-items: baseline;
     // }
