@@ -3,6 +3,16 @@
 .type{
     margin-bottom: 10px;
 }
+.el-slider__bar {
+background-color: $clr4 ;
+}
+
+.el-slider__button{
+background-color: $clr5;
+border: 2px solid $clr4;
+}
+
+
 
     .el-input__inner:focus {
         // border-color: $clr1;
@@ -30,16 +40,7 @@
         transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
         width: 221px;
     }
-    // @include for-normal-layout {
-    //     display: grid;
-    //     grid-template-columns: repeat(2, 250px);
-    // }
-    // @include for-narrow-layout {
-    //     display: flex;
-    //     justify-content: center;
-    //     flex-direction: column;
-    //     background-color: yellowgreen;
-    // }
+
     input {
         margin-top: 5px;
     }
@@ -50,6 +51,9 @@
 }
 
 .car-filter{
+    border:1px solid #dadce0;
+    padding: 5px;
+    justify-content: space-between;
     .block{
         margin-top: 10px;
         .min{
@@ -58,10 +62,6 @@
 width: 80px;
         }
     }
-    text-align: center;
-    align-items: center;
-flex-direction: column;
-height: 30%;
 .btns{
     width: 30%;
     margin-bottom: 10px;

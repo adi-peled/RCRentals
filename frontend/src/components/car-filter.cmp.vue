@@ -1,24 +1,8 @@
 <template>
   <section>
-    <div class="car-filter flex col align-center">
-      <div class="btns flex">
-        <button @click="toggleTypeSort">Type</button>
-        <button @click="togglePriceSort">Price</button>
-        <button @click="toggleModelSort">Model</button>
-        <!-- <button @click="toggleFiltersort">Filter</button> -->
-      </div>
-      <div class="sorts flex col align-center"  v-if="sort.seeType||sort.seePrice||sort.seeModel">
-        <!-- <div >
-            <span>Search Location</span>
-            <input
-              @change="setFilter"
-              type="text"
-              placeholder="enter city"
-              class="location"
-              v-model="filterBy.location"
-            />
-        </div>-->
-        <div class="type" v-if="sort.seeType">
+    <div class="car-filter flex  align-center">
+
+        <div class="type" >
           <span>Type:</span>
           <el-select
             class="select-type"
@@ -35,9 +19,9 @@
             ></el-option>
           </el-select>
         </div>
-        <div v-if="sort.seePrice">
-          <span>Price range: ${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
+        <div >
           <div class="block flex align-center">
+            <span class="min">min:{{filterBy.rangePrice[0]}}$</span>
             <el-slider
               class="el-slider"
               @change="setFilter"
@@ -46,15 +30,12 @@
               show-stops
               :max="3000"
             ></el-slider>
-          </div>
-          <div class="flex space-between">
-            <span class="min">min:{{filterBy.rangePrice[0]}}$</span>
             <span>max:{{filterBy.rangePrice[1]}}$</span>
           </div>
+         
         </div>
 
-        <div v-if="sort.seeModel">
-          <span>Model: {{filterBy.rangeModel[0]}} - {{filterBy.rangeModel[1]}}</span>
+        <div >
 
           <div class="block flex flex align-center">
             <span class="min">min:2000</span>
@@ -71,7 +52,6 @@
           </div>
         </div>
       </div>
-    </div>
   </section>
 </template>
 
@@ -138,23 +118,9 @@ export default {
   },
   methods: {
     setFilter() {
-      console.log(this.filterBy);
       this.$emit("filter", this.filterBy);
     },
-    togglePriceSort() {
-      this.sort.seePrice = !this.sort.seePrice;
-    },
-    toggleModelSort() {
-      this.sort.seeModel = !this.sort.seeModel;
-    },
-    toggleTypeSort() {
-      this.sort.seeType = !this.sort.seeType;
-    },
-    toggleFiltersort() {
-      this.sort.seeType = !this.sort.seeType;
-      this.sort.seeModel = !this.sort.seeModel;
-      this.sort.seePrice = !this.sort.seePrice;
-    }
+
   },
   components: {}
 };
