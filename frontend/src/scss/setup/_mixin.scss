@@ -29,6 +29,14 @@
       @content;
     }
   }
+
+
+  @mixin for-1400-layout {
+    @media (max-width: 1400px) {
+      @content;
+    }
+  }
+
   
   /* Media  Mixins */
   @mixin aspect-ratio($width, $height) {

@@ -10,9 +10,12 @@
         margin-bottom: 10px;
         width: 100%;
         grid-template-columns: repeat(4, rem(350px));
-        // grid-template-rows: rem(200px) rem(200px);
         justify-content: center;
         gap: 10px;
+
+
+
+
     }
 
     .features {
@@ -69,6 +72,7 @@
         margin-left: 5px;
         justify-content: space-between;
         width: 50%;
+
 
         button {
             cursor: pointer;
@@ -326,4 +330,31 @@
 
     .model {
         font-size: 25px;
+    }
+
+
+
+    @media (max-width:1400px) {
+
+
+        .imgs-container {
+            grid-template-columns: none;
+        }
+
+
+        .payment-details {
+            display: grid;
+            width: 400px;
+           margin-left: 0;
+            grid-template-columns: 200px 200px;
+        }
+
+        .big {
+            width: 800px;
+        }
+
+        .small {
+            width: 400px;
+
+        }
     }
