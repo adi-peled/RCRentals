@@ -1,7 +1,7 @@
 <template>
   <ul v-if="users">
     <li v-for="user in users" :key="user._id">
-      <p @click="log(user.fullName)" class="user-name">{{user.fullName}}</p>
+      <p @click="selectChat(user._id)" class="user-name">{{user.fullName}}</p>
     </li>
   </ul>
 </template>
@@ -27,8 +27,8 @@ export default {
     }
   },
   methods: {
-    log(name) {
-      console.log(name);
+    selectChat(id) {
+        this.$emit("chatSelected",id);
     }
   }
 };

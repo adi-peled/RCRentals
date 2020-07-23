@@ -1,8 +1,9 @@
 <template>
   <section class="chat">
     <div class="chat-search">
-      <input @input="setFilter" v-model="filterBy.name" placeholder="Search Chat" type="text" />
-      <users-list></users-list>
+    
+      <input  @input="setFilter" v-model="filterBy.name" placeholder="Search Chat" type="text" />
+      <users-list @chatSelected="filterMsg"></users-list>
     </div>
     <div>
       <ul>
@@ -38,13 +39,15 @@ export default {
   async created() {
     socket.setup();
     this.$store.dispatch({ type: "getChatHistory" });
-    socket.on("gotChatHistory", msgs => (this.msgs = msgs.reverse()));
     socket.on("chat recivedMsg", this.addMsg);
     this.setFilter();
   },
   methods: {
     addMsg(msg) {
       this.msgs.unshift(msg);
+    },
+    filterMsg(id){
+    socket.on("gotChatHistory", msgs => (this.msgs = msgs.reverse()));        
     },
     sendMsg(ev) {
       var msg = {
