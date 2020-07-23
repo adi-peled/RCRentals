@@ -13,6 +13,9 @@
         <p>Don’t have an account?</p>
         <router-link to="/signup">Sign Up</router-link>
       </div>
+
+  
+
     </form>
   </section>
 </template>
@@ -20,6 +23,7 @@
 
 <script>
   import {eventBus} from '../main-services/eventBus.js'
+  import { validationProvider } from 'vee-validate';
 export default {
   name:'login-page',
   data() {
@@ -41,6 +45,9 @@ export default {
       
        eventBus.$emit('sendSwal','Logged In')
        this.$router.push("/");
+    },
+    components:{
+      validationProvider
     }
 },
 

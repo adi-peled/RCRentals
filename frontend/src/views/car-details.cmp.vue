@@ -60,32 +60,38 @@
               </div>
             </form>
           </div>
-          <div class="payment-details right flex">
-            <h2 class="capi">location: {{car.location.city}}</h2>
-            <h1>Price: $ {{car.price}} / Day</h1>
-            <div>
-              <label>Pick Up Date</label>
-              <date-picker
-                class="right"
-                v-model="order.pickupDate"
-                :disabled-dates="disabledDates"
-                :full-month-name="false"
-              ></date-picker>
+          <div class="payment-details flex">
+            <div class="flex column location-day">
+              <h2 class="capi">location: {{car.location.city}}</h2>
+              <h1>Price: $ {{car.price}} / Day</h1>
             </div>
-            <div>
-              <label>Return Date</label>
-              <date-picker
-                class="right"
-                v-model="order.returnDate"
-                :disabled-dates="disabledDates"
-                :full-month-name="false"
-              ></date-picker>
-              <p v-if="totalPrice">Total Price: ${{totalPrice}}</p>
+            <div class="date-pickers flex column">
+              <div>
+                <label>Pick Up Date</label>
+                <date-picker
+                  class="right"
+                  v-model="order.pickupDate"
+                  :disabled-dates="disabledDates"
+                  :full-month-name="false"
+                ></date-picker>
+              </div>
+              <div>
+                <label>Return Date</label>
+                <date-picker
+                  class="right"
+                  v-model="order.returnDate"
+                  :disabled-dates="disabledDates"
+                  :full-month-name="false"
+                ></date-picker>
+                <p v-if="totalPrice">Total Price: ${{totalPrice}}</p>
+              </div>
             </div>
-            <span class="free-cancellation">
-              <img src="@/assets/img/like.png" /> Free cancellation
-            </span>
-            <button @click="toggleBookModal">Book</button>
+            <div class="btn-book flex column">
+              <span class="free-cancellation">
+                <img src="@/assets/img/like.png" /> Free cancellation
+              </span>
+              <button @click="toggleBookModal">Book</button>
+            </div>
           </div>
           {{car.owner.fulName}}
         </div>
@@ -107,10 +113,12 @@
             </div>
           </div>
           <button
+            class="btn-feedback"
             @click="showMoreReviews(true)"
             v-if="!showMore&&car.reviews.length>5"
           >See more feedback</button>
           <button
+            class="btn-feedback"
             v-else-if="showMore&&car.reviews.length>5"
             @click="showMoreReviews(false)"
           >See less</button>
@@ -269,6 +277,9 @@ export default {
       return this.car.price * days;
     },
     calcRating() {
+      if (!this.car.reviews.length) {
+        return 0;
+      }
       const sum = this.car.reviews.reduce((acc, review) => {
         acc += Number(review.rating);
         return acc;

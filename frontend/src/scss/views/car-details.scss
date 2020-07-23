@@ -52,7 +52,6 @@
             .count {
                 color: gray;
             }
-            height: 415px;
             flex-direction: column;
             justify-content: space-between;
         }
@@ -62,11 +61,8 @@
         margin-left: 5px;
         justify-content: space-between;
         width: 50%;
-        flex-direction: column;
         button {
             cursor: pointer;
-            width: 30%;
-            align-self: flex-end;
             font-size: 16px;
             height: 44px;
             line-height: 43px;
@@ -229,3 +225,32 @@
         align-items: center;
         width: 200px;
     }
+
+
+
+    .btn-book{
+        justify-content: space-between;
+    }
+
+    .date-pickers{
+        justify-content: space-between;
+
+    }
+
+
+    .location-day{
+        justify-content: space-between;
+
+    }
+
+
+  .btn-feedback{
+    margin-top: 5px;
+    justify-content: center;
+    text-align: center;
+    width: 100px;
+    outline: none;
+    padding: 0;
+    background-color: #5a6f73;
+    color: white;
+  }
