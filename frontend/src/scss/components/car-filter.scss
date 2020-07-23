@@ -1,7 +1,16 @@
 .car-filter {
 
+margin:0 auto;
+width: 900px;
+grid-template-columns:300px 600px ;
+
 .type{
     margin-bottom: 10px;
+    div{
+        display: inline-block;
+
+        width: 100px;
+    }
 }
 .el-slider__bar {
 background-color: $clr4 ;
@@ -11,7 +20,9 @@ background-color: $clr4 ;
 background-color: $clr5;
 border: 2px solid $clr4;
 }
-
+.el-input__inner{
+width: 150px;
+}
 
 
     .el-input__inner:focus {
@@ -55,12 +66,13 @@ border: 2px solid $clr4;
     padding: 5px;
     justify-content: space-between;
     .block{
+    .min{
+        width: 140px;
+    }
+    .max{
+        width: 120px;
+    }
         margin-top: 10px;
-        .min{
-            
-    text-align: left;
-width: 80px;
-        }
     }
 .btns{
     width: 30%;
@@ -105,4 +117,20 @@ background-color: lighten($clr1, 10%);
 
 .el-select-dropdown__item {
     color: $clr1 !important;
+}
+
+
+
+.search-location{
+    input{
+border-radius: 4px;
+        height: 40px;
+        width: 150px;
+        border: 1px solid #DCDFE6;
+        outline: none;
+    }
+    div{
+        display: inline-block;
+        width: 100px;
+    }
 }

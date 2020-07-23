@@ -1,18 +1,32 @@
 <template>
   <section>
-    <div class="car-filter flex align-center">
+    <div class="car-filter grid">
       <div class="search-location">
-        Search city:
-        <input
-          @change="setFilter"
-          type="text"
-          placeholder="enter city"
-          v-model="filterBy.city"
-        />
+        <div>Search city:</div>
+        <input @change="setFilter" type="text" placeholder="enter city" v-model="filterBy.city" />
       </div>
 
+      <div>
+        <div class="block flex align-center">
+          <div class="min">
+            Price:
+            min:{{filterBy.rangePrice[0]}}$
+          </div>
+          <el-slider
+            class="el-slider"
+            @change="setFilter"
+            v-model="filterBy.rangePrice"
+            range
+            show-stops
+            :max="3000"
+          ></el-slider>
+          <div class="max">max:{{filterBy.rangePrice[1]}}$</div>
+        </div>
+      </div>
+
+     
       <div class="type">
-        <span>Type:</span>
+        <div>Type:</div>
         <el-select
           class="select-type"
           @change="setFilter"
@@ -28,24 +42,13 @@
           ></el-option>
         </el-select>
       </div>
-      <div>
-        <div class="block flex align-center">
-          <span class="min">min:{{filterBy.rangePrice[0]}}$</span>
-          <el-slider
-            class="el-slider"
-            @change="setFilter"
-            v-model="filterBy.rangePrice"
-            range
-            show-stops
-            :max="3000"
-          ></el-slider>
-          <span>max:{{filterBy.rangePrice[1]}}$</span>
-        </div>
-      </div>
 
       <div>
         <div class="block flex flex align-center">
-          <span class="min">min:2000</span>
+          <div class="min">
+            Model:
+            min:2000
+          </div>
           <el-slider
             class="el-slider"
             :min="1970"
@@ -55,7 +58,7 @@
             show-stops
             :max="2021"
           ></el-slider>
-          <span>max: 2021</span>
+          <div class="max">max: 2021</div>
         </div>
       </div>
     </div>
@@ -68,7 +71,7 @@ export default {
   data() {
     return {
       filterBy: {
-        location: "g",
+        sortType: "",
         model: "",
         tag: "",
         city: "",

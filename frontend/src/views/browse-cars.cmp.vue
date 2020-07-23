@@ -39,6 +39,7 @@ export default {
   },
   computed: {
     cars() {
+      console.log(this.$store.getters.cars);
       return this.$store.getters.cars;
     },
     loggedInUser() {
