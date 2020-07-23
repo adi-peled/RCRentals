@@ -31,7 +31,8 @@ async function addOrder(req, res) {
     const order = req.body
     order.byUser = req.session.user;
     order = await orderService.add(order)
-    order.aboutUser = {}
+    // order.aboutUser = {}
+    console.log(order);
     res.send(order)
 }
 

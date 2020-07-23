@@ -8,7 +8,7 @@
         }
         margin-bottom: 10px;
         width: 100%;
-        grid-template-columns: repeat(4, rem(300px));
+        grid-template-columns: repeat(4, rem(350px));
         // grid-template-rows: rem(200px) rem(200px);
         justify-content: center;
         gap: 10px;
@@ -30,13 +30,13 @@
         grid-row: span 2;
         grid-column: span 2;
         object-fit: cover;
-        width: rem(610px);
-        height: rem(410px);
+        width: rem(710px);
+        height: rem(510px);
     }
     
     .small {
-        width: rem(300px);
-        height: rem(200px);
+        width: rem(350px);
+        height: rem(250px);
         object-fit: cover;
     }
     
@@ -67,8 +67,8 @@
         width: 50%;
         button {
             cursor: pointer;
-            font-size: 16px;
-            height: 44px;
+            font-size: 24px;
+            height: 53px;
             line-height: 43px;
             padding: 0 14px;
             background-color: $clr1;
@@ -76,6 +76,8 @@
             border: 1px solid $clr1;
             transition: .9s;
             &:hover {
+            font-size: 33px;
+
             }
         }
     }

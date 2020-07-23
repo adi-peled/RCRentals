@@ -35,7 +35,7 @@
               {{car.owner.fullName}}
               <div>
                 <span class="star">★{{calcRating}}</span>
-                <span class="capi total-rating">(50)</span>
+                <span class="capi total-rating">({{car.reviews.length}})</span>
               </div>
             </div>
           </div>

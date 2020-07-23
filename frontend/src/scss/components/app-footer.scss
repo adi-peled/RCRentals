@@ -2,8 +2,13 @@
     background-color: #2D383A;
     color: white;
     font-size: 1.2rem;
+    h1{
+text-align: center;
+    }
 .city{
-grid-template-columns: repeat(4,250px);
+
+margin: 0, auto;
+grid-template-columns: repeat(auto-fill,200px);
     li{
         list-style-type: none;
     }
@@ -24,3 +29,18 @@ a{
 }
 
 
+.extras-container {
+    .links{
+justify-content: space-around;
+    }
+    .social{
+width: 200px;
+justify-content: space-around;
+align-self: center;
+    }
+}
+
+
+.social{
+  justify-self: self-end;
+}

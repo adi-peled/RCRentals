@@ -11,6 +11,7 @@
           :key="idx"
         />
       </div>
+
       <div class="rest-page flex">
         <div class="car-info flex">
           <div class="details flex">
@@ -21,7 +22,7 @@
                 <span v-else>no rating yet</span>
                 <span class="star">★</span>
                 <span class="capi">
-                  <span class="count">(50)</span>
+                  <span class="count">({{car.reviews.length}})</span>
                   {{car.owner.fullName}}
                 </span>
               </h3>
@@ -146,7 +147,6 @@ export default {
     return {
       // disabledDates: null,
       car: null,
-      primeUrl: null,
       disabledDates: {
         range: []
       },
@@ -180,10 +180,12 @@ export default {
   },
   methods: {
     switchImg(idx) {
+      console.log("start:", this.car.imgsUrl[0].url);
+
       var savedImg = this.car.imgsUrl[idx];
       this.car.imgsUrl[idx] = this.car.imgsUrl[0];
       this.car.imgsUrl[0] = savedImg;
-      console.log(this.car.imgsUrl);
+      console.log("end", this.car.imgsUrl[0].url);
     },
     toggleBookModal() {
       if (!this.order.pickupDate || !this.order.returnDate) {
@@ -259,6 +261,7 @@ export default {
         from: order.pickupDate,
         to: order.returnDate
       };
+      console.log(this.car);
       this.car.disabledDates.ranges.push(range);
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.$store.dispatch({
@@ -281,6 +284,13 @@ export default {
       var days = (returnDate - pickupDate) / (60 * 60 * 24 * 1000);
       return this.car.price * days;
     },
+    // bigImg() {
+    //   console.log("big:", this.car.imgsUrl[0].url);
+    //   return this.car.imgsUrl[0].url;
+    // },
+    // smallImgs() {
+    //   return this.car.imgsUrl.slice(1, this.car.imgsUrl.length);
+    // },
     calcRating() {
       if (!this.car.reviews.length) {
         return 0;

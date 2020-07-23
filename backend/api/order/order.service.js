@@ -1,5 +1,6 @@
 
-const dbService = require('../../services/db.service')
+const dbService = require('../../services/db.service');
+const loggerService = require('../../services/logger.service');
 const ObjectId = require('mongodb').ObjectId
 
 async function query() {
@@ -31,8 +32,8 @@ async function add(order) {
         await collection.insertOne(order);
         return order;
     } catch (err) {
-        //logger
-        console.log(`ERROR: cannot insert user`)
+        logger.debug('cannot find orders')
+
         throw err;
     }
 }
