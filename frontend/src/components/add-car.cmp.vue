@@ -25,11 +25,11 @@
         </div>
         <div class="add-car-input"> 
             <Label>Car Company</Label>
-            <el-input  placeholder="Company" v-model="car.company"></el-input>
+            <el-input  placeholder="Company" v-model="car.vendor.company"></el-input>
         </div>
         <div class="add-car-input"> 
             <Label>Car Searies</Label>
-            <el-input  placeholder="Searies" v-model="car.searies"></el-input>
+            <el-input  placeholder="Searies" v-model="car.vendor.searies"></el-input>
         </div>
         <div class="add-car-input" > 
             <Label>Car Price $/Day</Label>

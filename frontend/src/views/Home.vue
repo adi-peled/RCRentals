@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="bgc-img">
-      <div class="text-img"></div>
+      <div class="text-img"><h1>Rent a life style </h1></div>
     </div>
     <section class="flex home-section">
       <main class="home">

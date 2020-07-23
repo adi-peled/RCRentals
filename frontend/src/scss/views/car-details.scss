@@ -42,23 +42,21 @@
     
     .car-container {
         .details {
-
             margin-right: 5px;
             width: 50%;
         }
     }
-.car-info{
-
-    .details{
-        .count{
-            color: gray;
+    
+    .car-info {
+        .details {
+            .count {
+                color: gray;
+            }
+            height: 415px;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        height: 415px;
-        flex-direction: column;
-        justify-content: space-between;
-
     }
-}
     
     .payment-details {
         margin-left: 5px;
@@ -184,18 +182,17 @@
             }
         }
     }
-
-
-.review-details{
-    flex-direction: column;
-}
-
-.review-btns {
-flex-direction: column;
-justify-content: space-evenly;
-}
-
-    .btn-review{
+    
+    .review-details {
+        flex-direction: column;
+    }
+    
+    .review-btns {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    
+    .btn-review {
         margin-top: 5px;
         justify-content: center;
         text-align: center;
@@ -204,30 +201,31 @@ justify-content: space-evenly;
         padding: 0;
         background-color: lighten($clr1, 20%);
         color: white;
-        &:hover{
-        background-color: lighten($clr1, 10%);
+        &:hover {
+            background-color: lighten($clr1, 10%);
         }
     }
-    .review-add{
+    
+    .review-add {
         flex-direction: column;
         margin: 0;
     }
-    .review-img{
+    
+    .review-img {
         width: 70px;
         height: 50px;
     }
-
-    .reviwe-time{
+    
+    .reviwe-time {
         font-size: 14px;
     }
-
-    .reviwer-name{
+    
+    .reviwer-name {
         font-size: 16px;
     }
-
-
-    .review-name-date{
+    
+    .review-name-date {
         justify-content: space-between;
-    align-items: center;
-    width: 200px;
+        align-items: center;
+        width: 200px;
     }

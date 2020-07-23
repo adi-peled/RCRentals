@@ -1,6 +1,8 @@
 <template>
   <section class="app-footer">
+    <ul>
       <li>All Liberty Mutual liability insurance in the US is offered through RCrentals Insurance Agency. Terms, conditions, and exclusions apply.</li>
+    </ul>
   </section>
 </template>
 
