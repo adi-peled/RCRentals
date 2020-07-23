@@ -1,0 +1,14 @@
+{
+
+    "chat": {
+
+
+
+        "_id": 1,
+
+        "usersMap": [{ "id": "XXX", "fullname": "sss" }, { "id": "XXS", "fullname": "sses" }]
+
+
+
+    }
+}

@@ -98,8 +98,8 @@
               </span>
               <button @click="toggleBookModal">Book</button>
             </div>
+            <div><button  @click="startChat(car.owner)">Start Chat</button> </div>
           </div>
-          {{car.owner.fulName}}
         </div>
 
         <div v-if="car.reviews" class="Reviews">
@@ -137,6 +137,7 @@
 </template>
 
 <script>
+import socket from "../main-services/socketService.js";
 import { carService } from "../services/car-service.js";
 import { eventBus } from "../main-services/eventBus.js";
 import guestModal from "../components/modal.cmp.vue";
@@ -177,9 +178,19 @@ export default {
     const car = await carService.getById(carId);
     this.car = car;
     this.disabledDates = this.car.disabledDates;
-    console.log(this.car);
   },
   methods: {
+    startChat(owner){
+    eventBus.$emit('startChat',this.toggleChat)
+      var chat={
+        usersIds:[this.loggedInUser._id,owner._id],
+        user1:{fullName:this.loggedInUser.fullName,_id:this.loggedInUser._id,imgUrl:this.loggedInUser.imgUrl},
+        user2:{fullName:owner.fullName,_id:owner._id,imgUrl:owner.imgUrl}
+      }
+
+      socket.emit("get chat", chat);
+      
+    },
     switchImg(idx) {
       var saveImg = this.car.primaryImgUrl;
       this.car.primaryImgUrl = this.car.imgUrls[idx];

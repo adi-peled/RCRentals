@@ -1,18 +1,24 @@
-const msgService = require('./socket.service')
+const chatService = require('./socket.service')
 const logger = require('../../services/logger.service')
 
-async function getMsg(req, res) {
-    console.log('msg');
-    const msg = await msgService.getById(req.params.id)
-    res.json(msg)
+async function getChat(req, res) {
+    console.log(req.query);
+    const chat = await chatService.getById(req.params.id)
+    res.json(chat)
 }
 
+async function checkChat(chat) {
+
+
+    const chats = await chatService.getChat(chat);
+
+
+
+}
 
 async function getMsg(req, res) {
-    console.log('msgs query:', req.query);
     try {
         const msgs = await msgService.query(req.query)
-        console.log(msgs);
         res.send(msgs)
     } catch (err) {
         throw err;
@@ -30,15 +36,16 @@ async function updateMsg(req, res) {
     res.json(msg)
 }
 
-async function addMsg(msg) {
-    await msgService.add(msg)
+async function addMsg(chat) {
+    await chatService.add(chat)
 }
 
 
 module.exports = {
-    getMsg,
+    getChat,
     getMsg,
     deleteMsg,
     updateMsg,
     addMsg,
+    checkChat
 }

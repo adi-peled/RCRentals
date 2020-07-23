@@ -32,7 +32,6 @@ export const userStore = {
     actions: {
         async loadUsers({ commit }, { filterBy }) {
             try {
-                console.log(filterBy);
                 const users = await userService.query(filterBy)
                 commit({ type: 'setUsers', users })
                 return users

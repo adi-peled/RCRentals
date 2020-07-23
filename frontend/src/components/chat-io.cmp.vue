@@ -62,7 +62,6 @@ export default {
       this.msg = "";
     },
     setFilter() {
-      console.log("filter");
       this.$store.dispatch({ type: "loadUsers", filterBy: this.filterBy });
     }
   },

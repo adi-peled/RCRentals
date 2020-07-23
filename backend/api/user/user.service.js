@@ -19,8 +19,6 @@ async function query(filterBy = {}) {
     try {
         const users = await collection.find().toArray();
         filteredUsers = users.filter(user => user.fullName.includes(filterBy.name))
-        console.log('filers users', filteredUsers);
-        console.log('filter:', filterBy.name);
         return filteredUsers
     } catch (err) {
         throw err;
@@ -44,11 +42,11 @@ async function getById(userId) {
     try {
         const user = await collection.findOne({ "_id": ObjectId(userId) })
         delete user.password
-        // user.givenOrders = await orderService.query({ byUserId: ObjectId(user._id) })
-        // user.givenOrders = user.givenOrders.map(order => {
-        // delete order.byUser
-        // return order
-        // })
+            // user.givenOrders = await orderService.query({ byUserId: ObjectId(user._id) })
+            // user.givenOrders = user.givenOrders.map(order => {
+            // delete order.byUser
+            // return order
+            // })
         return user
     } catch (err) {
         console.log(`ERROR: while finding user ${userId}`)
@@ -104,6 +102,3 @@ async function add(user) {
         throw err;
     }
 }
-
-
-

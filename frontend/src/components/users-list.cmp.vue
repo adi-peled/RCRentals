@@ -22,7 +22,6 @@ export default {
       );
     },
     users() {
-      console.log(this.$store.getters.users);
       return this.$store.getters.users;
     }
   },
