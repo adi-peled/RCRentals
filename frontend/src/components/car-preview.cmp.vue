@@ -27,7 +27,7 @@
           <div class="mini-details flex">
             <span
               class="flex align-center bold capi"
-            >{{car.vendor.company}}-{{car.vendor.series}}-{{car.model}}</span>
+            >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
             <span class="city capi">{{car.location.city}}</span>
           </div>
           <div>

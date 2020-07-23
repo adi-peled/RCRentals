@@ -44,6 +44,7 @@
   </section>
 </template>
 <script>
+import {eventBus} from '../main-services/eventBus.js'
 import { uploadImg } from "../main-services/imgUpload.service.js";
 export default {
   data() {
@@ -76,6 +77,7 @@ export default {
           label: 'Best'
         }],
         car:{
+          tag:'',
           condition:'',
           model:'',
           vendor:{
@@ -96,6 +98,10 @@ methods:{
       this.car.imgsUrl.push(img)
     },
   addCar(){
+    if(!this.car.imgsUrl||!this.car.tag||!this.car.condition||!this.car.price||!this.car.vendor.searies||!this.car.vendor.company||!this.car.model){
+     eventBus.$emit('sendSwal','Please fill the form ','warning')
+    return
+    }
     this.car.features={
         seatsCount : 4.0,
         doorsCount : 4.0,
@@ -110,9 +116,10 @@ methods:{
         imgUrl:this.loggedInUser.imgUrl
     },
     this.car.reviews=[]
-      this.$store.dispatch({ type: "saveCar", car:this.car });
-      this.resetCar();
-      this.$refs.upload.clearFiles();
+    this.$store.dispatch({ type: "saveCar", car:this.car });
+    eventBus.$emit('sendSwal','Listed','success')
+    this.resetCar();
+    this.$refs.upload.clearFiles();
 },
     handleRemove(file, fileList) {
       var idx = this.car.imgsUrl.findIndex(img=>img.uid===file.raw.uid)
@@ -120,6 +127,7 @@ methods:{
 },
 resetCar(){
   this.car={
+    tag:'',
           condition:'',
           model:'',
           vendor:{
