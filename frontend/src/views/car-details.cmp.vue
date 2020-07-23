@@ -21,7 +21,7 @@
                 <span v-else>no rating yet</span>
                 <span class="star">★</span>
                 <span class="capi">
-                  <span class="count">(50)</span>
+                  <span class="count">({{this.car.reviews.length}})</span>
                   {{car.owner.fullName}}
                 </span>
               </h3>
