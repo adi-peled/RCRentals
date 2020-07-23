@@ -42,7 +42,9 @@
     font-weight: bold;
 }
 
-
+.column{
+    flex-direction: column;
+}
 
 .right{
   text-align: right !important;
