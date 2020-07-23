@@ -48,7 +48,7 @@
 <script>
 export default {
   name: "car-preview",
-  props: ['car'],
+  props: ["car"],
   data() {
     return {
       isLike: null
@@ -85,6 +85,9 @@ export default {
       }
     },
     calcRating() {
+      if (!this.car.reviews.length) {
+        return 0;
+      }
       const sum = this.car.reviews.reduce((acc, review) => {
         acc += Number(review.rating);
         return acc;
