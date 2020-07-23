@@ -1,5 +1,9 @@
 <template>
 <section class="chat">
+    <div class="chat-search">
+    <input @input="getChats" v-model="chatSearch" placeholder="Search Chat" type="text">
+            <users-list :userName="chatSearch"></users-list>
+    </div>
     <div>
         <ul>
             <li v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
@@ -16,19 +20,22 @@
 
 <script>
 import socket from '@/main-services/socketService.js'
+import usersList from './users-list.cmp.vue'
 export default {
 name:'chat',
 data(){
     return{
         msg:'',
-        msgs:[]
+        msgs:[],
+        chatSearch:''
+
     }
 },
 async created(){
-socket.setup()
-this.$store.dispatch({ type: "getChatHistory" });
-socket.on('gotChatHistory',msgs=>this.msgs=msgs.reverse())
-socket.on('chat recivedMsg',this.addMsg)
+    socket.setup()
+    this.$store.dispatch({ type: "getChatHistory" });
+    socket.on('gotChatHistory',msgs=>this.msgs=msgs.reverse())
+    socket.on('chat recivedMsg',this.addMsg)
 },
 methods:{
     addMsg(msg){
@@ -38,16 +45,22 @@ methods:{
          var msg={from :{fullName:this.loggedInUser.fullName,id:this.loggedInUser._id},txt:this.msg,createdAt:Date.now()}
          socket.emit('chat message',msg)
          this.msg='';
-     }
+     }, 
+      getChats(){
+
+    }
+},
+components:{
+usersList
 },
 computed:{
       loggedInUser() {
       return this.$store.getters.loggedInUser;
-    }
+    },
+  
+    
 }
-// ,destroy(){
-//     socket.terminate()
-// }
+
 
 }
 </script>

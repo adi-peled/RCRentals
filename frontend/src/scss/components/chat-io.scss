@@ -4,6 +4,12 @@
     flex-direction: column;
     justify-content: flex-end;
     border: 1px solid grey;
+     ::-webkit-scrollbar {
+        width: 0px;
+        /* Remove scrollbar space */
+        background: transparent;
+        /* Optional: just make scrollbar invisible */
+    }
     ul {
         height: 300px;
         overflow-y: scroll;
@@ -25,9 +31,29 @@
     }
 }
 
+.chat-search {
+    align-self: flex-end;
+    width: 40% !important;
+    border: 1px solid black;
+    input {
+        width: 100%;
+    }
+    input::placeholder {
+        color: black;
+        font-weight: normal;
+    }
+    ul {
+        position: fixed;
+    }
+}
+
 .chatimg {
     img {
         width: 80px;
         cursor: pointer;
     }
+}
+
+.user-name {
+    cursor: pointer;
 }

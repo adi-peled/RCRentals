@@ -98,6 +98,11 @@ methods:{
       this.car.imgsUrl.push(img)
     },
   addCar(){
+    if(this.car.imgsUrl.length<5){
+      console.log(this.car.imgsUrl.length);
+    eventBus.$emit('sendSwal','Please use 5 pictures ','warning')
+      return
+    }
     if(!this.car.imgsUrl||!this.car.tag||!this.car.condition||!this.car.price||!this.car.vendor.searies||!this.car.vendor.company||!this.car.model){
      eventBus.$emit('sendSwal','Please fill the form ','warning')
     return
