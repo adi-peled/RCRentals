@@ -13,7 +13,6 @@
         <li>Portland</li>
         <li>Miami</li>
         <li>Phoenix</li>
-        <li>Boston</li>
         <li>Sacramento</li>
         <li>Atlanta</li>
         <li>Fort Lauderdale</li>
