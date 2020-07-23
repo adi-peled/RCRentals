@@ -203,7 +203,6 @@ export default {
       this.addingReview = !this.addingReview;
     },
     saveReview() {
-      console.log("car", this.car);
       this.review.byUser = {
         fullName: this.loggedInUser.fullName,
         imgUrl: this.loggedInUser.imgUrl,
@@ -216,7 +215,6 @@ export default {
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.review = {};
       this.toggleReview();
-      console.log(this.car);
     },
     showMoreReviews(boolean) {
       if (boolean) {
@@ -224,7 +222,6 @@ export default {
       } else {
         this.count = 5;
       }
-      console.log(this.showMore);
       this.showMore = boolean;
     },
 
