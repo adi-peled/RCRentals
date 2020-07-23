@@ -63,7 +63,7 @@
       </div>
       <div class="add-car-input">
         <Label>Car Description (optional)</Label>
-        <el-input placeholder="Descrition" v-model="car.descrition"></el-input>
+        <el-input placeholder="Descrition" v-model="car.desc"></el-input>
       </div>
       <button>List Car</button>
     </form>
@@ -124,7 +124,7 @@ export default {
           searies: ""
         },
         price: 200,
-        descrition: "",
+        desc: "",
         imgsUrl: []
       },
       fileList: []
@@ -160,9 +160,7 @@ export default {
         doorsCount: 4.0,
         kpl: 12.0
       }),
-        (this.car.location = {
-          city: "LA"
-        });
+        (this.car.city = "LA");
       (this.car.owner = {
         _id: this.loggedInUser._id,
         fullName: this.loggedInUser.fullName,
@@ -188,7 +186,7 @@ export default {
           searies: ""
         },
         price: 200,
-        descrition: "",
+        desc: "",
         imgsUrl: []
       };
     }

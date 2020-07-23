@@ -6,7 +6,7 @@
         <img :src="require(`@/assets/cars/${car.primaryImgUrl}.jpg`)" height="200" />
         <div>
           <h3>{{car.vendor.company}} {{car.vendor.series}}</h3>
-          <h3>{{car.location.city}}</h3>
+          <h3>{{car.city}}</h3>
         </div>
       </router-link>
     </div>

@@ -44,14 +44,18 @@
                   {{car.features.kpl}} kpl
                 </span>
               </div>
-              <p>{{car.desc}}</p>
+
+              <p>
+                {{car.desc}}
+                Condition: {{car.conditon}}
+              </p>
             </div>
           </div>
           <div class="payment-details flex">
             <div class="flex column location-day">
               <div class="location">
                 <img src="@/assets/img/pin.png" alt />
-                <span class="capi">location: {{car.location.city}}</span>
+                <span class="capi">location: {{car.city}}</span>
               </div>
               <div class="dolar flex">
                 <img src="@/assets/img/dolar.png" alt />

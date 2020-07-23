@@ -21,9 +21,9 @@ async function query(filterBy = "") {
         return await httpService.get(`car`)
     } else {
         console.log(filterBy);
-        const { rangePrice, tag, location, available, rangeModel } = filterBy;
+        const { rangePrice, tag, city, rangeModel } = filterBy;
         return await httpService.get('car' + `?minPrice=${rangePrice[0]}&maxPrice=${rangePrice[1]}
-        &tag=${tag}&location=${location}&minModel=${rangeModel[0]}&maxModel=${rangeModel[1]}&=${available}`)
+        &tag=${tag}&minModel=${rangeModel[0]}&maxModel=${rangeModel[1]}&city=${city}`)
     }
 }
 async function getById(id) {

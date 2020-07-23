@@ -13,15 +13,13 @@ module.exports = {
 
 
 async function query(filterBy = {}) {
-    // const criteria = _buildCriteria(filterBy)
+    const criteria = _buildCriteria(filterBy)
 
     const collection = await dbService.getCollection('user')
     try {
-        const users = await collection.find().toArray();
-        filteredUsers = users.filter(user => user.fullName.includes(filterBy.name))
-        console.log('filers users', filteredUsers);
-        console.log('filter:', filterBy.name);
-        return filteredUsers
+        const users = await collection.find(criteria).toArray();
+
+        return users
     } catch (err) {
         throw err;
     }
@@ -31,11 +29,9 @@ async function query(filterBy = {}) {
 function _buildCriteria(filterBy) {
     const criteria = {};
     if (filterBy.name) {
-
+        var filterName = new RegExp(filterBy.name, 'i')
+        criteria.fullName = { $regex: filterName }
     }
-    // if (filterBy.name) {
-    //     criteria.username = { '$regex': `.*${filterBy.name}.*/i` }
-    // }
     return criteria;
 }
 
