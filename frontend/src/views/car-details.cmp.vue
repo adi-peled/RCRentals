@@ -2,9 +2,9 @@
   <section v-if="car">
     <div class="flex car-container">
       <div class="imgs-container grid">
-        <img :class="{ small:false ,big:true}" :src="primeUrl[0].url" />
-        <img 
-          v-for="(img,idx) in car.imgsUrl"
+        <img :class="{ small:false ,big:true}" :src="car.imgsUrl[0].url" />
+        <img
+          v-for="(img,idx) in car.imgsUrl.slice(1, car.imgsUrl.length)"
           @click="switchImg(idx)"
           :class="{small:true, big:false}"
           :src="img.url"
@@ -133,7 +133,7 @@ export default {
     return {
       // disabledDates: null,
       car: null,
-      primeUrl:null,
+      primeUrl: null,
       disabledDates: {
         range: []
       },
@@ -162,11 +162,8 @@ export default {
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
-    this.primeUrl=car.imgsUrl.splice(0,1)
-    console.log(this.primeUrl);
-    console.log(this.car);
-    console.log(car, "hellow its me your best refrence");
     this.disabledDates = this.car.disabledDates;
+    console.log(this.car);
   },
   methods: {
     switchImg(idx) {
@@ -225,7 +222,6 @@ export default {
       } else {
         this.count = 5;
       }
-      console.log(this.showMore);
       this.showMore = boolean;
     },
 
