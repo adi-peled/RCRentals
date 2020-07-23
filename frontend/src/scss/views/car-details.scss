@@ -1,11 +1,12 @@
     .car-container {
         flex-direction: column;
     }
-    
+
     .imgs-container {
         img {
             cursor: pointer;
         }
+
         margin-bottom: 10px;
         width: 100%;
         grid-template-columns: repeat(4, rem(350px));
@@ -16,16 +17,18 @@
 
     .features {
         grid-template-columns: repeat(auto-fill, minmax(rem(100px), rem(150px)));
+
         img {
             width: rem(30px);
             height: rem(30px);
             margin-right: 13px;
         }
+
         span {
             height: 30px;
         }
     }
-    
+
     .big {
         grid-row: span 2;
         grid-column: span 2;
@@ -33,13 +36,13 @@
         width: rem(710px);
         height: rem(510px);
     }
-    
+
     .small {
         width: rem(350px);
         height: rem(250px);
         object-fit: cover;
     }
-    
+
     .car-container {
         .details {
 
@@ -47,24 +50,26 @@
             width: 50%;
         }
     }
-    
+
     .car-info {
         .details {
             .count {
                 color: gray;
             }
+
             flex-direction: column;
             justify-content: space-between;
         }
     }
 
 
- 
-    
+
+
     .payment-details {
         margin-left: 5px;
         justify-content: space-between;
         width: 50%;
+
         button {
             cursor: pointer;
             font-size: 24px;
@@ -75,38 +80,42 @@
             color: #fff;
             border: 1px solid $clr1;
             transition: .9s;
+
             &:hover {
-            font-size: 33px;
+                font-size: 33px;
 
             }
         }
     }
-    
+
     .free-cancellation {
-        img{
+        img {
             width: 22px;
             height: 22px;
         }
+
         margin-top: 20px;
     }
-    
+
     .order {
         padding: 15px;
+
         img {
             width: 10%;
         }
+
         .order-details {
             width: 40%;
             flex-direction: column;
         }
     }
-    
+
     .rest-page {
         width: 75.625rem;
         flex-direction: column;
         align-self: center;
     }
-    
+
     .book-modal {
         position: absolute;
         top: 50%;
@@ -117,6 +126,7 @@
         width: 60%;
         height: 80%;
         align-items: center;
+
         button {
             cursor: pointer;
             padding: 20px;
@@ -126,15 +136,17 @@
             border: none;
         }
     }
-    
+
     .booking {
         justify-content: space-evenly;
         flex-direction: column;
         align-items: center;
         height: 80%;
+
         .number {
             width: 20%;
         }
+
         input {
             width: 250px;
             height: 35px;
@@ -145,17 +157,21 @@
             border-radius: 0;
             outline: none;
         }
+
         .date {
             width: 160px;
         }
+
         input:focus {
             border: 1px solid $clr1;
         }
+
         label {
             text-align: left;
             width: 250px;
             padding-top: 20px;
         }
+
         button {
             cursor: pointer;
             border: 0;
@@ -167,36 +183,39 @@
             padding: 0 19px;
             outline: none;
         }
+
         button:hover {
             background-color: lighten($color: $clr1, $amount: 20);
         }
     }
-    
+
     .booking-button {
         width: 100%;
         justify-content: center;
         align-items: center;
+
         p {
             height: 50px;
             line-height: 3;
             background-color: #fff;
             border: 1px $clr1 solid;
             padding: 0 35px;
+
             span {
                 color: $clr1;
             }
         }
     }
-    
+
     .review-details {
         flex-direction: column;
     }
-    
+
     .review-btns {
         flex-direction: column;
         justify-content: space-evenly;
     }
-    
+
     .btn-review {
         margin-top: 5px;
         justify-content: center;
@@ -206,34 +225,35 @@
         padding: 0;
         background-color: lighten($clr1, 20%);
         color: white;
+
         &:hover {
             background-color: lighten($clr1, 10%);
         }
     }
-    
-.reviews{
-    margin-bottom: 10px;
 
-}
+    .reviews {
+        margin-bottom: 10px;
+
+    }
 
     .review-add {
         flex-direction: column;
         margin: 0;
     }
-    
+
     .review-img {
         width: 70px;
         height: 50px;
     }
-    
+
     .reviwe-time {
         font-size: 14px;
     }
-    
+
     .reviwer-name {
         font-size: 16px;
     }
-    
+
     .review-name-date {
         justify-content: space-between;
         align-items: center;
@@ -242,39 +262,43 @@
 
 
 
-    .btn-book{
+    .btn-book {
         justify-content: space-between;
     }
 
-    .date-pickers{
-        justify-content: space-between;
-
-    }
-
-
-    .location-day{
+    .date-pickers {
         justify-content: space-between;
 
     }
 
-    .location{
-        span{
+
+    .location-day {
+        justify-content: space-between;
+
+    }
+
+    .location {
+        span {
             margin-left: 7px;
         }
+
         color: grey;
         font-size: 18px;
-        img{
-             width: 22px;
+
+        img {
+            width: 22px;
             height: 22px;
         }
     }
-    .dolar{
-        span{
+
+    .dolar {
+        span {
             margin-left: 7px;
             color: grey;
             font-size: 18px;
         }
-        img{
+
+        img {
             width: 22px;
             height: 22px;
         }
@@ -282,23 +306,24 @@
 
 
 
-    .dolar ,.location{
+    .dolar,
+    .location {
         width: 200px;
         text-align: left;
     }
 
-  .btn-feedback{
-    margin-top: 5px;
-    justify-content: center;
-    text-align: center;
-    width: 100px;
-    outline: none;
-    padding: 0;
-    background-color: #5a6f73;
-    color: white;
-  }
+    .btn-feedback {
+        margin-top: 5px;
+        justify-content: center;
+        text-align: center;
+        width: 100px;
+        outline: none;
+        padding: 0;
+        background-color: #5a6f73;
+        color: white;
+    }
 
 
-  .model{
-font-size: 25px;
-  }
+    .model {
+        font-size: 25px;
+    }

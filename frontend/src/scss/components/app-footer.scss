@@ -1,46 +1,56 @@
-.app-footer{
+.app-footer {
     background-color: #2D383A;
     color: white;
     font-size: 1.2rem;
-    h1{
-text-align: center;
-    }
-.city{
 
-margin: 0, auto;
-grid-template-columns: repeat(auto-fill,200px);
-    li{
-        list-style-type: none;
+    h1 {
+        padding: 20px;
+        text-align: center;
     }
-}
-    img{
+
+    .city {
+
+        margin: 0, auto;
+        grid-template-columns: repeat(auto-fill, 200px);
+
+        li {
+            list-style-type: none;
+        }
+    }
+
+    img {
         width: 50px;
         height: 50px;
     }
-a{
-    margin-top: 10px;
-    color: white;
-    &:hover{
-        text-decoration: underline;;
+
+    a {
+        margin-top: 10px;
+        color: white;
+
+        &:hover {
+            text-decoration: underline;
+            ;
+        }
+
     }
-  
-}
 
 }
 
 
 .extras-container {
-    .links{
-justify-content: space-around;
+    .links {
+        margin-bottom: 15px;
+        justify-content: space-around;
     }
-    .social{
-width: 200px;
-justify-content: space-around;
-align-self: center;
+
+    .social {
+        width: 200px;
+        justify-content: space-around;
+        align-self: center;
     }
 }
 
 
-.social{
-  justify-self: self-end;
+.social {
+    justify-self: self-end;
 }
