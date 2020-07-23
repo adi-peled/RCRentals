@@ -7,35 +7,6 @@ async function query() {
     const collection = await dbService.getCollection('order')
     try {
         const orders = await collection.find().toArray();
-        // var orders = await collection.aggregate([
-        //     {
-        //         $match: filterBy
-        //     },
-        //     {
-        //         $lookup:
-        //         {
-        //             from: 'user',
-        //             localField: 'byUserId',
-        //             foreignField: '_id',
-        //             as: 'byUser'
-        //         }
-        //     }, 
-        //     {
-        //         $unwind: '$byUser'
-        //     },
-        //     {
-        //         $lookup:
-        //         {
-        //             from: 'user',
-        //             localField: 'aboutUserId',
-        //             foreignField: '_id',
-        //             as: 'aboutUser'
-        //         }
-        //     }, 
-        //     {
-        //         $unwind: '$aboutUser'
-        //     }
-        // ]).toArray()
         return orders
     } catch (err) {
         console.log('ERROR: cannot find orders')
@@ -60,6 +31,7 @@ async function add(order) {
         await collection.insertOne(order);
         return order;
     } catch (err) {
+        //logger
         console.log(`ERROR: cannot insert user`)
         throw err;
     }

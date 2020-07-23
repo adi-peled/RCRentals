@@ -19,7 +19,7 @@
 <script>
 import orderService from "../services/order-service.js";
 export default {
-  name:'requested-orders',
+  name: "requested-orders",
   props: {
     info: {
       type: Object

@@ -14,8 +14,7 @@
     }
     
     .features {
-        grid-template-columns: repeat(2, minmax(rem(100px), rem(150px)));
-        grid-template-rows: repeat(2, minmax(rem(30px), rem(45px)));
+        grid-template-columns: repeat(auto-fill, minmax(rem(100px), rem(150px)));
         img {
             width: rem(30px);
             height: rem(30px);
@@ -243,6 +242,27 @@
 
     }
 
+    .location{
+        margin-left: 7px;
+        color: grey;
+        font-size: 18px;
+        img{
+             width: 22px;
+            height: 22px;
+        }
+    }
+
+    .dolar{
+        span{
+            margin-left: 7px;
+            color: grey;
+            font-size: 18px;
+        }
+        img{
+            width: 22px;
+            height: 22px;
+        }
+    }
 
   .btn-feedback{
     margin-top: 5px;

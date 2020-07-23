@@ -63,10 +63,31 @@
     div:hover h3 {
         color: #f66c39;
     }
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        position: relative;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($clr6 , .6);
+            background: linear-gradient(135deg, rgba($clr7, .2) 0%,rgba($clr8,0.5) 100%);
+        }
+
+    }
     h3 {
-        font-size: 1.5rem;
+        margin: 0;
+        font-size: 2rem;
         color: white;
-        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        // text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -155,10 +176,10 @@
     height: 100%;
 }
 
-.main-categories-img {
-    width: 325px;
-    height: 200px;
-}
+// .main-categories-img {
+//     width: 325px;
+//     height: 200px;
+// }
 
 #search {
     background-image: url('~@/assets/img/search.png');

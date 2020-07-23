@@ -29,18 +29,14 @@ async function deleteOrder(req, res) {
 
 async function addOrder(req, res) {
     const order = req.body
-    order = await orderService.add(order)
     order.byUser = req.session.user;
+    order = await orderService.add(order)
     order.aboutUser = {}
     res.send(order)
 }
 
 
-async function updateCar(req, res) {
-    const car = req.body;
-    await carService.update(car)
-    res.json(car)
-}
+
 
 async function updateOrder(req, res) {
     const order = req.body

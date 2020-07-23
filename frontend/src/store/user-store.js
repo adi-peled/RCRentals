@@ -9,8 +9,8 @@ if (sessionStorage.user) {
 
 export const userStore = {
     state: {
-        loggedInUser: localLoggedInUser
-
+        loggedInUser: localLoggedInUser,
+        users: []
     },
     getters: {
         loggedInUser(state) {
@@ -21,6 +21,19 @@ export const userStore = {
         setUser(state, { user }) {
             state.loggedInUser = user;
         },
+        setUsers(state, { users }) {
+            state.users = users;
+
+        }
+    },
+    async loadUsers({ commit }, { filterBy }) {
+        try {
+            var users = await userService.query(filterBy)
+            commit({ type: 'setUsers', users })
+            return users
+        } catch (err) {
+            console.log(err);
+        }
     },
     actions: {
         async signUp(context, { userCred }) {

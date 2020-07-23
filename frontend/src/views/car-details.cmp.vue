@@ -61,9 +61,15 @@
             </form>
           </div>
           <div class="payment-details flex">
-            <div class="flex column location-day">
-              <h2 class="capi">location: {{car.location.city}}</h2>
-              <h1>Price: $ {{car.price}} / Day</h1>
+            <div class="flex column location-day ">
+              <div class="location">
+                <img src="@/assets/img/pin.png" alt />
+              <span class="capi ">location: {{car.location.city}}</span>
+              </div>
+              <div class="dolar flex">
+                <img src="@/assets/img/dolar.png" alt />
+                <span>Price: $ {{car.price}} / Day</span>
+              </div>
             </div>
             <div class="date-pickers flex column">
               <div>
