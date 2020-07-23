@@ -4,7 +4,7 @@
 
     <form  class="add-car-form" @submit.prevent="addCar">
         <div class="flex first-div-caradd">
-        <el-upload ref="upload" :limit="5"  v-model="fileList" class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/"  :on-success="onUploadImg" :on-remove="handleRemove" :file-list="fileList" list-type="picture"> <el-button size="small" type="primary">Click to upload</el-button></el-upload>
+        <el-upload ref="upload" :limit="5"  v-model="fileList" class="upload-demo" action="#" :auto-upload="false" :on-change="onUploadImg" :on-remove="handleRemove" :file-list="fileList" list-type="picture"> <el-button size="small" type="primary">Click to upload</el-button></el-upload>
             <div>
                 <el-select v-model="car.tag" placeholder="Tag">
                 <el-option v-for="item in tags" :key="item.value" :label="item.label" :value="item.value"></el-option>
@@ -92,7 +92,8 @@ export default {
     }
 } ,
 methods:{
-    async onUploadImg(response,file,fileList){
+    async onUploadImg(file,fileList){
+      console.log(file);
       var img =await uploadImg(file.raw)
       img.uid=file.raw.uid
       this.car.imgsUrl.push(img)
@@ -104,6 +105,8 @@ methods:{
       return
     }
     if(!this.car.imgsUrl||!this.car.tag||!this.car.condition||!this.car.price||!this.car.vendor.searies||!this.car.vendor.company||!this.car.model){
+     
+     
      eventBus.$emit('sendSwal','Please fill the form ','warning')
     return
     }
