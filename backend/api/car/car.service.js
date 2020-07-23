@@ -24,7 +24,6 @@ module.exports = {
 
 
 async function query(filterBy = {}) {
-
     const criteria = _buildCriteria(filterBy)
     const collection = await dbService.getCollection('car')
     try {

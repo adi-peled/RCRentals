@@ -11,17 +11,32 @@ module.exports = {
     add
 }
 
-async function query() {
+
+async function query(filterBy = {}) {
+    // const criteria = _buildCriteria(filterBy)
+
     const collection = await dbService.getCollection('user')
     try {
         const users = await collection.find().toArray();
-        // users.forEach(user => delete user.password);
-
-        return users
+        filteredUsers = users.filter(user => user.fullName.includes(filterBy.name))
+        console.log('filers users', filteredUsers);
+        console.log('filter:', filterBy.name);
+        return filteredUsers
     } catch (err) {
-        console.log('ERROR: cannot find users')
         throw err;
     }
+}
+
+
+function _buildCriteria(filterBy) {
+    const criteria = {};
+    if (filterBy.name) {
+
+    }
+    // if (filterBy.name) {
+    //     criteria.username = { '$regex': `.*${filterBy.name}.*/i` }
+    // }
+    return criteria;
 }
 
 async function getById(userId) {
@@ -29,14 +44,11 @@ async function getById(userId) {
     try {
         const user = await collection.findOne({ "_id": ObjectId(userId) })
         delete user.password
-
         // user.givenOrders = await orderService.query({ byUserId: ObjectId(user._id) })
         // user.givenOrders = user.givenOrders.map(order => {
         // delete order.byUser
         // return order
         // })
-
-
         return user
     } catch (err) {
         console.log(`ERROR: while finding user ${userId}`)
@@ -91,17 +103,6 @@ async function add(user) {
         console.log(`ERROR: cannot insert user`)
         throw err;
     }
-}
-
-function _buildCriteria(filterBy) {
-    const criteria = {};
-    if (filterBy.txt) {
-        criteria.username = { '$regex': `.*${filterBy.username}.*/i` }
-    }
-    if (filterBy.minBalance) {
-        criteria.balance = { $gte: +filterBy.minBalance }
-    }
-    return criteria;
 }
 
 

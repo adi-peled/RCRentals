@@ -6,21 +6,6 @@ import store from './store'
 import './scss/main.scss'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import { extend } from 'vee-validate';
-import { required, email } from 'vee-validate/dist/rules';
-import { ValidationProvider } from 'vee-validate';
-Vue.component('ValidationProvider', ValidationProvider);
-// Add the required rule
-extend('required', {
-    ...required,
-    message: 'This field is required'
-});
-
-// Add the email rule
-extend('email', {
-    ...email,
-    message: 'This field must be a valid email'
-});
 
 
 

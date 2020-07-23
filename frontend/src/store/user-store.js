@@ -16,6 +16,9 @@ export const userStore = {
         loggedInUser(state) {
             return state.loggedInUser
         },
+        users(state) {
+            return state.users
+        }
     },
     mutations: {
         setUser(state, { user }) {
@@ -26,16 +29,18 @@ export const userStore = {
 
         }
     },
-    async loadUsers({ commit }, { filterBy }) {
-        try {
-            var users = await userService.query(filterBy)
-            commit({ type: 'setUsers', users })
-            return users
-        } catch (err) {
-            console.log(err);
-        }
-    },
     actions: {
+        async loadUsers({ commit }, { filterBy }) {
+            try {
+                console.log(filterBy);
+                const users = await userService.query(filterBy)
+                commit({ type: 'setUsers', users })
+                return users
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
         async signUp(context, { userCred }) {
             try {
                 const user = await userService.signup(userCred)
