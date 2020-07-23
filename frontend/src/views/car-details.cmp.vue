@@ -16,7 +16,7 @@
         <div class="car-info flex">
           <div class="details flex">
             <div>
-              <span class="capi model">{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
+              <span class="capi  bold model">{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
               <h3>
                 <span v-if="car.reviews">{{calcRating}}</span>
                 <span v-else>no rating yet</span>
