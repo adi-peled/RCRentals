@@ -81,6 +81,10 @@ export default {
           label: "Sport"
         },
         {
+          value: "exotic",
+          label: "Exotic"
+        },
+        {
           value: "vintage",
           label: "Vintage"
         },
@@ -90,7 +94,23 @@ export default {
         },
         {
           value: "custom",
-          label: "custom"
+          label: "Custom"
+        },
+        {
+          value: "converitible",
+          label: "Converitible"
+        },
+        {
+          value: "SUV",
+          label: "SUV"
+        },
+        {
+          value: "trucks",
+          label: "Trucks"
+        },
+        {
+          value: "minivan",
+          label: "Minivan"
         }
       ],
       carTag: "",

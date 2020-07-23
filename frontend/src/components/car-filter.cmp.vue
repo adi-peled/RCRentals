@@ -24,7 +24,6 @@
         </div>
       </div>
 
-     
       <div class="type">
         <div>Type:</div>
         <el-select
@@ -101,8 +100,20 @@ export default {
           label: "Vans"
         },
         {
+          value: "converitible",
+          label: "Converitible"
+        },
+        {
+          value: "SUV",
+          label: "SUV"
+        },
+        {
           value: "trucks",
           label: "Trucks"
+        },
+         {
+          value: "custom",
+          label: "Custom"
         }
       ]
     };
