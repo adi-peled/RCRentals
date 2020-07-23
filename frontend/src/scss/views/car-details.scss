@@ -6,13 +6,14 @@
         img {
             cursor: pointer;
         }
+        margin-bottom: 10px;
         width: 100%;
         grid-template-columns: repeat(4, rem(300px));
         // grid-template-rows: rem(200px) rem(200px);
         justify-content: center;
         gap: 10px;
     }
-    
+
     .features {
         grid-template-columns: repeat(auto-fill, minmax(rem(100px), rem(150px)));
         img {
@@ -21,7 +22,7 @@
             margin-right: 13px;
         }
         span {
-            height: 75px;
+            height: 30px;
         }
     }
     
@@ -41,6 +42,7 @@
     
     .car-container {
         .details {
+
             margin-right: 5px;
             width: 50%;
         }
@@ -55,6 +57,9 @@
             justify-content: space-between;
         }
     }
+
+
+ 
     
     .payment-details {
         margin-left: 5px;
@@ -69,14 +74,17 @@
             background-color: $clr1;
             color: #fff;
             border: 1px solid $clr1;
-            transition: .5s;
+            transition: .9s;
             &:hover {
-                background-color: lighten($clr1, 5%);
             }
         }
     }
     
     .free-cancellation {
+        img{
+            width: 22px;
+            height: 22px;
+        }
         margin-top: 20px;
     }
     
@@ -201,6 +209,11 @@
         }
     }
     
+.reviews{
+    margin-bottom: 10px;
+
+}
+
     .review-add {
         flex-direction: column;
         margin: 0;
@@ -243,7 +256,9 @@
     }
 
     .location{
-        margin-left: 7px;
+        span{
+            margin-left: 7px;
+        }
         color: grey;
         font-size: 18px;
         img{
@@ -251,7 +266,6 @@
             height: 22px;
         }
     }
-
     .dolar{
         span{
             margin-left: 7px;
@@ -262,6 +276,13 @@
             width: 22px;
             height: 22px;
         }
+    }
+
+
+
+    .dolar ,.location{
+        width: 200px;
+        text-align: left;
     }
 
   .btn-feedback{

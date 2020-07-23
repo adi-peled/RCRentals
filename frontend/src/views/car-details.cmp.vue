@@ -15,7 +15,7 @@
         <div class="car-info flex">
           <div class="details flex">
             <div>
-              <h1 class="capi">{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</h1>
+              <span class="capi model">{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
               <h3>
                 <span v-if="car.reviews">{{calcRating}}</span>
                 <span v-else>no rating yet</span>
@@ -45,26 +45,12 @@
               </div>
               <p>{{car.desc}}</p>
             </div>
-
-            <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
-            <form class="review-add flex" v-if="addingReview">
-              <div class="add-details">
-                <div class="block">
-                  <el-rate v-model="  review.rating" :colors="colors"></el-rate>
-                </div>
-                <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
-              </div>
-              <div class="review-btns flex">
-                <button class="btn-review" @click.prevent="saveReview">save</button>
-                <button class="btn-review" @click="toggleReview">close</button>
-              </div>
-            </form>
           </div>
           <div class="payment-details flex">
-            <div class="flex column location-day ">
+            <div class="flex column location-day">
               <div class="location">
                 <img src="@/assets/img/pin.png" alt />
-              <span class="capi ">location: {{car.location.city}}</span>
+                <span class="capi">location: {{car.location.city}}</span>
               </div>
               <div class="dolar flex">
                 <img src="@/assets/img/dolar.png" alt />
@@ -102,7 +88,7 @@
           {{car.owner.fulName}}
         </div>
 
-        <div v-if="car.reviews" class="Reviews">
+        <div v-if="car.reviews" class="reviews">
           <h4>Reviews</h4>
           <div v-for="review in showReviews" :key="review.id" class="review flex">
             <img class="review-img" src="@/assets/profile.jpg" />
@@ -129,6 +115,19 @@
             @click="showMoreReviews(false)"
           >See less</button>
         </div>
+        <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
+        <form class="review-add flex" v-if="addingReview">
+          <div class="add-details">
+            <div class="block">
+              <el-rate v-model="  review.rating" :colors="colors"></el-rate>
+            </div>
+            <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
+          </div>
+          <div class="review-btns flex">
+            <button class="btn-review" @click.prevent="saveReview">save</button>
+            <button class="btn-review" @click="toggleReview">close</button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -181,10 +180,10 @@ export default {
   },
   methods: {
     switchImg(idx) {
-      var saveImg = this.car.primaryImgUrl;
-      this.car.primaryImgUrl = this.car.imgUrls[idx];
-      this.car.imgUrls[idx] = saveImg;
-      console.log(this.car.imgUrls, this.car.primaryImgUrl);
+      var savedImg = this.car.imgsUrl[idx];
+      this.car.imgsUrl[idx] = this.car.imgsUrl[0];
+      this.car.imgsUrl[0] = savedImg;
+      console.log(this.car.imgsUrl);
     },
     toggleBookModal() {
       if (!this.order.pickupDate || !this.order.returnDate) {
