@@ -205,6 +205,9 @@ export default {
           company: "",
           searies: "",
         },
+        disabledDates: {
+          ranges: []
+        },
         price: 200,
         desc: "",
         imgsUrl: [],
