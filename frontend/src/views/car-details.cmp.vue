@@ -1,22 +1,28 @@
-<template>
+<template  >
   <section v-if="car">
     <div class="flex car-container">
-      <div class="imgs-container grid">
-        <img :class="{ small:false ,big:true}" :src="car.imgsUrl[0].url" />
-        <img
-          v-for="(img,idx) in car.imgsUrl.slice(1, car.imgsUrl.length)"
-          @click="switchImg(idx)"
-          :class="{small:true, big:false}"
-          :src="img.url"
-          :key="idx"
-        />
+      <div v-if="innerWidth>850">
+        <div class="imgs-container grid">
+          <img :class="{ small:false ,big:true}" :src="car.imgsUrl[0].url" />
+          <img
+            v-for="(img,idx) in car.imgsUrl.slice(1, car.imgsUrl.length)"
+            @click="switchImg(idx)"
+            :class="{small:true, big:false}"
+            :src="img.url"
+            :key="idx"
+          />
+        </div>
       </div>
-
+      <div v-else>
+        <carousel :imgs="car.imgsUrl"></carousel>
+      </div>
       <div class="rest-page flex">
         <div class="car-info flex">
           <div class="details flex">
             <div>
-              <span class="capi  bold model">{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
+              <span
+                class="capi bold model"
+              >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
               <h3>
                 <span v-if="car.reviews">{{calcRating}}</span>
                 <span v-else>no rating yet</span>
@@ -47,7 +53,6 @@
 
               <p>
                 {{car.desc}}
-                Condition: {{car.conditon}}
               </p>
             </div>
           </div>
@@ -89,12 +94,11 @@
               </span>
               <button @click="toggleBookModal">Book</button>
             </div>
-            <div><button  @click="startChat(car.owner)">Start Chat</button> </div>
           </div>
         </div>
 
+        <h4>Reviews</h4>
         <div v-if="car.reviews" class="reviews">
-          <h4>Reviews</h4>
           <div v-for="review in showReviews" :key="review.id" class="review flex">
             <img class="review-img" src="@/assets/profile.jpg" />
             <div class="review-details flex">
@@ -120,7 +124,11 @@
             @click="showMoreReviews(false)"
           >See less</button>
         </div>
-        <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
+        <div class="flex action-btns">
+          <button @click="startChat(car.owner)" class="btn-review">Chat with owner</button>
+          <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
+        </div>
+
         <form class="review-add flex" v-if="addingReview">
           <div class="add-details">
             <div class="block">
@@ -146,6 +154,7 @@ import { carService } from "../services/car-service.js";
 import { eventBus } from "../main-services/eventBus.js";
 import guestModal from "../components/modal.cmp.vue";
 import datePicker from "vuejs-datepicker";
+import carousel from "../components/carousel.cmp.vue";
 export default {
   name: "car-details",
   data() {
@@ -153,7 +162,7 @@ export default {
       // disabledDates: null,
       car: null,
       disabledDates: {
-        range: []
+        range: [],
       },
       bookModal: false,
       email: "",
@@ -164,16 +173,17 @@ export default {
         pickupDate: "",
         returnDate: "",
         carId: this.$route.params.id,
-        status: "pending"
+        status: "pending",
       },
       review: {
         rating: null,
-        txt: ""
+        txt: "",
       },
       colors: ["2D383A", "#2D383A", "#2D383A"],
       addingReview: false,
       count: 5,
-      showMore: false
+      showMore: false,
+      innerWidth: "",
     };
   },
   async created() {
@@ -181,18 +191,26 @@ export default {
     const car = await carService.getById(carId);
     this.car = car;
     this.disabledDates = this.car.disabledDates;
+    window.addEventListener("resize", this.updateWidth);
   },
   methods: {
-    startChat(owner){
-    eventBus.$emit('startChat',this.toggleChat)
-      var chat={
-        usersIds:[this.loggedInUser._id,owner._id],
-        user1:{fullName:this.loggedInUser.fullName,_id:this.loggedInUser._id,imgUrl:this.loggedInUser.imgUrl},
-        user2:{fullName:owner.fullName,_id:owner._id,imgUrl:owner.imgUrl}
-      }
+    startChat(owner) {
+      eventBus.$emit("startChat", this.toggleChat);
+      var chat = {
+        usersIds: [this.loggedInUser._id, owner._id],
+        user1: {
+          fullName: this.loggedInUser.fullName,
+          _id: this.loggedInUser._id,
+          imgUrl: this.loggedInUser.imgUrl,
+        },
+        user2: {
+          fullName: owner.fullName,
+          _id: owner._id,
+          imgUrl: owner.imgUrl,
+        },
+      };
 
       socket.emit("get chat", chat);
-      
     },
     switchImg(idx) {
       console.log("start:", this.car.imgsUrl[0].url);
@@ -214,11 +232,11 @@ export default {
           buyer: {
             email: this.loggedInUser.email,
             fullName: this.loggedInUser.fullName,
-            imgUrl: this.loggedInUser.imgUrl
+            imgUrl: this.loggedInUser.imgUrl,
           },
           pickupDate: this.order.pickupDate,
           returnDate: this.order.returnDate,
-          status: this.order.status
+          status: this.order.status,
         };
         eventBus.$emit("sendSwal", "Booked !", "success");
         this.saveOrder(this.order);
@@ -236,7 +254,7 @@ export default {
       this.review.byUser = {
         fullName: this.loggedInUser.fullName,
         imgUrl: this.loggedInUser.imgUrl,
-        email: this.loggedInUser.email
+        email: this.loggedInUser.email,
       };
       this.review.id = "r" + Math.floor(Math.random() * 999 + 1);
       this.review.createdAt = Date.now();
@@ -274,20 +292,24 @@ export default {
 
       var range = {
         from: order.pickupDate,
-        to: order.returnDate
+        to: order.returnDate,
       };
       console.log(this.car);
       this.car.disabledDates.ranges.push(range);
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.$store.dispatch({
         type: "saveOrder",
-        order: this.order
+        order: this.order,
       });
       eventBus.$emit("sendSwal", "Booked !", "success");
       if (!this.loggedInUser) {
         this.toggleBookModal();
       }
-    }
+    },
+    updateWidth() {
+      console.log("resize");
+      this.innerWidth = window.innerWidth;
+    },
   },
   computed: {
     loggedInUser() {
@@ -319,9 +341,9 @@ export default {
     showReviews() {
       // return this.car.reviews.slice(this.car.reviews.length - this.count);
       return this.car.reviews.slice(0, this.count);
-    }
+    },
   },
-  components: { guestModal, datePicker }
+  components: { guestModal, datePicker, carousel },
 };
 </script>
 

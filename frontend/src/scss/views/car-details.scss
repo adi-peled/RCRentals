@@ -84,11 +84,6 @@
             color: #fff;
             border: 1px solid $clr1;
             transition: .9s;
-
-            &:hover {
-                font-size: 33px;
-
-            }
         }
     }
 
@@ -308,7 +303,10 @@
         }
     }
 
-
+    .action-btns {
+        justify-content: space-around;
+        width: 800px;
+    }
 
     .dolar,
     .location {
@@ -332,20 +330,15 @@
         font-size: 25px;
     }
 
-
-
     @media (max-width:1400px) {
-
-
         .imgs-container {
             grid-template-columns: none;
         }
 
-
         .payment-details {
             display: grid;
             width: 400px;
-           margin-left: 0;
+            margin-left: 0;
             grid-template-columns: 200px 200px;
         }
 
@@ -355,6 +348,90 @@
 
         .small {
             width: 400px;
+        }
 
+        .car-info {
+            margin: 0 auto;
+
+            .details {
+                width: 400px;
+            }
+        }
+
+        .rest-page {
+
+            h4 {
+                text-align: center;
+            }
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: 400px 400px;
+            margin: 0 auto;
+        }
+
+        .action-btns {
+            align-self: center;
+        }
+
+    }
+
+
+
+    @media(max-width:850px) {
+        .rest-page{
+            margin-top: 30px;
+        }
+
+
+        .car-info{
+            .details{
+                width: 250px;
+            }
+        }
+        .reviews{
+            grid-template-columns: 1fr 1fr
+        }
+        .review-add{
+            align-self: center;
+        }
+
+        .features{
+            height:200px;
+        }
+
+        .btn-book{
+            grid-column: span 2;
+        }
+
+        .free-cancellation{
+            margin-top: 50px;
+        }
+    }
+
+
+
+
+    @media (max-width:720px){
+        .car-info{
+            flex-direction: column;
+        }
+
+        .features{
+            height: 130px;
+            grid-template-columns: 150px 150px
+        }
+    }
+
+
+    @media(max-width:580px){
+        .reviews{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .action-btns{
+            width: 500px;
         }
     }
