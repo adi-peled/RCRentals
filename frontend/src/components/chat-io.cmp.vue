@@ -3,7 +3,7 @@
     <div class="chat-search">
     
       <input  @input="setFilter" v-model="filterBy.name" placeholder="Search Chat" type="text" />
-      <users-list @chatSelected="filterMsg"></users-list>
+      <!-- <users-list @chatSelected="filterMsg"></users-list> -->
     </div>
     <div>
       <ul v-if="msgs">
@@ -25,45 +25,45 @@
 <script>
 import socket from "@/main-services/socketService.js";
 import usersList from "./users-list.cmp.vue";
+import {utils} from '../main-services/utils.js'
 export default {
+  props:['chat','carOwner'],
   name: "chat",
   data() {
     return {
       msg: "",
-      msgs: [],
       filterBy: {
         name: ""
       }
     };
   },
   async created() {
-    socket.setup();
-    this.$store.dispatch({ type: "getChatHistory" });
+    // socket.setup();
     socket.on("chat recivedMsg", this.addMsg);
-    socket.on("gotChat",this.loadMsgs)
+    // this.loadMsgs(this.chat)
     this.setFilter();
   },
   methods: {
     addMsg(msg) {
       this.msgs.unshift(msg);
     },
-    filterMsg(id){
-    socket.on("gotChatHistory", msgs => (this.msgs = msgs.reverse()));        
-    },
-    loadMsgs(chat){
-      this.msgs=chat[0].msgs
-      console.log(this.msgs);
-    },
     sendMsg(ev) {
       var msg = {
+        id:utils.getRandomId(),
+        chatId:this.chat._id,
         from: {
           fullName: this.loggedInUser.fullName,
-          id: this.loggedInUser._id
+          _id: this.loggedInUser._id
+        },
+        to:{
+          fullName:this.carOwner.fullName,
+          _id:this.carOwner._id
         },
         txt: this.msg,
         createdAt: Date.now()
       };
-      socket.emit("chat message", msg);
+      this.chat[0].msgs.unshift(msg)
+      socket.emit("chat message", this.chat[0]);
       this.msg = "";
     },
     setFilter() {
@@ -76,6 +76,9 @@ export default {
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser;
+    },
+    msgs(){
+      return  this.chat[0].msgs
     }
   }
 };

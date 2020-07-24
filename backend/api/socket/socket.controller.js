@@ -26,22 +26,18 @@ async function deleteMsg(req, res) {
     res.end()
 }
 
-async function updateMsg(req, res) {
-    const msg = req.body;
-    await msgService.update(msg)
+async function updateChat(chat) {
+    await chatService.update(chat)
     res.json(msg)
 }
 
-async function addMsg(msg) {
-    await chatService.addMsg(msg)
-}
+
 
 
 module.exports = {
     getChat,
     getMsg,
     deleteMsg,
-    updateMsg,
-    addMsg,
+    updateChat,
     checkChat
 }

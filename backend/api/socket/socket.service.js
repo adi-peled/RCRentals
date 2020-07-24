@@ -86,6 +86,9 @@ async function add(chat) {
     }
 }
 
+
+
+
 async function getById(msgId) {
     const collection = await dbService.getCollection('msg')
     try {
@@ -108,14 +111,14 @@ async function remove(msgId) {
 }
 
 async function update(chat) {
-    const collection = await dbService.getCollection('chats')
+    const collection = await dbService.getCollection('chat')
     chat._id = ObjectId(chat._id);
 
     try {
         await collection.replaceOne({ "_id": chat._id }, { $set: chat })
         return chat
     } catch (err) {
-        console.log(`ERROR: cannot update msg ${msg._id}`)
+        console.log(`ERROR: cannot update msg `)
         throw err;
     }
 }

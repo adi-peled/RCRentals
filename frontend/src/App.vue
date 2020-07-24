@@ -3,8 +3,6 @@
     <app-header></app-header>
 
       <router-view></router-view>
-      <chat class="chat" v-if="chatting"></chat>
-      <div class="chatimg" @click="toggleChat"><img  src="@/assets/img/chat.png" alt=""></div>
       <app-footer></app-footer>
   </div>
 </template>

@@ -1,4 +1,4 @@
-<template  >
+<template>
   <section v-if="car">
     <div class="flex car-container">
       <div v-if="innerWidth>850">
@@ -123,7 +123,7 @@
           >See less</button>
         </div>
         <div class="flex action-btns">
-          <button @click="startChat(car.owner)" class="btn-review">Chat with owner</button>
+          <button @click="toggleChat" class="btn-review">Chat with owner</button>
           <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
         </div>
 
@@ -139,6 +139,7 @@
             <button class="btn-review" @click="toggleReview">close</button>
           </div>
         </form>
+      <chat class="chat" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
       </div>
     </div>
 
@@ -147,6 +148,7 @@
 </template>
 
 <script>
+import chat from '../components/chat-io.cmp.vue'
 import socket from "../main-services/socketService.js";
 import { carService } from "../services/car-service.js";
 import { eventBus } from "../main-services/eventBus.js";
@@ -157,6 +159,8 @@ export default {
   name: "car-details",
   data() {
     return {
+      chat:null,
+      chatting:false,
       // disabledDates: null,
       car: null,
       disabledDates: {
@@ -184,24 +188,31 @@ export default {
       innerWidth: "",
     };
   },
+
   async created() {
+    socket.setup()
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
+    socket.on("gotChat",(chat)=>this.chat=chat)
     this.disabledDates = this.car.disabledDates;
     window.addEventListener("load", this.updateWidth());
     window.addEventListener("resize", this.updateWidth);
+     this.startChat()
   },
+ 
   methods: {
-   async startChat(owner){
+   async startChat(){
       var chat={
-        usersIds:[this.loggedInUser._id,owner._id],
+        usersIds:[this.loggedInUser._id,this.car.owner._id],
         user1:{fullName:this.loggedInUser.fullName,_id:this.loggedInUser._id,imgUrl:this.loggedInUser.imgUrl},
-        user2:{fullName:owner.fullName,_id:owner._id,imgUrl:owner.imgUrl},
+        user2:{fullName:this.car.owner.fullName,_id:this.car.owner._id,imgUrl:this.car.owner.imgUrl},
         msgs:[]
       }
-     await eventBus.$emit('startChat',chat)
       socket.emit("get chat", chat);
+    },
+    toggleChat(){
+      this.chatting=!this.chatting
     },
     switchImg(idx) {
       console.log("start:", this.car.imgsUrl[0].url);
@@ -334,7 +345,7 @@ export default {
       return this.car.reviews.slice(0, this.count);
     },
   },
-  components: { guestModal, datePicker, carousel },
+  components: { guestModal, datePicker, carousel,chat },
 };
 </script>
 
