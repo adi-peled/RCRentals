@@ -3,7 +3,6 @@ import userService from '../services/user-service.js'
 var localLoggedInUser = null;
 
 if (sessionStorage.user && sessionStorage.user !== 'undefined') {
-    console.log(sessionStorage.user);
     localLoggedInUser = JSON.parse(sessionStorage.user);
 }
 
@@ -53,7 +52,6 @@ export const userStore = {
         async login(context, { userCred }) {
             try {
                 const user = await userService.login(userCred);
-                console.log(user);
                 context.commit({ type: 'setUser', user })
                 return user;
             } catch (err) {

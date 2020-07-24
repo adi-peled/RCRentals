@@ -44,6 +44,7 @@
     </div>
     <div class="profile-info">
       <component :is="tab" :info="info" class="profile-cars"></component>
+      <router-view></router-view>
     </div>
   </section>
 </template>
