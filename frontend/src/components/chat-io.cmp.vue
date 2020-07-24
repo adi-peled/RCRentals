@@ -6,9 +6,10 @@
       <users-list @chatSelected="filterMsg"></users-list>
     </div>
     <div>
-      <ul>
+      <ul v-if="msgs">
         <li v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
           <p>
+            {{msg}}
             <span class="capi">{{msg.from.fullName}}</span>
             : {{msg.txt}}
           </p>
@@ -40,6 +41,7 @@ export default {
     socket.setup();
     this.$store.dispatch({ type: "getChatHistory" });
     socket.on("chat recivedMsg", this.addMsg);
+    socket.on("gotChat",this.loadMsgs)
     this.setFilter();
   },
   methods: {
@@ -48,6 +50,10 @@ export default {
     },
     filterMsg(id){
     socket.on("gotChatHistory", msgs => (this.msgs = msgs.reverse()));        
+    },
+    loadMsgs(chat){
+      this.msgs=chat[0].msgs
+      console.log(this.msgs);
     },
     sendMsg(ev) {
       var msg = {

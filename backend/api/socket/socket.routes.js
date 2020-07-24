@@ -7,7 +7,6 @@ function connectSockets(io) {
         socket.on('get chat', async(chat) => {
             var newChat = await checkChat(chat)
             socket.emit('gotChat', newChat)
-
         })
         socket.on('getHistory', async() => {
             const collection = await dbService.getCollection('chats')

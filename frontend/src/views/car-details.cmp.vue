@@ -190,35 +190,18 @@ export default {
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
-    socket.on("gotChat", (chat)=>console.log(chat));
     this.disabledDates = this.car.disabledDates;
     window.addEventListener("resize", this.updateWidth);
   },
   methods: {
-    startChat(owner){
-    eventBus.$emit('startChat',this.toggleChat)
+   async startChat(owner){
       var chat={
         usersIds:[this.loggedInUser._id,owner._id],
         user1:{fullName:this.loggedInUser.fullName,_id:this.loggedInUser._id,imgUrl:this.loggedInUser.imgUrl},
         user2:{fullName:owner.fullName,_id:owner._id,imgUrl:owner.imgUrl},
         msgs:[]
       }
-    startChat(owner) {
-      eventBus.$emit("startChat", this.toggleChat);
-      var chat = {
-        usersIds: [this.loggedInUser._id, owner._id],
-        user1: {
-          fullName: this.loggedInUser.fullName,
-          _id: this.loggedInUser._id,
-          imgUrl: this.loggedInUser.imgUrl,
-        },
-        user2: {
-          fullName: owner.fullName,
-          _id: owner._id,
-          imgUrl: owner.imgUrl,
-        },
-      };
-
+     await eventBus.$emit('startChat',chat)
       socket.emit("get chat", chat);
     },
     switchImg(idx) {
@@ -229,7 +212,7 @@ export default {
       this.car.imgsUrl[0] = savedImg;
       console.log("end", this.car.imgsUrl[0].url);
     },
-    toggleBookModal() {
+     toggleBookModal() {
       if (!this.order.pickupDate || !this.order.returnDate) {
         eventBus.$emit("sendSwal", "Please fill the form !", "warning");
         return;

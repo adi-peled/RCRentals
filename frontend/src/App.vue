@@ -14,6 +14,8 @@
   import appFooter from './components/footer.cmp.vue'
   import {eventBus} from './main-services/eventBus.js'
   import chat from './components/chat-io.cmp.vue'
+import socket from "./main-services/socketService.js";
+
 export default {
   components: {
     appHeader,
@@ -49,8 +51,9 @@ Toast.fire({
   title: msg
 })
 },
-  toggleChat(){
+  toggleChat(chat){
     this.chatting=!this.chatting
+ 
   }
     
 }
