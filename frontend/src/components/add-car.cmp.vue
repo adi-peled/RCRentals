@@ -152,14 +152,12 @@ export default {
   },
   methods: {
     async onUploadImg(file, fileList) {
-      console.log(file);
       var img = await uploadImg(file.raw);
       img.uid = file.raw.uid;
       this.car.imgsUrl.push(img);
     },
     addCar() {
       if (this.car.imgsUrl.length < 5) {
-        console.log(this.car.imgsUrl.length);
         eventBus.$emit("sendSwal", "Please use 5 pictures ", "warning");
         return;
       }

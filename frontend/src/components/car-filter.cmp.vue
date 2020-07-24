@@ -99,6 +99,10 @@ export default {
           value: "vans",
           label: "Vans"
         },
+         {
+          value: "sport",
+          label: "Sport"
+        },
         {
           value: "converitible",
           label: "Converitible"
@@ -124,7 +128,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.params.category);
     if (!this.$route.params.category) {
       console.log("noda");
       this.filterBy.tag = "";
