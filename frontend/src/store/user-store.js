@@ -2,7 +2,8 @@ import userService from '../services/user-service.js'
 
 var localLoggedInUser = null;
 
-if (sessionStorage.user) {
+if (sessionStorage.user && sessionStorage.user !== 'undefined') {
+    console.log(sessionStorage.user);
     localLoggedInUser = JSON.parse(sessionStorage.user);
 }
 

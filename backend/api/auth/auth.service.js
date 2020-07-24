@@ -8,15 +8,18 @@ async function login(email, password) {
     logger.debug(`auth.service - login with email: ${email}`)
     if (!email || !password) return Promise.reject('email and password are required!')
     const user = await userService.getByEmail(email)
+    console.log('loginre', user, password);
+
     if (!user) return Promise.reject('Invalid email or password')
-        // const match = await bcrypt.compare(password, user.password)
+    // const match = await bcrypt.compare(password, user.password)
     if (user.password === password) {
+        console.log('loginre', user, password);
         delete user.password;
+
         return user;
 
     } else {
         logger.debug(`error -password: ${password}`)
-
     }
     // if (!match) return Promise.reject('Invalid email or password')
 

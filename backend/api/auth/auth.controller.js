@@ -5,9 +5,11 @@ const userService = require('../user/user.service')
 
 
 async function login(req, res) {
+    console.log('login:', req.body);
     const { email, password } = req.body
     try {
         const user = await authService.login(email, password)
+        console.log(('backend:', user));
         req.session.user = user;
         res.json(user)
     } catch (err) {
