@@ -34,6 +34,8 @@ export default {
     };
   },
   async created() {
+    this.chatToRender=this.chat;
+    socket.on('messege recieved',chat=>this.chatToRender=chat)
     socket.on("chat recivedMsg", this.addMsg);
     this.setFilter();
   },
