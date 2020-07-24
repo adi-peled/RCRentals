@@ -74,7 +74,7 @@ export default {
       return this.$store.getters.loggedInUser;
     },
     msgs(){
-      return  this.chat[0].msgs
+      return  this.chatToRender[0].msgs
     }
   }
 };
