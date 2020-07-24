@@ -34,8 +34,6 @@ export default {
     };
   },
   async created() {
-    this.chatToRender=this.chat;
-    socket.on('messege recieved',chat=>this.chatToRender=chat)
     socket.on("chat recivedMsg", this.addMsg);
     this.setFilter();
   },
@@ -74,7 +72,7 @@ export default {
       return this.$store.getters.loggedInUser;
     },
     msgs(){
-      return  this.chatToRender[0].msgs
+      return  this.chat[0].msgs
     }
   }
 };
