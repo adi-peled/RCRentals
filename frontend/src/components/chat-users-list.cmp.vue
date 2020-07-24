@@ -24,7 +24,10 @@ data(){
 async created(){
   
   socket.setup()
-  socket.on('messege recieved',chat=>this.chat=chat)
+  socket.on('messege recieved',chat=>{
+
+    this.chat=[chat]
+  })
   this.usersList= await this.$store.dispatch({ type: "loadUsers", filterBy: this.filter });
     socket.on("gotChat",chat=>{
     this.chat=chat;
