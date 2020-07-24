@@ -380,32 +380,34 @@
 
 
     @media(max-width:850px) {
-        .rest-page{
+        .rest-page {
             margin-top: 30px;
         }
 
 
-        .car-info{
-            .details{
+        .car-info {
+            .details {
                 width: 250px;
             }
         }
-        .reviews{
+
+        .reviews {
             grid-template-columns: 1fr 1fr
         }
-        .review-add{
+
+        .review-add {
             align-self: center;
         }
 
-        .features{
-            height:200px;
+        .features {
+            height: 200px;
         }
 
-        .btn-book{
+        .btn-book {
             grid-column: span 2;
         }
 
-        .free-cancellation{
+        .free-cancellation {
             margin-top: 50px;
         }
     }
@@ -413,25 +415,45 @@
 
 
 
-    @media (max-width:720px){
-        .car-info{
+    @media (max-width:720px) {
+        .car-info {
             flex-direction: column;
         }
 
-        .features{
+        .features {
             height: 130px;
             grid-template-columns: 150px 150px
         }
     }
 
 
-    @media(max-width:580px){
-        .reviews{
+    @media(max-width:580px) {
+        .reviews {
             display: flex;
             flex-direction: column;
         }
 
-        .action-btns{
+        .action-btns {
             width: 500px;
         }
+    }
+
+
+
+
+
+    @media (max-width:500px) {
+        .car-info {
+            .details {
+                align-self: center;
+            }
+        }
+
+
+        .payment-details{
+            grid-template-columns: none;
+            width: 100%;
+        }
+
+       
     }

@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="block">
-      <el-carousel height="450px">
+      <el-carousel class="carousel-height">
         <el-carousel-item v-for="img in imgs" :key="img.url">
           <img class="car-img" :src="img.url" alt />
         </el-carousel-item>
@@ -47,13 +47,24 @@ export default {
 
 .el-carousel__container {
   position: relative;
+  height: 100% !important ;
 }
 
+.carousel-height {
+  height: 450px;
+}
 .el-carousel--horizontal {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 .car-img {
-    width: 100%;
-    height: 450px;
+  width: 100%;
+  height: 450px;
+}
+
+@media (max-width: 500px) {
+  .carousel-height,
+  .car-img {
+    height: 350px;
+  }
 }
 </style>
