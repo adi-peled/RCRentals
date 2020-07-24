@@ -180,6 +180,7 @@ export default {
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
+    socket.on("gotChat", (chat)=>console.log(chat));
     this.disabledDates = this.car.disabledDates;
   },
   methods: {
@@ -188,11 +189,10 @@ export default {
       var chat={
         usersIds:[this.loggedInUser._id,owner._id],
         user1:{fullName:this.loggedInUser.fullName,_id:this.loggedInUser._id,imgUrl:this.loggedInUser.imgUrl},
-        user2:{fullName:owner.fullName,_id:owner._id,imgUrl:owner.imgUrl}
+        user2:{fullName:owner.fullName,_id:owner._id,imgUrl:owner.imgUrl},
+        msgs:[]
       }
-
       socket.emit("get chat", chat);
-      
     },
     switchImg(idx) {
       console.log("start:", this.car.imgsUrl[0].url);

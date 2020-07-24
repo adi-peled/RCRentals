@@ -8,12 +8,8 @@ async function getChat(req, res) {
 }
 
 async function checkChat(chat) {
-
-
-    const chats = await chatService.getChat(chat);
-
-
-
+    const checkedChat = await chatService.getChat(chat);
+    return checkedChat
 }
 
 async function getMsg(req, res) {
@@ -36,8 +32,8 @@ async function updateMsg(req, res) {
     res.json(msg)
 }
 
-async function addMsg(chat) {
-    await chatService.add(chat)
+async function addMsg(msg) {
+    await chatService.addMsg(msg)
 }
 
 
