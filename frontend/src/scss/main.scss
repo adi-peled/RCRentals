@@ -28,6 +28,7 @@
 @import './views/signin.scss';
 @import './views/car-details.scss';
 @import './views/browse-cars.scss';
+
 * {
     box-sizing: border-box;
     font-family: Opensans;
@@ -43,4 +44,21 @@ body {
 
 a {
     text-decoration: none;
+}
+
+
+
+html,
+body {
+    position: relative;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    overflow: auto;
 }
