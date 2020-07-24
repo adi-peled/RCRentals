@@ -55,13 +55,19 @@ function _buildCriteria(filterBy) {
 async function getChat(chat) {
     const collection = await dbService.getCollection('chat')
     try {
-        // db.getCollection('chat').find({ "usersIds": /.*3.*/ } && { "usersIds": /.*1.*/ });
-        // const chatGet = await collection.find({ "buyer": ObjectId(chat.buyer), "seller": ObjectId(chat.seller) })
-        const chatGet = await collection.find({ "usersIds": `/.*${chat.usersIds[0]}.*/` }, { "usersIds": `/.*${chat.usersIds[1]}.*/` })
-        console.log(chatGet);
+        // const chatGet = await collection.find({ $and: [{ usersIds: "1" }, { usersIds: "2" }] }).toArray()
+        const chatGet = await collection.find({ $and: [{ usersIds: `${chat.usersIds[0]}` }, { usersIds: `${chat.usersIds[1]}` }] }).toArray()
+            // const chatGet = await collection.find({ usersIds: ["1", "2"] })
+            // db.getCollection('chat').find({ "usersIds": /.*3.*/ } && { "usersIds": /.*1.*/ });
+            // const chatGet = await collection.find({ "buyer": ObjectId(chat.buyer), "seller": ObjectId(chat.seller) })
+            // const chatGet = await collection.find({ "usersIds": `${chat.usersIds[0]}` } && { "usersIds": `${chat.usersIds[1]}` })
+            // const chatGet = await collection.find({ "usersIds": `/.*${chat.usersIds[0]}.*/` } && { "usersIds": `/.*${chat.usersIds[1]}.*/` })
+        if (!chatGet.length || !chatGet) {
+            var newChat = await add(chat)
+            return newChat
+        }
         return chatGet
     } catch (err) {
-        add(chat)
         console.log(`ERROR: while finding chat`)
         throw err;
 
