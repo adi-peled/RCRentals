@@ -335,6 +335,11 @@
             grid-template-columns: none;
         }
 
+        .review-add {
+            align-self: center;
+
+        }
+
         .payment-details {
             display: grid;
             width: 400px;
@@ -449,11 +454,10 @@
             }
         }
 
-
-        .payment-details{
+        .payment-details {
             grid-template-columns: none;
             width: 100%;
         }
 
-       
+
     }
