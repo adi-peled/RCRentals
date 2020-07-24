@@ -1,5 +1,6 @@
 <template>
   <section>
+
     <div class="bgc-img">
       <div class="text-img"><h1>Rent a life style </h1></div>
     </div>
@@ -17,13 +18,8 @@
             </router-link>
           </div>
         </div>
-        <!-- <img :src="car.primaryImgUrl" height="250" /> -->
         <h2>Top Rated</h2>
-        <!-- <el-carousel :interval="1000*10" type="card" height="200px">
-          <el-carousel-item v-for="car in cars.slice(cars.length-3)"  :key="car._id">
-            <h3 class="medium"><carPreview :car="car"></carPreview></h3>
-          </el-carousel-item>
-        </el-carousel>-->
+     
         <div class="might-like-category">
           <carPreview
             @updateUserFavs="updateUserFavs"
@@ -53,14 +49,12 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 import { carService } from "../services/car-service.js";
 import carPreview from "@/components/car-preview.cmp.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
     carPreview
   },
   data() {
