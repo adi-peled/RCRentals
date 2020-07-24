@@ -1,103 +1,120 @@
     .car-container {
         flex-direction: column;
     }
-    
+
     .imgs-container {
         img {
             cursor: pointer;
         }
+
+        margin-bottom: 10px;
         width: 100%;
-        grid-template-columns: repeat(4, rem(300px));
-        // grid-template-rows: rem(200px) rem(200px);
+        grid-template-columns: repeat(4, rem(350px));
         justify-content: center;
         gap: 10px;
+
+
+
+
     }
-    
+
     .features {
-        grid-template-columns: repeat(2, minmax(rem(100px), rem(150px)));
-        grid-template-rows: repeat(2, minmax(rem(30px), rem(45px)));
+        grid-template-columns: repeat(auto-fill, minmax(rem(100px), rem(150px)));
+
         img {
             width: rem(30px);
             height: rem(30px);
             margin-right: 13px;
         }
+
         span {
-            height: 75px;
+            height: 30px;
         }
     }
-    
+
     .big {
         grid-row: span 2;
         grid-column: span 2;
         object-fit: cover;
-        width: rem(610px);
-        height: rem(410px);
+        width: rem(710px);
+        height: rem(510px);
     }
-    
+
     .small {
-        width: rem(300px);
-        height: rem(200px);
+        width: rem(350px);
+        height: rem(250px);
         object-fit: cover;
     }
-    
+
     .car-container {
         .details {
+
             margin-right: 5px;
             width: 50%;
         }
     }
-    
+
     .car-info {
         .details {
             .count {
                 color: gray;
             }
+
             flex-direction: column;
             justify-content: space-between;
         }
     }
-    
+
+
+
+
     .payment-details {
         margin-left: 5px;
         justify-content: space-between;
         width: 50%;
+
+
         button {
             cursor: pointer;
-            font-size: 16px;
-            height: 44px;
+            font-size: 24px;
+            height: 53px;
             line-height: 43px;
             padding: 0 14px;
             background-color: $clr1;
             color: #fff;
             border: 1px solid $clr1;
-            transition: .5s;
-            &:hover {
-                background-color: lighten($clr1, 5%);
-            }
+            transition: .9s;
         }
     }
-    
+
     .free-cancellation {
+        img {
+            width: 22px;
+            height: 22px;
+        }
+
         margin-top: 20px;
     }
-    
+
     .order {
         padding: 15px;
+
         img {
             width: 10%;
         }
+
         .order-details {
             width: 40%;
             flex-direction: column;
         }
     }
-    
+
     .rest-page {
         width: 75.625rem;
         flex-direction: column;
         align-self: center;
     }
-    
+
     .book-modal {
         position: absolute;
         top: 50%;
@@ -108,6 +125,7 @@
         width: 60%;
         height: 80%;
         align-items: center;
+
         button {
             cursor: pointer;
             padding: 20px;
@@ -117,15 +135,17 @@
             border: none;
         }
     }
-    
+
     .booking {
         justify-content: space-evenly;
         flex-direction: column;
         align-items: center;
         height: 80%;
+
         .number {
             width: 20%;
         }
+
         input {
             width: 250px;
             height: 35px;
@@ -136,17 +156,21 @@
             border-radius: 0;
             outline: none;
         }
+
         .date {
             width: 160px;
         }
+
         input:focus {
             border: 1px solid $clr1;
         }
+
         label {
             text-align: left;
             width: 250px;
             padding-top: 20px;
         }
+
         button {
             cursor: pointer;
             border: 0;
@@ -158,36 +182,39 @@
             padding: 0 19px;
             outline: none;
         }
+
         button:hover {
             background-color: lighten($color: $clr1, $amount: 20);
         }
     }
-    
+
     .booking-button {
         width: 100%;
         justify-content: center;
         align-items: center;
+
         p {
             height: 50px;
             line-height: 3;
             background-color: #fff;
             border: 1px $clr1 solid;
             padding: 0 35px;
+
             span {
                 color: $clr1;
             }
         }
     }
-    
+
     .review-details {
         flex-direction: column;
     }
-    
+
     .review-btns {
         flex-direction: column;
         justify-content: space-evenly;
     }
-    
+
     .btn-review {
         margin-top: 5px;
         justify-content: center;
@@ -197,29 +224,35 @@
         padding: 0;
         background-color: lighten($clr1, 20%);
         color: white;
+
         &:hover {
             background-color: lighten($clr1, 10%);
         }
     }
-    
+
+    .reviews {
+        margin-bottom: 10px;
+
+    }
+
     .review-add {
         flex-direction: column;
         margin: 0;
     }
-    
+
     .review-img {
         width: 70px;
         height: 50px;
     }
-    
+
     .reviwe-time {
         font-size: 14px;
     }
-    
+
     .reviwer-name {
         font-size: 16px;
     }
-    
+
     .review-name-date {
         justify-content: space-between;
         align-items: center;
@@ -228,29 +261,199 @@
 
 
 
-    .btn-book{
+    .btn-book {
         justify-content: space-between;
     }
 
-    .date-pickers{
-        justify-content: space-between;
-
-    }
-
-
-    .location-day{
+    .date-pickers {
         justify-content: space-between;
 
     }
 
 
-  .btn-feedback{
-    margin-top: 5px;
-    justify-content: center;
-    text-align: center;
-    width: 100px;
-    outline: none;
-    padding: 0;
-    background-color: #5a6f73;
-    color: white;
-  }
+    .location-day {
+        justify-content: space-between;
+
+    }
+
+    .location {
+        span {
+            margin-left: 7px;
+        }
+
+        color: grey;
+        font-size: 18px;
+
+        img {
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    .dolar {
+        span {
+            margin-left: 7px;
+            color: grey;
+            font-size: 18px;
+        }
+
+        img {
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    .action-btns {
+        justify-content: space-around;
+        width: 800px;
+    }
+
+    .dolar,
+    .location {
+        width: 200px;
+        text-align: left;
+    }
+
+    .btn-feedback {
+        margin-top: 5px;
+        justify-content: center;
+        text-align: center;
+        width: 100px;
+        outline: none;
+        padding: 0;
+        background-color: #5a6f73;
+        color: white;
+    }
+
+
+    .model {
+        font-size: 25px;
+    }
+
+    @media (max-width:1400px) {
+        .imgs-container {
+            grid-template-columns: none;
+        }
+
+        .payment-details {
+            display: grid;
+            width: 400px;
+            margin-left: 0;
+            grid-template-columns: 200px 200px;
+        }
+
+        .big {
+            width: 800px;
+        }
+
+        .small {
+            width: 400px;
+        }
+
+        .car-info {
+            margin: 0 auto;
+
+            .details {
+                width: 400px;
+            }
+        }
+
+        .rest-page {
+
+            h4 {
+                text-align: center;
+            }
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: 400px 400px;
+            margin: 0 auto;
+        }
+
+        .action-btns {
+            align-self: center;
+        }
+
+    }
+
+
+
+    @media(max-width:850px) {
+        .rest-page {
+            margin-top: 30px;
+        }
+
+
+        .car-info {
+            .details {
+                width: 250px;
+            }
+        }
+
+        .reviews {
+            grid-template-columns: 1fr 1fr
+        }
+
+        .review-add {
+            align-self: center;
+        }
+
+        .features {
+            height: 200px;
+        }
+
+        .btn-book {
+            grid-column: span 2;
+        }
+
+        .free-cancellation {
+            margin-top: 50px;
+        }
+    }
+
+
+
+
+    @media (max-width:720px) {
+        .car-info {
+            flex-direction: column;
+        }
+
+        .features {
+            height: 130px;
+            grid-template-columns: 150px 150px
+        }
+    }
+
+
+    @media(max-width:580px) {
+        .reviews {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .action-btns {
+            width: 500px;
+        }
+    }
+
+
+
+
+
+    @media (max-width:500px) {
+        .car-info {
+            .details {
+                align-self: center;
+            }
+        }
+
+
+        .payment-details{
+            grid-template-columns: none;
+            width: 100%;
+        }
+
+       
+    }

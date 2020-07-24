@@ -2,17 +2,14 @@ const carService = require('./car.service')
 const logger = require('../../services/logger.service')
 
 async function getCar(req, res) {
-    console.log('car');
     const car = await carService.getById(req.params.id)
     res.json(car)
 }
 
 
 async function getCars(req, res) {
-    console.log('cars query:', req.query);
     try {
         const cars = await carService.query(req.query)
-        console.log(cars);
         res.send(cars)
     } catch (err) {
         throw err;

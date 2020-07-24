@@ -3,8 +3,6 @@
     <app-header></app-header>
 
       <router-view></router-view>
-      <chat class="chat" v-if="chatting"></chat>
-      <div class="chatimg" @click="toggleChat"><img  src="@/assets/img/chat.png" alt=""></div>
       <app-footer></app-footer>
   </div>
 </template>
@@ -14,6 +12,8 @@
   import appFooter from './components/footer.cmp.vue'
   import {eventBus} from './main-services/eventBus.js'
   import chat from './components/chat-io.cmp.vue'
+import socket from "./main-services/socketService.js";
+
 export default {
   components: {
     appHeader,
@@ -28,11 +28,12 @@ export default {
   created(){
 
      eventBus.$on('sendSwal',this.swalMsg)
+    eventBus.$on('startChat',this.toggleChat)
 
   },methods:{
     swalMsg(msg,sentIcon){
-    const Toast = Swal.mixin({
-    toast: true,
+      const Toast = Swal.mixin({
+        toast: true,
     position: 'top-end',
     showConfirmButton: false,
     timer: 1000,
@@ -48,8 +49,9 @@ Toast.fire({
   title: msg
 })
 },
-  toggleChat(){
+  toggleChat(chat){
     this.chatting=!this.chatting
+ 
   }
     
 }

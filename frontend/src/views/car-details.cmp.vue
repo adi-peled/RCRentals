@@ -1,27 +1,34 @@
 <template>
   <section v-if="car">
     <div class="flex car-container">
-      <div class="imgs-container grid">
-        <img :class="{ small:false ,big:true}" :src="car.imgsUrl[0].url" />
-        <img
-          v-for="(img,idx) in car.imgsUrl.slice(1, car.imgsUrl.length)"
-          @click="switchImg(idx)"
-          :class="{small:true, big:false}"
-          :src="img.url"
-          :key="idx"
-        />
+      <div v-if="innerWidth>850">
+        <div class="imgs-container grid">
+          <img :class="{ small:false ,big:true}" :src="car.imgsUrl[0].url" />
+          <img
+            v-for="(img,idx) in car.imgsUrl.slice(1, car.imgsUrl.length)"
+            @click="switchImg(idx)"
+            :class="{small:true, big:false}"
+            :src="img.url"
+            :key="idx"
+          />
+        </div>
+      </div>
+      <div v-else>
+        <carousel :imgs="car.imgsUrl"></carousel>
       </div>
       <div class="rest-page flex">
         <div class="car-info flex">
           <div class="details flex">
             <div>
-              <h1 class="capi">{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</h1>
+              <span
+                class="capi bold model"
+              >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
               <h3>
                 <span v-if="car.reviews">{{calcRating}}</span>
                 <span v-else>no rating yet</span>
                 <span class="star">★</span>
                 <span class="capi">
-                  <span class="count">({{this.car.reviews.length}})</span>
+                  <span class="count">({{car.reviews.length}})</span>
                   {{car.owner.fullName}}
                 </span>
               </h3>
@@ -43,27 +50,20 @@
                   {{car.features.kpl}} kpl
                 </span>
               </div>
+
               <p>{{car.desc}}</p>
             </div>
-
-            <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
-            <form class="review-add flex" v-if="addingReview">
-              <div class="add-details">
-                <div class="block">
-                  <el-rate v-model="  review.rating" :colors="colors"></el-rate>
-                </div>
-                <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
-              </div>
-              <div class="review-btns flex">
-                <button class="btn-review" @click.prevent="saveReview">save</button>
-                <button class="btn-review" @click="toggleReview">close</button>
-              </div>
-            </form>
           </div>
           <div class="payment-details flex">
             <div class="flex column location-day">
-              <h2 class="capi">location: {{car.location.city}}</h2>
-              <h1>Price: $ {{car.price}} / Day</h1>
+              <div class="location">
+                <img src="@/assets/img/pin.png" alt />
+                <span class="capi">location: {{car.city}}</span>
+              </div>
+              <div class="dolar flex">
+                <img src="@/assets/img/dolar.png" alt />
+                <span>Price: $ {{car.price}} / Day</span>
+              </div>
             </div>
             <div class="date-pickers flex column">
               <div>
@@ -93,11 +93,10 @@
               <button @click="toggleBookModal">Book</button>
             </div>
           </div>
-          {{car.owner.fulName}}
         </div>
 
-        <div v-if="car.reviews" class="Reviews">
-          <h4>Reviews</h4>
+        <h4>Reviews</h4>
+        <div v-if="car.reviews" class="reviews">
           <div v-for="review in showReviews" :key="review.id" class="review flex">
             <img class="review-img" src="@/assets/profile.jpg" />
             <div class="review-details flex">
@@ -123,6 +122,24 @@
             @click="showMoreReviews(false)"
           >See less</button>
         </div>
+        <div class="flex action-btns">
+          <button @click="toggleChat" class="btn-review">Chat with owner</button>
+          <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
+        </div>
+
+        <form class="review-add flex" v-if="addingReview">
+          <div class="add-details">
+            <div class="block">
+              <el-rate v-model="  review.rating" :colors="colors"></el-rate>
+            </div>
+            <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
+          </div>
+          <div class="review-btns flex">
+            <button class="btn-review" @click.prevent="saveReview">save</button>
+            <button class="btn-review" @click="toggleReview">close</button>
+          </div>
+        </form>
+      <chat class="chat" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
       </div>
     </div>
 
@@ -131,19 +148,23 @@
 </template>
 
 <script>
+import chat from '../components/chat-io.cmp.vue'
+import socket from "../main-services/socketService.js";
 import { carService } from "../services/car-service.js";
 import { eventBus } from "../main-services/eventBus.js";
 import guestModal from "../components/modal.cmp.vue";
 import datePicker from "vuejs-datepicker";
+import carousel from "../components/carousel.cmp.vue";
 export default {
   name: "car-details",
   data() {
     return {
+      chat:null,
+      chatting:false,
       // disabledDates: null,
       car: null,
-      primeUrl: null,
       disabledDates: {
-        range: []
+        range: [],
       },
       bookModal: false,
       email: "",
@@ -154,33 +175,54 @@ export default {
         pickupDate: "",
         returnDate: "",
         carId: this.$route.params.id,
-        status: "pending"
+        status: "pending",
       },
       review: {
         rating: null,
-        txt: ""
+        txt: "",
       },
       colors: ["2D383A", "#2D383A", "#2D383A"],
       addingReview: false,
       count: 5,
-      showMore: false
+      showMore: false,
+      innerWidth: "",
     };
   },
+
   async created() {
+    socket.setup()
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
+    socket.on("gotChat",(chat)=>this.chat=chat)
     this.disabledDates = this.car.disabledDates;
-    console.log(this.car);
+    window.addEventListener("load", this.updateWidth());
+    window.addEventListener("resize", this.updateWidth);
+     this.startChat()
   },
+ 
   methods: {
-    switchImg(idx) {
-      var saveImg = this.car.primaryImgUrl;
-      this.car.primaryImgUrl = this.car.imgUrls[idx];
-      this.car.imgUrls[idx] = saveImg;
-      console.log(this.car.imgUrls, this.car.primaryImgUrl);
+   async startChat(){
+      var chat={
+        usersIds:[this.loggedInUser._id,this.car.owner._id],
+        user1:{fullName:this.loggedInUser.fullName,_id:this.loggedInUser._id,imgUrl:this.loggedInUser.imgUrl},
+        user2:{fullName:this.car.owner.fullName,_id:this.car.owner._id,imgUrl:this.car.owner.imgUrl},
+        msgs:[]
+      }
+      socket.emit("get chat", chat);
     },
-    toggleBookModal() {
+    toggleChat(){
+      this.chatting=!this.chatting
+    },
+    switchImg(idx) {
+      console.log("start:", this.car.imgsUrl[0].url);
+
+      var savedImg = this.car.imgsUrl[idx];
+      this.car.imgsUrl[idx] = this.car.imgsUrl[0];
+      this.car.imgsUrl[0] = savedImg;
+      console.log("end", this.car.imgsUrl[0].url);
+    },
+     toggleBookModal() {
       if (!this.order.pickupDate || !this.order.returnDate) {
         eventBus.$emit("sendSwal", "Please fill the form !", "warning");
         return;
@@ -192,11 +234,11 @@ export default {
           buyer: {
             email: this.loggedInUser.email,
             fullName: this.loggedInUser.fullName,
-            imgUrl: this.loggedInUser.imgUrl
+            imgUrl: this.loggedInUser.imgUrl,
           },
           pickupDate: this.order.pickupDate,
           returnDate: this.order.returnDate,
-          status: this.order.status
+          status: this.order.status,
         };
         eventBus.$emit("sendSwal", "Booked !", "success");
         this.saveOrder(this.order);
@@ -214,7 +256,7 @@ export default {
       this.review.byUser = {
         fullName: this.loggedInUser.fullName,
         imgUrl: this.loggedInUser.imgUrl,
-        email: this.loggedInUser.email
+        email: this.loggedInUser.email,
       };
       this.review.id = "r" + Math.floor(Math.random() * 999 + 1);
       this.review.createdAt = Date.now();
@@ -252,19 +294,24 @@ export default {
 
       var range = {
         from: order.pickupDate,
-        to: order.returnDate
+        to: order.returnDate,
       };
+      console.log(this.car);
       this.car.disabledDates.ranges.push(range);
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.$store.dispatch({
         type: "saveOrder",
-        order: this.order
+        order: this.order,
       });
       eventBus.$emit("sendSwal", "Booked !", "success");
       if (!this.loggedInUser) {
         this.toggleBookModal();
       }
-    }
+    },
+    updateWidth() {
+      console.log("resize", this.innerWidth);
+      this.innerWidth = window.innerWidth;
+    },
   },
   computed: {
     loggedInUser() {
@@ -276,6 +323,13 @@ export default {
       var days = (returnDate - pickupDate) / (60 * 60 * 24 * 1000);
       return this.car.price * days;
     },
+    // bigImg() {
+    //   console.log("big:", this.car.imgsUrl[0].url);
+    //   return this.car.imgsUrl[0].url;
+    // },
+    // smallImgs() {
+    //   return this.car.imgsUrl.slice(1, this.car.imgsUrl.length);
+    // },
     calcRating() {
       if (!this.car.reviews.length) {
         return 0;
@@ -289,9 +343,9 @@ export default {
     showReviews() {
       // return this.car.reviews.slice(this.car.reviews.length - this.count);
       return this.car.reviews.slice(0, this.count);
-    }
+    },
   },
-  components: { guestModal, datePicker }
+  components: { guestModal, datePicker, carousel,chat },
 };
 </script>
 

@@ -9,7 +9,7 @@
           <div class="details flex">
             <div class="capi">{{car.vendor.company}} {{car.vendor.series}} {{car.model}}</div>
             <div>
-              <div>Location:{{car.location.city}}</div>
+              <div>Location:{{car.city}}</div>
               {{car.reviews[0].rating}}
               <span class="star">★</span>
               <span class="capi">(50) {{car.owner.fullName}}</span>

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build  --dest ../backend/public "
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -15,7 +15,6 @@
     "register-service-worker": "^1.7.1",
     "socket.io-client": "^2.3.0",
     "sweetalert2": "^9.17.0",
-    "vee-validate": "^3.3.7",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuejs-datepicker": "^1.6.2",

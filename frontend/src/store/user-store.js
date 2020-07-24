@@ -2,27 +2,45 @@ import userService from '../services/user-service.js'
 
 var localLoggedInUser = null;
 
-if (sessionStorage.user) {
+if (sessionStorage.user && sessionStorage.user !== 'undefined') {
+    console.log(sessionStorage.user);
     localLoggedInUser = JSON.parse(sessionStorage.user);
 }
 
 
 export const userStore = {
     state: {
-        loggedInUser: localLoggedInUser
-
+        loggedInUser: localLoggedInUser,
+        users: []
     },
     getters: {
         loggedInUser(state) {
             return state.loggedInUser
         },
+        users(state) {
+            return state.users
+        }
     },
     mutations: {
         setUser(state, { user }) {
             state.loggedInUser = user;
         },
+        setUsers(state, { users }) {
+            state.users = users;
+
+        }
     },
     actions: {
+        async loadUsers({ commit }, { filterBy }) {
+            try {
+                const users = await userService.query(filterBy)
+                commit({ type: 'setUsers', users })
+                return users
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
         async signUp(context, { userCred }) {
             try {
                 const user = await userService.signup(userCred)

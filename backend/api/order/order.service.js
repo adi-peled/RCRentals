@@ -1,5 +1,6 @@
 
-const dbService = require('../../services/db.service')
+const dbService = require('../../services/db.service');
+const loggerService = require('../../services/logger.service');
 const ObjectId = require('mongodb').ObjectId
 
 async function query() {
@@ -7,35 +8,6 @@ async function query() {
     const collection = await dbService.getCollection('order')
     try {
         const orders = await collection.find().toArray();
-        // var orders = await collection.aggregate([
-        //     {
-        //         $match: filterBy
-        //     },
-        //     {
-        //         $lookup:
-        //         {
-        //             from: 'user',
-        //             localField: 'byUserId',
-        //             foreignField: '_id',
-        //             as: 'byUser'
-        //         }
-        //     }, 
-        //     {
-        //         $unwind: '$byUser'
-        //     },
-        //     {
-        //         $lookup:
-        //         {
-        //             from: 'user',
-        //             localField: 'aboutUserId',
-        //             foreignField: '_id',
-        //             as: 'aboutUser'
-        //         }
-        //     }, 
-        //     {
-        //         $unwind: '$aboutUser'
-        //     }
-        // ]).toArray()
         return orders
     } catch (err) {
         console.log('ERROR: cannot find orders')
@@ -60,7 +32,8 @@ async function add(order) {
         await collection.insertOne(order);
         return order;
     } catch (err) {
-        console.log(`ERROR: cannot insert user`)
+        logger.debug('cannot find orders')
+
         throw err;
     }
 }

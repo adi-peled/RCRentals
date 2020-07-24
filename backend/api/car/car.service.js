@@ -9,22 +9,7 @@ module.exports = {
     add
 }
 
-// async function query(filterBy) {
-//     const criteria = _buildCriteria(filterBy)
-//     const collection = await dbService.getCollection('car')
-//     try {
-//         const cars = await collection.find(criteria).toArray();
-//         return cars
-//     } catch (err) {
-//         console.log('ERROR: cannot find cars')
-//         throw err;
-//     }
-// }
-
-
-
 async function query(filterBy = {}) {
-
     const criteria = _buildCriteria(filterBy)
     const collection = await dbService.getCollection('car')
     try {
@@ -37,6 +22,7 @@ async function query(filterBy = {}) {
 
 function _buildCriteria(filterBy) {
     var criteria = {}
+    console.log('fil', filterBy);
     if (filterBy.minPrice) {
         criteria =
             ({
@@ -53,13 +39,11 @@ function _buildCriteria(filterBy) {
     if (filterBy.tag) {
         criteria.tags = filterBy.tag
     }
-    // if (filterBy.location) {
-    //     criteria.location = {
-    //         city: filterBy.location
-    //     }
-    //     // db.getCollection('car').find({location:{city:"tel aviv",lat:54354.0,lng:23423.0}})
-    // }
-    // if(filterBy) 
+    if (filterBy.city) {
+        var filterCity = new RegExp(filterBy.city, 'i');
+        criteria.city = { $regex: filterCity }
+    }
+    console.log('cri', criteria);
     return criteria;
 }
 

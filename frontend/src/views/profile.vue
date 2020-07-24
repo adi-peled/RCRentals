@@ -5,35 +5,35 @@
       <h1 class="capi">Welcome {{loggedInUser.fullName}}</h1>
       <h2>{{loggedInUser.email}}</h2>
       <div>
-        <div class="col profile-router" @click="addCar">
+        <div class="column profile-router" @click="addCar">
           <div>
             <i class="el-icon-circle-plus-outline"></i>
             List your car
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
-        <div class="col profile-router" @click="getFavCars">
+        <div class="column profile-router" @click="getFavCars">
           <div>
             <i class="el-icon-star-on"></i>
             My favorite cars
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
-        <div class="col profile-router" @click="getOwnedCars">
+        <div class="column profile-router" @click="getOwnedCars">
           <div>
             <i class="el-icon-coordinate"></i>
             My cars
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
-        <div class="col profile-router" @click="getUserOrders">
+        <div class="column profile-router" @click="getUserOrders">
           <div>
             <i class="el-icon-s-order"></i>
             My orders
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
-        <div class="col profile-router" @click="getRequestedOrders">
+        <div class="column profile-router" @click="getRequestedOrders">
           <div>
             <i class="el-icon-collection"></i>
             Requested orders

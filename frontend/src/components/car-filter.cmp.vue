@@ -1,74 +1,63 @@
 <template>
   <section>
-    <div class="car-filter flex col align-center">
-      <div class="btns flex">
-        <button @click="toggleTypeSort">Type</button>
-        <button @click="togglePriceSort">Price</button>
-        <button @click="toggleModelSort">Model</button>
-        <!-- <button @click="toggleFiltersort">Filter</button> -->
+    <div class="car-filter grid">
+      <div class="search-location">
+        <div>Search city:</div>
+        <input @change="setFilter" type="text" placeholder="enter city" v-model="filterBy.city" />
       </div>
-      <div class="sorts flex col align-center"  v-if="sort.seeType||sort.seePrice||sort.seeModel">
-        <!-- <div >
-            <span>Search Location</span>
-            <input
-              @change="setFilter"
-              type="text"
-              placeholder="enter city"
-              class="location"
-              v-model="filterBy.location"
-            />
-        </div>-->
-        <div class="type" v-if="sort.seeType">
-          <span>Type:</span>
-          <el-select
-            class="select-type"
+
+      <div>
+        <div class="block flex align-center">
+          <div class="min">
+            Price:
+            min:{{filterBy.rangePrice[0]}}$
+          </div>
+          <el-slider
+            class="el-slider"
             @change="setFilter"
-            v-model="filterBy.tag"
-            placeholder="Select"
-          >
-            <el-option
-              class="capi"
-              v-for="item in tagsOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
+            v-model="filterBy.rangePrice"
+            range
+            show-stops
+            :max="3000"
+          ></el-slider>
+          <div class="max">max:{{filterBy.rangePrice[1]}}$</div>
         </div>
-        <div v-if="sort.seePrice">
-          <span>Price range: ${{filterBy.rangePrice[0]}} - ${{filterBy.rangePrice[1]}}</span>
-          <div class="block flex align-center">
-            <el-slider
-              class="el-slider"
-              @change="setFilter"
-              v-model="filterBy.rangePrice"
-              range
-              show-stops
-              :max="3000"
-            ></el-slider>
-          </div>
-          <div class="flex space-between">
-            <span class="min">min:{{filterBy.rangePrice[0]}}$</span>
-            <span>max:{{filterBy.rangePrice[1]}}$</span>
-          </div>
-        </div>
+      </div>
 
-        <div v-if="sort.seeModel">
-          <span>Model: {{filterBy.rangeModel[0]}} - {{filterBy.rangeModel[1]}}</span>
+      <div class="type">
+        <div>Type:</div>
+        <el-select
+          class="select-type"
+          @change="setFilter"
+          v-model="filterBy.tag"
+          placeholder="Select"
+        >
+          <el-option
+            class="capi"
+            v-for="item in tagsOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
+      </div>
 
-          <div class="block flex flex align-center">
-            <span class="min">min:2000</span>
-            <el-slider
-              class="el-slider"
-              :min="1970"
-              @change="setFilter"
-              v-model="filterBy.rangeModel"
-              range
-              show-stops
-              :max="2021"
-            ></el-slider>
-            <span>max: 2021</span>
+      <div>
+        <div class="block flex flex align-center">
+          <div class="min">
+            Model:
+            min:2000
           </div>
+          <el-slider
+            class="el-slider"
+            :min="1970"
+            @change="setFilter"
+            v-model="filterBy.rangeModel"
+            range
+            show-stops
+            :max="2021"
+          ></el-slider>
+          <div class="max">max: 2021</div>
         </div>
       </div>
     </div>
@@ -80,15 +69,11 @@ export default {
   name: "car-filter",
   data() {
     return {
-      sort: {
-        seePrice: false,
-        seeModel: false,
-        seeType: false
-      },
       filterBy: {
-        location: "",
+        sortType: "",
         model: "",
         tag: "",
+        city: "",
         rangePrice: [0, 3000],
         rangeModel: [1970, 2021],
         available: ""
@@ -115,8 +100,20 @@ export default {
           label: "Vans"
         },
         {
+          value: "converitible",
+          label: "Converitible"
+        },
+        {
+          value: "SUV",
+          label: "SUV"
+        },
+        {
           value: "trucks",
           label: "Trucks"
+        },
+         {
+          value: "custom",
+          label: "Custom"
         }
       ]
     };
@@ -138,22 +135,7 @@ export default {
   },
   methods: {
     setFilter() {
-      console.log(this.filterBy);
       this.$emit("filter", this.filterBy);
-    },
-    togglePriceSort() {
-      this.sort.seePrice = !this.sort.seePrice;
-    },
-    toggleModelSort() {
-      this.sort.seeModel = !this.sort.seeModel;
-    },
-    toggleTypeSort() {
-      this.sort.seeType = !this.sort.seeType;
-    },
-    toggleFiltersort() {
-      this.sort.seeType = !this.sort.seeType;
-      this.sort.seeModel = !this.sort.seeModel;
-      this.sort.seePrice = !this.sort.seePrice;
     }
   },
   components: {}

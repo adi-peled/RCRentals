@@ -23,7 +23,6 @@
 
 <script>
   import {eventBus} from '../main-services/eventBus.js'
-  import { validationProvider } from 'vee-validate';
 export default {
   name:'login-page',
   data() {
@@ -46,9 +45,7 @@ export default {
        eventBus.$emit('sendSwal','Logged In')
        this.$router.push("/");
     },
-    components:{
-      validationProvider
-    }
+  
 },
 
 }

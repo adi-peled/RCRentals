@@ -16,14 +16,13 @@ export const carService = {
 async function query(filterBy = "") {
     console.log(filterBy);
     if (!filterBy) {
-        console.log(filterBy);
 
         return await httpService.get(`car`)
     } else {
-        console.log(filterBy);
-        const { rangePrice, tag, location, available, rangeModel } = filterBy;
+        console.log('filter::', filterBy);
+        const { rangePrice, tag, city, rangeModel, sortType } = filterBy;
         return await httpService.get('car' + `?minPrice=${rangePrice[0]}&maxPrice=${rangePrice[1]}
-        &tag=${tag}&location=${location}&minModel=${rangeModel[0]}&maxModel=${rangeModel[1]}&=${available}`)
+        &tag=${tag}&minModel=${rangeModel[0]}&maxModel=${rangeModel[1]}&city=${city}&sortType=${sortType}`)
     }
 }
 async function getById(id) {

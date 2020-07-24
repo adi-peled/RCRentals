@@ -28,6 +28,7 @@ function update(user) {
 }
 
 async function login(userCred) {
+    console.log(userCred);
     const user = await httpService.post('auth/login', userCred)
     return _handleLogin(user)
 
@@ -46,9 +47,23 @@ async function logout() {
     sessionStorage.clear();
 }
 
-function query() {
-    return httpService.get('user')
+// function query(filterBy) {
+//     return httpService.get('user', filterBy)
+// }
+
+async function query(filterBy = "") {
+    if (!filterBy) {
+        return await httpService.get(`user`)
+    } else {
+        const { name } = filterBy;
+        return httpService.get('user' + `?name=${name}`)
+    }
 }
+
+
+
+
+
 
 function _handleLogin(user) {
     sessionStorage.setItem('user', JSON.stringify(user))
