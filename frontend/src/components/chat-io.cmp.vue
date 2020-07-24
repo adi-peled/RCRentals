@@ -9,7 +9,6 @@
       <ul v-if="msgs">
         <li v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
           <p>
-            {{msg}}
             <span class="capi">{{msg.from.fullName}}</span>
             : {{msg.txt}}
           </p>
