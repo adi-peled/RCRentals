@@ -28,6 +28,7 @@ function update(user) {
 }
 
 async function login(userCred) {
+    console.log(userCred);
     const user = await httpService.post('auth/login', userCred)
     return _handleLogin(user)
 

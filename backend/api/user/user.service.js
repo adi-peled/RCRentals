@@ -40,11 +40,11 @@ async function getById(userId) {
     try {
         const user = await collection.findOne({ "_id": ObjectId(userId) })
         delete user.password
-            // user.givenOrders = await orderService.query({ byUserId: ObjectId(user._id) })
-            // user.givenOrders = user.givenOrders.map(order => {
-            // delete order.byUser
-            // return order
-            // })
+        // user.givenOrders = await orderService.query({ byUserId: ObjectId(user._id) })
+        // user.givenOrders = user.givenOrders.map(order => {
+        // delete order.byUser
+        // return order
+        // })
         return user
     } catch (err) {
         console.log(`ERROR: while finding user ${userId}`)
