@@ -51,9 +51,7 @@
                 </span>
               </div>
 
-              <p>
-                {{car.desc}}
-              </p>
+              <p>{{car.desc}}</p>
             </div>
           </div>
           <div class="payment-details flex">
@@ -191,6 +189,7 @@ export default {
     const car = await carService.getById(carId);
     this.car = car;
     this.disabledDates = this.car.disabledDates;
+    window.addEventListener("load", this.updateWidth());
     window.addEventListener("resize", this.updateWidth);
   },
   methods: {
@@ -299,7 +298,7 @@ export default {
       }
     },
     updateWidth() {
-      console.log("resize");
+      console.log("resize", this.innerWidth);
       this.innerWidth = window.innerWidth;
     },
   },
