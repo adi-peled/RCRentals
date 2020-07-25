@@ -1,7 +1,11 @@
 <template>
 <section class="chat-page">
     <ul v-if="usersList" class="users-ul">
-        <li class="chat-li capi" @click="getChat(user)" v-for="user in usersList" :key="user._id" :user="user"> <img :src="user.imgUrl" alt=""> {{user.fullName}}</li>
+        <li class="chat-li capi" @click="getChat(user)" v-for="user in usersList" :key="user._id" :user="user"> 
+          <!-- <img :src="user.imgUrl" alt="">  -->
+            <img v-if="!user || !user.imgUrl" src="../assets/default-user.jpg" width="85" height="85" />
+            <img v-else :src="user.imgUrl" />
+          {{user.fullName}}</li>
     </ul>
     <div class="chat-div">
    <h1 v-if="selectedUser" class="capi">{{selectedUser.fullName}} :</h1>
