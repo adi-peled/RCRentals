@@ -6,10 +6,12 @@ import store from './store'
 import './scss/main.scss'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
+import VueSocialSharing from 'vue-social-sharing';
+ 
 
 
 Vue.config.productionTip = false
+Vue.use(VueSocialSharing);
 Vue.use(ElementUI);
 
 new Vue({

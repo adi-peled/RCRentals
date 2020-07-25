@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="title capi">{{category}} car rental alternatives</h1>
+    <h1 class="title capi">{{category}} cars rental </h1>
     <div class="app-container"></div>
     <div class="sub-container">
       <car-filter @filter="setFilter"></car-filter>
