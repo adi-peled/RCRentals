@@ -1,5 +1,3 @@
-
-
 .car-container {
     flex-direction: column;
 }
@@ -19,6 +17,13 @@
     margin: 0px 10px;
 }
 
+
+.details {
+    p {
+        padding-right: 15px;
+    }
+}
+
 .features {
     grid-template-columns: repeat(auto-fill, minmax(rem(100px), rem(150px)));
 
@@ -29,7 +34,7 @@
     }
 
     span {
-        height: 30px;
+        height: 40px;
     }
 }
 
