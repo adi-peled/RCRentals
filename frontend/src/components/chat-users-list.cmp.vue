@@ -3,7 +3,7 @@
     <ul v-if="usersList" class="users-ul">
         <li class="chat-li capi" @click="getChat(user)" v-for="user in usersList" :key="user._id" :user="user"> 
           <!-- <img :src="user.imgUrl" alt="">  -->
-            <img v-if="!user || !user.imgUrl" src="../assets/default-user.jpg" width="85" height="85" />
+            <img v-if="!user || !user.imgUrl|| !(user.imgUrl.length > 7)" src="../assets/default-user.jpg" width="85" height="85" />
             <img v-else :src="user.imgUrl" />
           {{user.fullName}}</li>
     </ul>
