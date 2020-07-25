@@ -53,9 +53,45 @@
           </div>
 
           <div class="social flex">
-            <img src="@/assets/img/facebook-color.png" />
-            <img src="@/assets/img/instagram-color.png" />
-            <img src="@/assets/img/youtube-color.png" />
+            <ShareNetwork
+              network="facebook"
+              url="https://rcrentals.herokuapp.com/#/"
+              title="Rent your dream car from us today!"
+              description="Rent your dream car from us today!"
+              quote="Rent your dream car from us today!"
+            >
+              <img src="@/assets/img/facebook.png" />
+            </ShareNetwork>
+            <ShareNetwork
+              network="Email"
+              url="https://rcrentals.herokuapp.com/#/"
+              title="Rent your dream car from us today!"
+            >
+              <img src="@/assets/img/gmail.png" />
+            </ShareNetwork>
+            <ShareNetwork
+              network="LinkedIn"
+              url="https://rcrentals.herokuapp.com/#/"
+              title="Rent your dream car from us today!"
+            ><img src="@/assets/img/linkedin.png" /></ShareNetwork>
+
+            <ShareNetwork
+              network="WhatsApp"
+              url="https://rcrentals.herokuapp.com/#/"
+              title="Rent your dream car from us today!"
+              quote="Rent your dream car from us today!"
+            >
+              <img src="@/assets/img/whatsapp.png" />
+            </ShareNetwork>
+            <ShareNetwork
+              network="Twitter"
+              url="https://rcrentals.herokuapp.com/#/"
+              title="Rent your dream car from us today!"
+            ><img src="@/assets/img/twitter.png" /></ShareNetwork>
+
+              
+            <!-- <img src="@/assets/img/instagram-color.png" />
+            <img src="@/assets/img/youtube-color.png" />-->
           </div>
         </div>
       </div>
@@ -64,7 +100,6 @@
 </template>
 
 <script>
-
 export default {
   name: "appFooter"
 };
