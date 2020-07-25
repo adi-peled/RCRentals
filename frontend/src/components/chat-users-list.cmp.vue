@@ -1,7 +1,7 @@
 <template>
 <section class="chat-page">
-    <ul v-if="usersList">
-        <li class="chat-li capi" @click="getChat(user)" v-for="user in usersList" :key="user._id" :user="user">{{user.fullName}}</li>
+    <ul v-if="usersList" class="users-ul">
+        <li class="chat-li capi" @click="getChat(user)" v-for="user in usersList" :key="user._id" :user="user"> <img :src="user.imgUrl" alt=""> {{user.fullName}}</li>
     </ul>
     <div class="chat-div">
    <h1 v-if="selectedUser" class="capi">{{selectedUser.fullName}} :</h1>
@@ -31,7 +31,7 @@ async created(){
   socket.on('messege recieved',chat=>{
     this.chat=[chat]
   })
-  this.usersList= await this.$store.dispatch({ type: "loadUsers", filterBy: this.filter });
+    this.usersList= await this.$store.dispatch({ type: "loadUsers", filterBy: this.filter });
     socket.on("gotChat",chat=>{
     this.chat=chat;
     })
@@ -52,7 +52,8 @@ methods:{
 computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser;
-    }
+    },
+    
 
 
 },

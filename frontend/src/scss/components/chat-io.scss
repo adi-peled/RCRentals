@@ -31,6 +31,16 @@
     }
 }
 
+.users-ul {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    li:hover {
+        border-bottom: 1px solid black;
+    }
+}
+
 .chat-search {
     align-self: flex-end;
     width: 40% !important;
@@ -58,10 +68,6 @@
     left: 10%;
 }
 
-.fromme {
-    text-align: right;
-}
-
 .user-name {
     cursor: pointer;
 }
@@ -69,5 +75,4 @@
 .chat-li {
     list-style: none;
     cursor: pointer;
-    padding: 5px;
 }
