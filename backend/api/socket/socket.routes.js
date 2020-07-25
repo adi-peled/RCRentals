@@ -11,6 +11,7 @@ function connectSockets(io) {
         })
         socket.on('chat message', (chat) => {
             updateChat(chat)
+            io.emit('messege recieved', chat)
         })
     })
 }

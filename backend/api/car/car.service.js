@@ -22,7 +22,6 @@ async function query(filterBy = {}) {
 
 function _buildCriteria(filterBy) {
     var criteria = {}
-    console.log('fil', filterBy);
     if (filterBy.minPrice) {
         criteria =
             ({
@@ -37,7 +36,7 @@ function _buildCriteria(filterBy) {
             })
     }
     if (filterBy.tag) {
-        criteria.tags = filterBy.tag
+        criteria.tag = filterBy.tag
     }
     if (filterBy.city) {
         var filterCity = new RegExp(filterBy.city, 'i');

@@ -78,88 +78,86 @@ export default {
       tags: [
         {
           value: "sport",
-          label: "Sport"
+          label: "Sport",
         },
         {
           value: "exotic",
-          label: "Exotic"
+          label: "Exotic",
         },
         {
           value: "vintage",
-          label: "Vintage"
+          label: "Vintage",
         },
         {
           value: "luxury",
-          label: "Luxury"
+          label: "Luxury",
         },
         {
           value: "custom",
-          label: "Custom"
+          label: "Custom",
         },
         {
           value: "converitible",
-          label: "Converitible"
+          label: "Converitible",
         },
         {
           value: "SUV",
-          label: "SUV"
+          label: "SUV",
         },
         {
           value: "trucks",
-          label: "Trucks"
+          label: "Trucks",
         },
         {
           value: "minivan",
-          label: "Minivan"
-        }
+          label: "Minivan",
+        },
       ],
       carTag: "",
       conditions: [
         {
           value: "bad",
-          label: "Bad"
+          label: "Bad",
         },
         {
           value: "decent",
-          label: "Decent"
+          label: "Decent",
         },
         {
           value: "good",
-          label: "Good"
+          label: "Good",
         },
         {
           value: "best",
-          label: "Best"
-        }
+          label: "Best",
+        },
       ],
       car: {
         tag: "",
         condition: "",
         model: "",
         disabledDates: {
-          ranges: []
+          ranges: [],
         },
         vendor: {
           company: "",
-          searies: ""
+          searies: "",
         },
         price: 200,
         desc: "",
-        imgsUrl: []
+        imgsUrl: [],
       },
-      fileList: []
+      fileList: [],
     };
   },
   methods: {
     async onUploadImg(file, fileList) {
-      console.log(file);
       var img = await uploadImg(file.raw);
       img.uid = file.raw.uid;
       this.car.imgsUrl.push(img);
     },
     addCar() {
       if (this.car.imgsUrl.length < 5) {
-        console.log(this.car.imgsUrl.length);
         eventBus.$emit("sendSwal", "Please use 5 pictures ", "warning");
         return;
       }
@@ -178,13 +176,13 @@ export default {
       (this.car.features = {
         seatsCount: 4.0,
         doorsCount: 4.0,
-        kpl: 12.0
+        kpl: 12.0,
       }),
         (this.car.city = "LA");
       (this.car.owner = {
         _id: this.loggedInUser._id,
         fullName: this.loggedInUser.fullName,
-        imgUrl: this.loggedInUser.imgUrl
+        imgUrl: this.loggedInUser.imgUrl,
       }),
         (this.car.reviews = []);
       this.$store.dispatch({ type: "saveCar", car: this.car });
@@ -193,7 +191,7 @@ export default {
       this.$refs.upload.clearFiles();
     },
     handleRemove(file, fileList) {
-      var idx = this.car.imgsUrl.findIndex(img => img.uid === file.raw.uid);
+      var idx = this.car.imgsUrl.findIndex((img) => img.uid === file.raw.uid);
       this.car.imgsUrl.splice(idx, 1);
     },
     resetCar() {
@@ -203,16 +201,16 @@ export default {
         model: "",
         vendor: {
           company: "",
-          searies: ""
+          searies: "",
         },
         disabledDates: {
           ranges: []
         },
         price: 200,
         desc: "",
-        imgsUrl: []
+        imgsUrl: [],
       };
-    }
+    },
   },
   computed: {
     years() {
@@ -224,8 +222,8 @@ export default {
     },
     loggedInUser() {
       return this.$store.getters.loggedInUser;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

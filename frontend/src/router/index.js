@@ -13,7 +13,7 @@ import favCars from '../components/favorite-cars.cmp.vue';
 import userReviews from '../components/user-reviews.cmp.vue';
 import userOrders from '../components/user-orders.cmp.vue';
 import addCar from '../components/add-car.cmp.vue'
-import chat from '../components/chat-io.cmp.vue'
+import usersList from '../components/chat-users-list.cmp.vue'
 import requestedOrders from '../components/requested-orders.cmp.vue'
 Vue.use(VueRouter)
 
@@ -28,9 +28,9 @@ const routes = [{
         component: signUp
     },
     {
-        path: '/chat',
-        name: 'Chat',
-        component: chat
+        path: '/userslist/:id?',
+        name: 'UsersList',
+        component: usersList
     },
     {
         path: '/login',

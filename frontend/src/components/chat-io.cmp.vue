@@ -1,10 +1,6 @@
 <template>
   <section class="chat">
-    <div class="chat-search">
-    
-      <input  @input="setFilter" v-model="filterBy.name" placeholder="Search Chat" type="text" />
-      <!-- <users-list @chatSelected="filterMsg"></users-list> -->
-    </div>
+   
     <div>
       <ul v-if="msgs">
         <li v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
@@ -38,9 +34,7 @@ export default {
     };
   },
   async created() {
-    // socket.setup();
     socket.on("chat recivedMsg", this.addMsg);
-    // this.loadMsgs(this.chat)
     this.setFilter();
   },
   methods: {
