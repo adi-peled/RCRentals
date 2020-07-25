@@ -52,7 +52,7 @@
             >OptimoRoute</a>
           </div>
 
-          <div class="social flex ">
+          <div class="social flex">
             <img src="@/assets/img/facebook-color.png" />
             <img src="@/assets/img/instagram-color.png" />
             <img src="@/assets/img/youtube-color.png" />
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+
 export default {
   name: "appFooter"
 };
