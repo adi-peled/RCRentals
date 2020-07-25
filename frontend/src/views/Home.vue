@@ -71,7 +71,6 @@ export default {
       return images("./" + imageName + ".jpg");
     },
     updateUserFavs(car, isLiked) {
-      console.log(isLiked);
       this.$store.dispatch({
         type: "updateFavs",
         car,

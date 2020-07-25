@@ -4,7 +4,7 @@
     column-gap: 50px;
     row-gap: 1em;
     text-align: center;
-    padding: 20px; 
+    padding: 20px;
     h1 {
         font-size: 2rem;
     }
@@ -13,7 +13,7 @@
     }
     .profile-nav {
         padding: 20px 0;
-        box-shadow: 0px 10px 20px -9px rgba(0,0,0,0.58);
+        box-shadow: 0px 10px 20px -9px rgba(0, 0, 0, 0.58);
         height: 610px;
     }
     .order-list {
@@ -39,7 +39,9 @@
         }
         button.accept:hover{
             background-color: green;
-            color: white;
+            padding: 5px 15px;
+            outline: none;
+            color: ivory;
         }
         button:hover {
             opacity: 0.8;
@@ -51,7 +53,9 @@
         }
         button.decline:hover{
             background-color: red;
-            color: white;
+            outline: none;
+            padding: 5px 15px;
+            color: ivory;
         }
     }
     .price {
@@ -75,19 +79,19 @@
         align-items: center;
         color: black;
     }
-    .add-car-price{
+    .add-car-price {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .add-car-form input{
+    .add-car-form input {
         padding: 5px;
     }
     .profile-info {
         display: grid;
         padding: 20px;
         grid-column: span 2;
-        box-shadow: 0px 10px 20px -9px rgba(0,0,0,0.58);
+        box-shadow: 0px 10px 20px -9px rgba(0, 0, 0, 0.58);
     }
     .profile-cars button {
         padding: 15px;
@@ -104,13 +108,13 @@
         align-items: baseline;
         justify-content: space-between;
         padding: 20px;
-        border-bottom: 1px solid #80808063;   
-        span{
+        border-bottom: 1px solid #80808063;
+        span {
             color: #f66c39;
         }
     }
-    .profile-router:first-child{
-        border-top: 1px solid #80808063;   
+    .profile-router:first-child {
+        border-top: 1px solid #80808063;
     }
     .profile-router i {
         font-size: 2rem;
@@ -119,17 +123,17 @@
         cursor: pointer;
         color: #f66c39;
     }
-    .user-info{
+    .user-info {
         padding: 20px;
         text-align: left;
-        h1{
+        h1 {
             font-size: 1.2rem;
         }
-        h3{
+        h3 {
             font-size: 1rem;
             margin: 0 0 5px;
         }
-        img{
+        img {
             align-self: center;
             margin-right: 20px;
         }
@@ -138,11 +142,11 @@
 
 @media (max-width: 1200px) {
     .profile {
-        .user-info{
-            h1{
+        .user-info {
+            h1 {
                 font-size: 1rem;
             }
-            h3{
+            h3 {
                 font-size: 0.8rem;
                 // margin: 0 0 5px;
             }
@@ -165,7 +169,7 @@
 @media (max-width:950px) {
     .profile {
         display: block;
-        .profile-info{
+        .profile-info {
             overflow-y: unset;
             height: 100%;
         }

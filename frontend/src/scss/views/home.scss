@@ -274,8 +274,17 @@
         height: 420px;
     }
 
+
+    .home {
+        h2 {
+            text-align: center;
+        }
+    }
+
     .might-like-category {
-        flex-direction: column;
+
+        justify-content: space-around;
+
         margin: 0 auto;
     }
 
@@ -290,8 +299,17 @@
 @media (max-width:750px) {
     .browse-category {
         flex-direction: column;
-        flex-wrap: nowrap;
+        // flex-wrap: nowrap;
         height: 850px;
+    }
+
+
+
+
+    .might-like-category {
+        padding: 0px;
+        flex-direction: column;
+        margin: 0 auto;
     }
 }
 

@@ -1,5 +1,5 @@
 .chat {
-    width: 500px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -31,6 +31,16 @@
     }
 }
 
+.users-ul {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    li:hover {
+        border-bottom: 1px solid black;
+    }
+}
+
 .chat-search {
     align-self: flex-end;
     width: 40% !important;
@@ -47,13 +57,22 @@
     }
 }
 
-.chatimg {
-    img {
-        width: 80px;
-        cursor: pointer;
-    }
+.chat-page {
+    display: flex;
+}
+
+.chat-div {
+    width: 60%;
+    max-width: 800px;
+    position: relative;
+    left: 10%;
 }
 
 .user-name {
+    cursor: pointer;
+}
+
+.chat-li {
+    list-style: none;
     cursor: pointer;
 }

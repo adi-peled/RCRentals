@@ -30,7 +30,6 @@ export const carStore = {
     },
     actions: {
         async loadCars({ commit }, { filterBy }) {
-            console.log(filterBy);
             try {
                 var cars = await carService.query(filterBy)
                 commit({ type: 'setCars', cars })
@@ -49,10 +48,10 @@ export const carStore = {
         },
         async saveCar({ commit }, { car }) {
             const type = (car._id) ? 'updateCar' : 'addCar';
-            try{
+            try {
                 const savedCar = await carService.saveCar(car)
                 commit({ type, savedCar })
-            } catch(err){
+            } catch (err) {
                 console.log(err);
 
             }

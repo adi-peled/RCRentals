@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="title capi">{{category}} car rental alternatives</h1>
+    <h1 class="title capi">{{category}} cars rental </h1>
     <div class="app-container"></div>
     <div class="sub-container">
       <car-filter @filter="setFilter"></car-filter>
@@ -28,7 +28,6 @@ export default {
       this.$store.dispatch({ type: "loadCars", filterBy });
     },
     updateUserFavs(car, isLiked) {
-      console.log(isLiked);
       this.$store.dispatch({
         type: "updateFavs",
         car,
@@ -39,7 +38,6 @@ export default {
   },
   computed: {
     cars() {
-      console.log(this.$store.getters.cars);
       return this.$store.getters.cars;
     },
     loggedInUser() {

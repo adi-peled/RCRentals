@@ -135,7 +135,6 @@ export default {
   //     order => order.owner.fullName === this.loggedInUser.fullName
   //   );
   //   const requests = this.info.requestedOrders;
-  //   console.log(requests);
 
   components: {
     favoriteCars,

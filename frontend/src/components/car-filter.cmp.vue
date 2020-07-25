@@ -129,7 +129,6 @@ export default {
   },
   created() {
     if (!this.$route.params.category) {
-      console.log("noda");
       this.filterBy.tag = "";
     } else {
       this.filterBy.tag = this.$route.params.category;

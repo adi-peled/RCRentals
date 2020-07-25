@@ -15,7 +15,6 @@ export default {
 }
 
 function getById(userId) {
-    console.log(userId);
     return httpService.get(`user/${userId}`)
 }
 
@@ -28,7 +27,6 @@ function update(user) {
 }
 
 async function login(userCred) {
-    console.log(userCred);
     const user = await httpService.post('auth/login', userCred)
     return _handleLogin(user)
 
@@ -37,7 +35,6 @@ async function login(userCred) {
 
 async function signup(userCred) {
     const user = await httpService.post('auth/signup', userCred)
-    console.log('signup', userCred);
     return _handleLogin(user)
 }
 
@@ -77,18 +74,13 @@ function getLoggedinUser() {
 }
 
 async function updateFavs(car, isLiked, user) {
-    console.log(user);
     if (isLiked) {
         if (user.favCars.some(favCar => favCar._id === car._id)) return
         user.favCars.push(car)
     } else {
         const idx = user.favCars.findIndex(favCar => favCar._id === car._id)
-        console.log(idx);
         user.favCars.splice(idx, 1)
-        console.log(user);
     }
     _handleLogin(user)
     return await httpService.put(`user/${user._id}`, user)
 }
-
-

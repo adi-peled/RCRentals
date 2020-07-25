@@ -57,7 +57,6 @@ export default {
 
   methods: {
     toggleLike() {
-      console.log(this.isLike, this.isLiked);
       this.isLike = !this.isLike;
       this.$emit("updateUserFavs", this.car, this.isLike);
     },
@@ -67,7 +66,6 @@ export default {
     }
   },
   created() {
-    console.log(this.car);
     this.isLike = this.isLiked;
   },
 
