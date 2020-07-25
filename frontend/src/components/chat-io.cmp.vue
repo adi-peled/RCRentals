@@ -30,10 +30,16 @@ export default {
       msg: "",
       filterBy: {
         name: ""
-      }
+      },
+      changeChat:[]
     };
   },
   async created() {
+    this.changeChat=this.chat
+     socket.on('messege recieved',chat=>{
+    console.log(chat);
+    this.changeChat=[chat]
+  })
     socket.on("chat recivedMsg", this.addMsg);
     this.setFilter();
   },
