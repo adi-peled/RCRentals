@@ -18,7 +18,6 @@ async function query(filterBy = "") {
 
         return await httpService.get(`car`)
     } else {
-        console.log('filter::', filterBy);
         const { rangePrice, tag, city, rangeModel, sortType } = filterBy;
         return await httpService.get('car' + `?minPrice=${rangePrice[0]}&maxPrice=${rangePrice[1]}
         &tag=${tag}&minModel=${rangeModel[0]}&maxModel=${rangeModel[1]}&city=${city}&sortType=${sortType}`)

@@ -41,7 +41,6 @@ export default {
   methods: {
     updateOrderStatus(order, status) {
       order.status = status;
-      console.log(order);
       this.$store.dispatch({ type: "saveOrder", order });
     }
   },

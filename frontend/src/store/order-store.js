@@ -50,7 +50,6 @@ export const orderStore = {
         //         await orderService.remove(orderId);
         //         commit({ type: 'removeOrder', orderId })
         //     }catch(err){
-        //         console.log(err);
         //     }
         // },
 

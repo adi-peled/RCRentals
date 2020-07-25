@@ -215,12 +215,10 @@ export default {
       this.chatting=!this.chatting
     },
     switchImg(idx) {
-      console.log("start:", this.car.imgsUrl[0].url);
 
       var savedImg = this.car.imgsUrl[idx];
       this.car.imgsUrl[idx] = this.car.imgsUrl[0];
       this.car.imgsUrl[0] = savedImg;
-      console.log("end", this.car.imgsUrl[0].url);
     },
      toggleBookModal() {
       if (!this.order.pickupDate || !this.order.returnDate) {
@@ -261,7 +259,6 @@ export default {
       this.review.id = "r" + Math.floor(Math.random() * 999 + 1);
       this.review.createdAt = Date.now();
       this.car.reviews.push(this.review);
-      console.log(this.review);
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.review = {};
       this.toggleReview();
@@ -280,7 +277,6 @@ export default {
         this.toggleBookModal();
         return;
       }
-      console.log(order);
 
       if (!order.buyer.fullName && !order.buyer.email) {
         return;
@@ -296,7 +292,6 @@ export default {
         from: order.pickupDate,
         to: order.returnDate,
       };
-      console.log(this.car);
       this.car.disabledDates.ranges.push(range);
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.$store.dispatch({
@@ -309,7 +304,6 @@ export default {
       }
     },
     updateWidth() {
-      console.log("resize", this.innerWidth);
       this.innerWidth = window.innerWidth;
     },
   },
@@ -324,7 +318,6 @@ export default {
       return this.car.price * days;
     },
     // bigImg() {
-    //   console.log("big:", this.car.imgsUrl[0].url);
     //   return this.car.imgsUrl[0].url;
     // },
     // smallImgs() {

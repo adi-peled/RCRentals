@@ -36,7 +36,6 @@ export default {
   },
   created() {
     this.cars = this.info.ownedCars;
-    console.log(this.info.ownedCars);
   },
   computed: {
     // loggedInUser() {

@@ -1,5 +1,5 @@
 .chat {
-    width: 500px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -47,13 +47,27 @@
     }
 }
 
-.chatimg {
-    img {
-        width: 80px;
-        cursor: pointer;
-    }
+.chat-page {
+    display: flex;
+}
+
+.chat-div {
+    width: 60%;
+    max-width: 800px;
+    position: relative;
+    left: 10%;
+}
+
+.fromme {
+    text-align: right;
 }
 
 .user-name {
     cursor: pointer;
+}
+
+.chat-li {
+    list-style: none;
+    cursor: pointer;
+    padding: 5px;
 }

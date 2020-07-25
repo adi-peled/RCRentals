@@ -1,9 +1,8 @@
 <template>
   <section class="chat">
-   
     <div>
-      <ul v-if="msgs">
-        <li v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
+      <ul  v-if="msgs">
+        <li  v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
           <p>
             <span class="capi">{{msg.from.fullName}}</span>
             : {{msg.txt}}
@@ -37,7 +36,6 @@ export default {
   async created() {
     this.changeChat=this.chat
      socket.on('messege recieved',chat=>{
-    console.log(chat);
     this.changeChat=[chat]
   })
     socket.on("chat recivedMsg", this.addMsg);

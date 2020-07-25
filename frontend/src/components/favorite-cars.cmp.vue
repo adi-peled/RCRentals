@@ -37,8 +37,6 @@ export default {
   },
   created() {
     this.favCars = this.info.favCars;
-    console.log(this.favCars);
-    // console.log(this.$route.params);
     // const userId = this.$route.params.id;
     // userService.getById(userId).then(user => (this.favCars = user.favCars));
   },

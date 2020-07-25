@@ -1,9 +1,13 @@
 <template>
-<section>
+<section class="chat-page">
     <ul v-if="usersList">
-        <li @click="getChat(user)" v-for="user in usersList" :key="user._id" :user="user">{{user.fullName}}</li>
+        <li class="chat-li capi" @click="getChat(user)" v-for="user in usersList" :key="user._id" :user="user">{{user.fullName}}</li>
     </ul>
+    <div class="chat-div">
+   <h1 v-if="selectedUser" class="capi">{{selectedUser.fullName}} :</h1>
       <chat-io :chat="chat" :carOwner="selectedUser" v-if="chat"  ></chat-io>
+
+    </div>
 </section>
 </template>
 
@@ -25,8 +29,6 @@ async created(){
   
   socket.setup()
   socket.on('messege recieved',chat=>{
-    console.log(chat);
-
     this.chat=[chat]
   })
   this.usersList= await this.$store.dispatch({ type: "loadUsers", filterBy: this.filter });
