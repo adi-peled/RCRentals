@@ -23,7 +23,6 @@ export default {
   name: "carousel",
   props: ["imgs"],
   created() {
-    console.log(this.imgs);
   },
 };
 </script>

@@ -2,7 +2,8 @@
   <section class="profile">
     <div class="profile-nav">
       <div class="flex align-center user-info">
-        <img src="../assets/default-user.jpg" width="85" height="85" />
+        <img v-if="!loggedInUser || !loggedInUser.imgUrl" src="../assets/default-user.jpg" width="85" height="85" />
+        <img v-else :src="loggedInUser.imgUrl" width="85" height="85" />
         <div>
           <h1 class="capi">{{loggedInUser.fullName}}</h1>
           <!-- <h2>{{loggedInUser.email}}</h2> -->
@@ -134,7 +135,6 @@ export default {
   //     order => order.owner.fullName === this.loggedInUser.fullName
   //   );
   //   const requests = this.info.requestedOrders;
-  //   console.log(requests);
 
   components: {
     favoriteCars,

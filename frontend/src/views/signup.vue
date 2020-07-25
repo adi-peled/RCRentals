@@ -29,12 +29,26 @@
       <label>
         <input class="form-checkbox" type="checkbox" /> Yes, send me deals, discounts and updates!
       </label>
+         <el-upload
+          ref="upload"
+          :limit="1"
+          v-model="fileList"
+          class="upload-demo"
+          action="#"
+          :auto-upload="false"
+          :on-change="onUploadImg"
+          :file-list="fileList"
+          list-type="picture"
+        >
+          <el-button size="small" type="primary">Click to upload</el-button>
+        </el-upload>
       <button class="signup-button">Sign Up</button>
     </form>
   </section>
 </template>
 
 <script>
+import { uploadImg } from "../main-services/imgUpload.service.js";
 import {eventBus} from '../main-services/eventBus.js'
 export default {
   name: "signup",
@@ -43,7 +57,9 @@ export default {
       fname: "",
       lname: "",
       email: "",
-      password: ""
+      password: "",
+      imgUrl: '',
+      fileList: []
     };
   },
   methods: {
@@ -54,14 +70,20 @@ export default {
         password: this.password,
         createdAt: Date.now(),
         isAdmin: false,
-        imgUrl: null,
+        imgUrl: this.imgUrl,
         orders: [],
         favCars: []
       };
       this.$store.dispatch({ type: "signUp", userCred: user });
        eventBus.$emit('sendSwal','Signed Up')
       this.$router.push("/");
-    }
+    },
+    async onUploadImg(file, fileList) {
+      var img = await uploadImg(file.raw);
+      img.uid = file.raw.uid;
+      debugger;
+      this.imgUrl = img.url;
+    },
   }
 };
 </script>

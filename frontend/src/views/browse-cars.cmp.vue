@@ -28,7 +28,6 @@ export default {
       this.$store.dispatch({ type: "loadCars", filterBy });
     },
     updateUserFavs(car, isLiked) {
-      console.log(isLiked);
       this.$store.dispatch({
         type: "updateFavs",
         car,
@@ -39,7 +38,6 @@ export default {
   },
   computed: {
     cars() {
-      console.log(this.$store.getters.cars);
       return this.$store.getters.cars;
     },
     loggedInUser() {

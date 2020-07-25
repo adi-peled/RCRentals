@@ -98,7 +98,14 @@
         <h4>Reviews</h4>
         <div v-if="car.reviews" class="reviews">
           <div v-for="review in showReviews" :key="review.id" class="review flex">
-            <img class="review-img" src="@/assets/profile.jpg" />
+            <!-- <img class="review-img" src="@/assets/profile.jpg" /> -->
+            <img 
+              v-if="!review.byUser || !review.byUser.imgUrl || !(review.byUser.imgUrl.length > 7)"
+              src="@/assets/profile.jpg"
+              width="70"
+              height="50"
+            />
+            <img class="user-img" v-else :src="review.byUser.imgUrl" width="50" height="50" />
             <div class="review-details flex">
               <div class="rating flex">
                 <span v-for="(star,idx) in  (review.rating)" :key="idx" class="star">★</span>
@@ -139,7 +146,7 @@
             <button class="btn-review" @click="toggleReview">close</button>
           </div>
         </form>
-      <chat class="chat" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
+        <chat class="chat" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
       </div>
     </div>
 
@@ -148,7 +155,7 @@
 </template>
 
 <script>
-import chat from '../components/chat-io.cmp.vue'
+import chat from "../components/chat-io.cmp.vue";
 import socket from "../main-services/socketService.js";
 import { carService } from "../services/car-service.js";
 import { eventBus } from "../main-services/eventBus.js";
@@ -159,12 +166,12 @@ export default {
   name: "car-details",
   data() {
     return {
-      chat:null,
-      chatting:false,
+      chat: null,
+      chatting: false,
       // disabledDates: null,
       car: null,
       disabledDates: {
-        range: [],
+        range: []
       },
       bookModal: false,
       email: "",
@@ -175,54 +182,60 @@ export default {
         pickupDate: "",
         returnDate: "",
         carId: this.$route.params.id,
-        status: "pending",
+        status: "pending"
       },
       review: {
         rating: null,
-        txt: "",
+        txt: ""
       },
       colors: ["2D383A", "#2D383A", "#2D383A"],
       addingReview: false,
       count: 5,
       showMore: false,
-      innerWidth: "",
+      innerWidth: ""
     };
   },
 
   async created() {
-    socket.setup()
+    socket.setup();
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
-    socket.on("gotChat",(chat)=>this.chat=chat)
+    socket.on("gotChat", chat => (this.chat = chat));
     this.disabledDates = this.car.disabledDates;
     window.addEventListener("load", this.updateWidth());
     window.addEventListener("resize", this.updateWidth);
-     this.startChat()
+    this.startChat();
   },
- 
+
   methods: {
-   async startChat(){
-      var chat={
-        usersIds:[this.loggedInUser._id,this.car.owner._id],
-        user1:{fullName:this.loggedInUser.fullName,_id:this.loggedInUser._id,imgUrl:this.loggedInUser.imgUrl},
-        user2:{fullName:this.car.owner.fullName,_id:this.car.owner._id,imgUrl:this.car.owner.imgUrl},
-        msgs:[]
-      }
+    async startChat() {
+      var chat = {
+        usersIds: [this.loggedInUser._id, this.car.owner._id],
+        user1: {
+          fullName: this.loggedInUser.fullName,
+          _id: this.loggedInUser._id,
+          imgUrl: this.loggedInUser.imgUrl
+        },
+        user2: {
+          fullName: this.car.owner.fullName,
+          _id: this.car.owner._id,
+          imgUrl: this.car.owner.imgUrl
+        },
+        msgs: []
+      };
       socket.emit("get chat", chat);
     },
-    toggleChat(){
-      this.chatting=!this.chatting
+    toggleChat() {
+      this.chatting = !this.chatting;
     },
     switchImg(idx) {
-      console.log("start:", this.car.imgsUrl[0].url);
 
       var savedImg = this.car.imgsUrl[idx];
       this.car.imgsUrl[idx] = this.car.imgsUrl[0];
       this.car.imgsUrl[0] = savedImg;
-      console.log("end", this.car.imgsUrl[0].url);
     },
-     toggleBookModal() {
+    toggleBookModal() {
       if (!this.order.pickupDate || !this.order.returnDate) {
         eventBus.$emit("sendSwal", "Please fill the form !", "warning");
         return;
@@ -234,11 +247,11 @@ export default {
           buyer: {
             email: this.loggedInUser.email,
             fullName: this.loggedInUser.fullName,
-            imgUrl: this.loggedInUser.imgUrl,
+            imgUrl: this.loggedInUser.imgUrl
           },
           pickupDate: this.order.pickupDate,
           returnDate: this.order.returnDate,
-          status: this.order.status,
+          status: this.order.status
         };
         eventBus.$emit("sendSwal", "Booked !", "success");
         this.saveOrder(this.order);
@@ -256,12 +269,11 @@ export default {
       this.review.byUser = {
         fullName: this.loggedInUser.fullName,
         imgUrl: this.loggedInUser.imgUrl,
-        email: this.loggedInUser.email,
+        email: this.loggedInUser.email
       };
       this.review.id = "r" + Math.floor(Math.random() * 999 + 1);
       this.review.createdAt = Date.now();
       this.car.reviews.push(this.review);
-      console.log(this.review);
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.review = {};
       this.toggleReview();
@@ -280,7 +292,6 @@ export default {
         this.toggleBookModal();
         return;
       }
-      console.log(order);
 
       if (!order.buyer.fullName && !order.buyer.email) {
         return;
@@ -294,14 +305,13 @@ export default {
 
       var range = {
         from: order.pickupDate,
-        to: order.returnDate,
+        to: order.returnDate
       };
-      console.log(this.car);
       this.car.disabledDates.ranges.push(range);
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.$store.dispatch({
         type: "saveOrder",
-        order: this.order,
+        order: this.order
       });
       eventBus.$emit("sendSwal", "Booked !", "success");
       if (!this.loggedInUser) {
@@ -309,9 +319,8 @@ export default {
       }
     },
     updateWidth() {
-      console.log("resize", this.innerWidth);
       this.innerWidth = window.innerWidth;
-    },
+    }
   },
   computed: {
     loggedInUser() {
@@ -324,7 +333,6 @@ export default {
       return this.car.price * days;
     },
     // bigImg() {
-    //   console.log("big:", this.car.imgsUrl[0].url);
     //   return this.car.imgsUrl[0].url;
     // },
     // smallImgs() {
@@ -343,9 +351,9 @@ export default {
     showReviews() {
       // return this.car.reviews.slice(this.car.reviews.length - this.count);
       return this.car.reviews.slice(0, this.count);
-    },
+    }
   },
-  components: { guestModal, datePicker, carousel,chat },
+  components: { guestModal, datePicker, carousel, chat }
 };
 </script>
 

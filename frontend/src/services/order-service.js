@@ -5,10 +5,9 @@ export default {
     remove,
     getOrders,
     getOrdersByBuyerId,
-    
+
 }
 async function _add(order) {
-    console.log(order);
     return await httpService.post(`order/`, order)
 
 }
@@ -33,4 +32,3 @@ async function _update(order) {
     return await httpService.put(`order/${order._id}`, order)
 
 }
-
