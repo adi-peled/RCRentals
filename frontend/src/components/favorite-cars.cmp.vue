@@ -5,7 +5,7 @@
       <router-link :to="'/car/details/'+car._id">
         <div class="under-img flex">
           <div class="price">${{car.price}}/day</div>
-          <img class="front-img" :src="getImgUrl(car.primaryImgUrl)" />
+          <img class="front-img" :src="car.imgsUrl[0].url" />
           <div class="details flex">
             <div class="capi">{{car.vendor.company}} {{car.vendor.series}} {{car.model}}</div>
             <div>
@@ -27,26 +27,21 @@ export default {
   name: "favorite-cars",
   props: {
     info: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
-      favCars: []
+      favCars: [],
     };
-  },
-  methods: {
-    getImgUrl(imageName) {
-      var images = require.context("../assets/cars/", false, /\.jpg$/);
-      return images("./" + imageName + ".jpg");
-    }
   },
   created() {
     this.favCars = this.info.favCars;
+    console.log(this.favCars);
     // console.log(this.$route.params);
     // const userId = this.$route.params.id;
     // userService.getById(userId).then(user => (this.favCars = user.favCars));
-  }
+  },
 };
 </script>
 
