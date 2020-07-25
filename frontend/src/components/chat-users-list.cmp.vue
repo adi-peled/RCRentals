@@ -25,6 +25,7 @@ async created(){
   
   socket.setup()
   socket.on('messege recieved',chat=>{
+    console.log(chat);
 
     this.chat=[chat]
   })
