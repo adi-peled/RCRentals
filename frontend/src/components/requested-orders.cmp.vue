@@ -36,8 +36,13 @@ export default {
     var answerOrders = this.orders.filter(order => order.status !== "pending");
     if (!pendingOrders) pendingOrders = [];
     if (!answerOrders) answerOrders = [];
-    this.orders = pendingOrders.concat(answerOrders);
-    // this.orders.sort()
+
+    let sortedOrders = pendingOrders.concat(answerOrders).sort((o1, o2) => { 
+      let o1CreatedAt = o1.createdAt ? o1.createdAt : -Infinity; 
+      let o2CreatedAt = o2.createdAt ? o2.createdAt : -Infinity;
+      return o2CreatedAt - o1CreatedAt;
+    });
+    this.orders = sortedOrders;
   },
   methods: {
     updateOrderStatus(order, status) {
