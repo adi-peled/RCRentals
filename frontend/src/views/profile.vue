@@ -1,10 +1,19 @@
 <template>
   <section class="profile">
     <div class="profile-nav">
-      <img src="../assets/default-user.jpg" width="150" />
-      <h1 class="capi">Welcome {{loggedInUser.fullName}}</h1>
-      <h2>{{loggedInUser.email}}</h2>
-      <div>
+      <div class="flex align-center user-info">
+        <img src="../assets/default-user.jpg" width="85" height="85" />
+        <div>
+          <h1 class="capi">{{loggedInUser.fullName}}</h1>
+          <!-- <h2>{{loggedInUser.email}}</h2> -->
+          <div>
+            <h3>Owned cars: {{ownedCars.length}}</h3>
+            <h3>Requests: {{orders.length}}</h3>
+            <h3>Total deals: ${{requests}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="flex wrap">
         <div class="column profile-router" @click="addCar">
           <div>
             <i class="el-icon-circle-plus-outline"></i>
@@ -19,13 +28,13 @@
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
-        <div class="column profile-router" @click="getOwnedCars">
+        <!-- <div class="column profile-router" @click="getOwnedCars">
           <div>
             <i class="el-icon-coordinate"></i>
             My cars
           </div>
           <i class="el-icon-arrow-right"></i>
-        </div>
+        </div>-->
         <div class="column profile-router" @click="getUserOrders">
           <div>
             <i class="el-icon-s-order"></i>
@@ -36,7 +45,7 @@
         <div class="column profile-router" @click="getRequestedOrders">
           <div>
             <i class="el-icon-collection"></i>
-            Requested orders
+            Requests <span>({{orders.length}})</span>
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
@@ -66,6 +75,17 @@ export default {
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser;
+    },
+    orders() {
+      return this.$store.getters.orders.filter(order => order.owner.fullName === this.loggedInUser.fullName).filter(order => order.status === 'pending');
+    },
+    ownedCars() {
+      return this.$store.getters.cars.filter(
+        car => this.loggedInUser._id === car.owner._id
+      );
+    },
+    requests() {
+      return this.$store.getters.orders.filter(order => order.status === 'accept' && order.owner.fullName === this.loggedInUser.fullName).reduce((acc, order) => acc + order.price, 0);
     }
   },
   methods: {
@@ -107,13 +127,22 @@ export default {
       this.addCar();
     }
   },
+
+  //  const orders = this.$store.getters.orders;
+  //   this.info.requestedOrders = orders.filter(
+  //     order => order.owner.fullName === this.loggedInUser.fullName
+  //   );
+  //   const requests = this.info.requestedOrders;
+  //   console.log(requests);
+
   components: {
     favoriteCars,
     ownedCars,
     userOrders,
     requestedOrders,
     addCar
-  }
+  },
+  mounted() {}
 };
 </script>
 <style>
