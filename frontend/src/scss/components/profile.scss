@@ -33,15 +33,25 @@
             margin: 10px;
         }
         button.accept {
+            background-color: white;
+            border: 1px solid green;
+            color: green;
+        }
+        button.accept:hover{
             background-color: green;
-            color: ivory;
+            color: white;
         }
         button:hover {
             opacity: 0.8;
         }
         button.decline {
+            background-color: white;
+            border: 1px solid red;
+            color: red;
+        }
+        button.decline:hover{
             background-color: red;
-            color: ivory;
+            color: white;
         }
     }
     .price {
@@ -81,6 +91,7 @@
     }
     .profile-cars button {
         padding: 15px;
+        text-transform: capitalize;
         cursor: pointer;
         font-size: 1rem;
     }

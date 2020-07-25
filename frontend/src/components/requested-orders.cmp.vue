@@ -16,7 +16,7 @@
   </section>
 </template>
 
-<script>
+<script>            
 import orderService from "../services/order-service.js";
 export default {
   name: "requested-orders",
@@ -37,11 +37,11 @@ export default {
     if (!pendingOrders) pendingOrders = [];
     if (!answerOrders) answerOrders = [];
     this.orders = pendingOrders.concat(answerOrders);
+    // this.orders.sort()
   },
   methods: {
     updateOrderStatus(order, status) {
       order.status = status;
-      console.log(order);
       this.$store.dispatch({ type: "saveOrder", order });
     }
   },
