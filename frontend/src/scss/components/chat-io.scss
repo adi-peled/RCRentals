@@ -29,6 +29,7 @@
         color: white;
         background-color: $clr1;
     }
+  
 }
 
 .users-ul {
@@ -38,6 +39,10 @@
     justify-content: space-around;
     li:hover {
         border-bottom: 1px solid black;
+    }
+    img{
+        width: 30px;
+        height: 30px;
     }
 }
 
