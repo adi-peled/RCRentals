@@ -1,6 +1,6 @@
 <template>
   <section class="profile-cars">
-    <h1>Orders:</h1>
+    <h1>Requests:</h1>
     <div v-for="order in orders" :order="order" :key="order._id" class="order-list">
       <h3 class="capi">From: {{order.buyer.fullName}}</h3>
       <h3>Contact: {{order.buyer.email}}</h3>
