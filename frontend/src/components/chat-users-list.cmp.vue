@@ -8,11 +8,11 @@
           {{user.fullName}}</li>
     </ul>
     <div class="chat-div">
-   <h1 v-if="selectedUser" class="capi">
+   <h1 v-if="selectedUser" class="chat-head flex align-center capi">
       <img v-if="!selectedUser || !selectedUser.imgUrl|| !(selectedUser.imgUrl.length > 7)" src="../assets/default-user.jpg" width="85" height="85" />
       <img v-else :src="selectedUser.imgUrl" width="85" height="85" />
      {{selectedUser.fullName}} :</h1>
-      <chat-io :chat="chat" :carOwner="selectedUser" v-if="chat"  ></chat-io>
+      <chat-io :chat="chat" :carOwner="selectedUser" v-if="chat"></chat-io>
 
     </div>
 </section>
@@ -36,11 +36,11 @@ async created(){
   
   socket.setup()
   socket.on('messege recieved',chat=>{
-    this.chat=[chat]
+    this.chat=chat
   })
     this.usersList= await this.$store.dispatch({ type: "loadUsers", filterBy: this.filter });
     socket.on("gotChat",chat=>{
-    this.chat=chat;
+    this.chat=chat[0];
     })
 },
 methods:{
