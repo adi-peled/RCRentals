@@ -20,6 +20,7 @@
         <div class="car-info flex">
           <div class="details flex">
             <div>
+              
               <span
                 class="capi bold model"
               >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
@@ -32,6 +33,7 @@
                   {{car.owner.fullName}}
                 </span>
               </h3>
+              <div class="flex">
               <div class="features grid">
                 <span>
                   <img src="@/assets/img/seat.png" />
@@ -50,26 +52,31 @@
                   {{car.features.kpl}} kpl
                 </span>
               </div>
-
-              <p>{{car.desc}}</p>
-            </div>
-          </div>
-          <div class="payment-details flex">
-            <div class="flex column location-day">
+                <div class="flex column location-day">
               <div class="location">
                 <img src="@/assets/img/pin.png" alt />
                 <span class="capi">location: {{car.city}}</span>
               </div>
               <div class="dolar flex">
                 <img src="@/assets/img/dolar.png" alt />
-                <span>Price: $ {{car.price}} / Day</span>
+                <span>Price: <span class="pricer">$ {{car.price}}</span> / Day</span>
               </div>
+              
             </div>
+            </div>
+              <p>{{car.desc}}</p>
+            </div>
+            <span class="free-cancellation">
+                <img src="@/assets/img/like.png" /> Free cancellation
+              </span>
+          </div>
+          <div class="payment-details flex">
+          
             <div class="date-pickers flex column">
+              <div class="flex dates-div">
               <div>
                 <label>Pick Up Date</label>
                 <date-picker
-                  class="right"
                   v-model="order.pickupDate"
                   :disabled-dates="disabledDates"
                   :full-month-name="false"
@@ -78,20 +85,18 @@
               <div>
                 <label>Return Date</label>
                 <date-picker
-                  class="right"
                   v-model="order.returnDate"
                   :disabled-dates="disabledDates"
                   :full-month-name="false"
                 ></date-picker>
-                <p v-if="totalPrice">Total Price: ${{totalPrice}}</p>
               </div>
-            </div>
-            <div class="btn-book flex column">
-              <span class="free-cancellation">
-                <img src="@/assets/img/like.png" /> Free cancellation
-              </span>
+              </div>
+                <p >Total Price:<span class="pricer" v-if="totalPrice"> ${{totalPrice}}</span></p>
+              <div class="btn-book flex column">
               <button @click="toggleBookModal">Book</button>
             </div>
+            </div>
+            
           </div>
         </div>
 
