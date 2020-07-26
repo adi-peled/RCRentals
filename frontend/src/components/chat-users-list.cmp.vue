@@ -41,7 +41,8 @@ async created(){
     }
     this.chat=chat
   })
-    this.usersList= await this.$store.dispatch({ type: "loadUsers", filterBy: this.filter });
+    var users= await this.$store.dispatch({ type: "loadUsers", filterBy: this.filter });
+    this.usersList=users.filter(user=>user._id!==this.loggedInUser._id)
     socket.on("gotChat",chat=>{
     this.chat=chat[0];
     })
