@@ -8,7 +8,7 @@
           {{user.fullName}}</li>
     </ul>
     <div class="chat-div">
-   <h1 v-if="selectedUser" class="capi">
+   <h1 v-if="selectedUser" class="chat-head flex align-center capi">
       <img v-if="!selectedUser || !selectedUser.imgUrl|| !(selectedUser.imgUrl.length > 7)" src="../assets/default-user.jpg" width="85" height="85" />
       <img v-else :src="selectedUser.imgUrl" width="85" height="85" />
      {{selectedUser.fullName}} :</h1>
