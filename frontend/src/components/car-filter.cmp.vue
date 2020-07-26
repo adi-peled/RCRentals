@@ -7,20 +7,20 @@
       </div>
 
       <div>
-        <div class="block flex align-center">
-          <div class="min">
-            Price:
-            min:{{filterBy.rangePrice[0]}}$
+        <div class="flex align-center space-between column">
+          <div class="min">Price:</div>
+          <div class="flex align-center">
+            min:${{filterBy.rangePrice[0]}}
+            <el-slider
+              class="el-slider"
+              @change="setFilter"
+              v-model="filterBy.rangePrice"
+              range
+              show-stops
+              :max="3000"
+            ></el-slider>
+            <div class="max">max:${{filterBy.rangePrice[1]}}</div>
           </div>
-          <el-slider
-            class="el-slider"
-            @change="setFilter"
-            v-model="filterBy.rangePrice"
-            range
-            show-stops
-            :max="3000"
-          ></el-slider>
-          <div class="max">max:{{filterBy.rangePrice[1]}}$</div>
         </div>
       </div>
 
@@ -43,21 +43,21 @@
       </div>
 
       <div>
-        <div class="block flex flex align-center">
-          <div class="min">
-            Model:
-            min:2000
+        <div class="flex align-center column">
+          <div class="min">Model:</div>
+          <div class="flex align-center">
+            min:1970
+            <el-slider
+              class="el-slider"
+              :min="1970"
+              @change="setFilter"
+              v-model="filterBy.rangeModel"
+              range
+              show-stops
+              :max="2021"
+            ></el-slider>
+            <div class="max">max: 2021</div>
           </div>
-          <el-slider
-            class="el-slider"
-            :min="1970"
-            @change="setFilter"
-            v-model="filterBy.rangeModel"
-            range
-            show-stops
-            :max="2021"
-          ></el-slider>
-          <div class="max">max: 2021</div>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@ export default {
           value: "vans",
           label: "Vans"
         },
-         {
+        {
           value: "sport",
           label: "Sport"
         },
@@ -115,7 +115,7 @@ export default {
           value: "trucks",
           label: "Trucks"
         },
-         {
+        {
           value: "custom",
           label: "Custom"
         }

@@ -13,6 +13,13 @@
               {{car.reviews[0].rating}}
               <span class="star">★</span>
               <span class="capi">(50) {{car.owner.fullName}}</span>
+               <!-- <span v-if="car.reviews.rating">{{calcRating}}</span>
+                <span v-else>no rating yet</span>
+                <span class="star">★</span>
+                <span class="capi">
+                  <span class="count">({{car.reviews.length}})</span>
+                  {{car.owner.fullName}}
+                </span> -->
             </div>
           </div>
         </div>
@@ -40,6 +47,18 @@ export default {
     // const userId = this.$route.params.id;
     // userService.getById(userId).then(user => (this.favCars = user.favCars));
   },
+  computed:{
+    calcRating() {
+      if (!this.car.reviews.length) {
+        return 0;
+      }
+      const sum = this.car.reviews.reduce((acc, review) => {
+        acc += Number(review.rating);
+        return acc;
+      }, 0);
+      return (sum / this.car.reviews.length).toFixed(1);
+    }
+  }
 };
 </script>
 
