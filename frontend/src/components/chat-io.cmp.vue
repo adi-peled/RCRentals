@@ -1,7 +1,7 @@
-<template>
+<template >
   <section class="chat">
     <div>
-      <ul  v-if="msgs">
+      <ul v-if="chat" >
         <li  v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
           <p :class="{fromme:isFromMe(msg)}">
             <span class="capi incoming-msg" v-if="!isFromMe(msg)"></span>
@@ -38,17 +38,19 @@ export default {
   async created() {
     this.changeChat=this.chat
      socket.on('messege recieved',chat=>{
-    this.changeChat=[chat]
+    this.changeChat=chat
   })
     socket.on("chat recivedMsg", this.addMsg);
     this.setFilter();
   },
   methods: {
     addMsg(msg) {
+      if(msg.from._id!==this.carOwner._id){
+        return
+      }
       this.msgs.unshift(msg);
     },
        isFromMe(msg){
-      console.log(msg);
       return msg.from._id===this.loggedInUser._id
     },
     sendMsg(ev) {
@@ -67,8 +69,8 @@ export default {
         txt: this.msg,
         createdAt: Date.now()
       };
-      this.chat[0].msgs.unshift(msg)
-      socket.emit("chat message", this.chat[0]);
+      this.chat.msgs.unshift(msg)
+      socket.emit("chat message", this.chat);
       this.msg = "";
     },
     setFilter() {
@@ -84,7 +86,8 @@ export default {
     },
  
     msgs(){
-      return  this.chat[0].msgs
+      
+      return this.chat.msgs
     }
   }
 };
