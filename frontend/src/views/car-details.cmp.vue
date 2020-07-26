@@ -100,7 +100,7 @@
           <div v-for="review in showReviews" :key="review.id" class="review flex">
             <!-- <img class="review-img" src="@/assets/profile.jpg" /> -->
             <img 
-              v-if="!review.byUser || !review.byUser.imgUrl || !(review.byUser.imgUrl.length > 7)"
+              v-if="!review.byUser.imgUrl || !(review.byUser.imgUrl.length > 7)"
               src="@/assets/profile.jpg"
               width="70"
               height="50"
@@ -146,7 +146,8 @@
             <button class="btn-review" @click="toggleReview">close</button>
           </div>
         </form>
-        <chat class="chat" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
+
+        <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
       </div>
     </div>
 

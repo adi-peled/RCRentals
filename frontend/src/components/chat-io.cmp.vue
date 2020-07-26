@@ -3,9 +3,9 @@
     <div>
       <ul  v-if="msgs">
         <li  v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
-          <p>
-            <span class="capi">{{msg.from.fullName}}</span>
-            : {{msg.txt}}
+          <p :class="{fromme:isFromMe(msg)}">
+            <span class="capi" v-if="!isFromMe(msg)">{{msg.from.fullName}}  :</span>
+            {{msg.txt}}
           </p>
         </li>
       </ul>
@@ -45,6 +45,10 @@ export default {
     addMsg(msg) {
       this.msgs.unshift(msg);
     },
+       isFromMe(msg){
+      console.log(msg);
+      return msg.from._id===this.loggedInUser._id
+    },
     sendMsg(ev) {
       var msg = {
         id:utils.getRandomId(),
@@ -75,6 +79,7 @@ export default {
     loggedInUser() {
       return this.$store.getters.loggedInUser;
     },
+ 
     msgs(){
       return  this.chat[0].msgs
     }
