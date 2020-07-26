@@ -1,67 +1,93 @@
-.chat {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border: 1px solid grey;
-     ::-webkit-scrollbar {
-        width: 0px;
-        /* Remove scrollbar space */
-        background: transparent;
-        /* Optional: just make scrollbar invisible */
-    }
-    ul {
-        height: 300px;
-        overflow-y: scroll;
-        display: flex;
-        flex-direction: column-reverse;
-    }
-    li {
-        list-style: none;
-    }
-    input {
-        width: 90%;
-        outline: none;
-    }
-    button {
-        outline: none;
-        width: 10%;
-        color: white;
-        background-color: $clr1;
-    }
-  
-}
-
-.users-ul {
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    li:hover {
-        border-bottom: 1px solid black;
-    }
-    img{
-        width: 30px;
-        height: 30px;
-        border-radius: 30px;
-    }
-}
-
-.chat-search {
-    align-self: flex-end;
-    width: 40% !important;
-    border: 1px solid black;
-    input {
+    .chat {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border: 1px solid grey;
+         ::-webkit-scrollbar {
+            width: 0px;
+            /* Remove scrollbar space */
+            background: transparent;
+            /* Optional: just make scrollbar invisible */
+        }
+        ul {
+            height: 300px;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        li {
+            list-style: none;
+        }
+        input {
+            width: 90%;
+            outline: none;
+        }
+        button {
+            outline: none;
+            width: 10%;
+            color: white;
+            background-color: $clr1;
+        }
     }
-    input::placeholder {
-        color: black;
-        font-weight: normal;
+    
+    .users-ul {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        li:hover {
+            border-bottom: 1px solid black;
+        }
+        img {
+            width: 30px;
+            height: 30px;
+        }
     }
-    ul {
-        position: fixed;
+    
+    .chat-search {
+        align-self: flex-end;
+        width: 40% !important;
+        border: 1px solid black;
+        input {
+            width: 100%;
+        }
+        input::placeholder {
+            color: black;
+            font-weight: normal;
+        }
+        ul {
+            position: fixed;
+        }
     }
-}
+    
+    .chat-page {
+         ::-webkit-scrollbar {
+            width: 0px;
+            /* Remove scrollbar space */
+            background: transparent;
+            /* Optional: just make scrollbar invisible */
+        }
+        display: flex;
+        ul {
+            overflow-x: hidden;
+        }
+    }
+    
+    .fromme {
+        text-align: right;
+    }
+    
+    .chat-div {
+        width: 60%;
+        max-width: 800px;
+        position: relative;
+        left: 10%;
+    }
+    
+    .user-name {
+        cursor: pointer;
+    }
 
 .chat-page {
     display: flex;

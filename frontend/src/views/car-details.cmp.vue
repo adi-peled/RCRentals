@@ -146,7 +146,8 @@
             <button class="btn-review" @click="toggleReview">close</button>
           </div>
         </form>
-        <chat class="chat" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
+
+        <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
       </div>
     </div>
 
