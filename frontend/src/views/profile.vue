@@ -39,14 +39,14 @@
         <div class="column profile-router" @click="getUserOrders">
           <div>
             <i class="el-icon-s-order"></i>
-            My orders
+            Booked cars
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
         <div class="column profile-router" @click="getRequestedOrders">
           <div>
             <i class="el-icon-collection"></i>
-            Requests <span>({{orders.length}})</span>
+            Pending requests <span>({{orders.length}})</span>
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
