@@ -13,6 +13,13 @@
               {{car.reviews[0].rating}}
               <span class="star">★</span>
               <span class="capi">(50) {{car.owner.fullName}}</span>
+               <!-- <span v-if="car.reviews.rating">{{calcRating}}</span>
+                <span v-else>no rating yet</span>
+                <span class="star">★</span>
+                <span class="capi">
+                  <span class="count">({{car.reviews.length}})</span>
+                  {{car.owner.fullName}}
+                </span> -->
             </div>
           </div>
         </div>

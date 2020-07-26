@@ -1,8 +1,8 @@
 .car-filter {
 
     margin: 0 auto;
-    width: 900px;
-    grid-template-columns: 300px 600px;
+    max-width: 470px;
+    // grid-template-columns: 300px 600px;
 
     .type {
         margin-bottom: 10px;
@@ -15,17 +15,17 @@
     }
 
     .el-slider__bar {
-        background-color: lighten($clr1, 15%);
+        background-color: #f66c39;
     }
 
     .el-slider__button {
-        background-color: lighten($clr1, 15%);
+        background-color: #f66c39;
 
-        border: 2px solid lighten($clr1, 5%)
+        border: 2px solid #f66c39;
     }
 
     .el-input__inner {
-        width: 150px;
+        width: 100px;
     }
 
 
@@ -58,9 +58,41 @@
         transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
         width: 221px;
     }
-
+    span{
+        width: 70px;
+    }
     input {
         margin-top: 5px;
+    }
+    .close-btn{
+        background-color: white;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border: unset;
+        outline: none;
+        color: black;
+        width: 50px;
+        height: 30px;
+        cursor: pointer;
+        border-radius: 10px;
+        &:hover{
+            color: #f66c39;
+        }
+    }
+}
+.filter-btn{
+    margin-left: 60px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    width: 100px;
+    border: 1px solid gray;
+    color: black;
+    outline: none;
+    cursor: pointer;
+    &:hover{
+        border: 1px solid black;
     }
 }
 
@@ -70,9 +102,13 @@
 
 .car-filter {
     border: 1px solid #dadce0;
-    padding: 5px;
+    padding: 20px;
     justify-content: space-between;
-
+    border-radius: 30px;
+    box-shadow: 3px 6px 22px -16px rgba(0,0,0,0.75);
+    z-index: 1;
+    position: absolute;
+    background-color: white;
     .block {
         .min {
             width: 140px;
@@ -109,12 +145,12 @@
 }
 
 .sorts {
-    border: 1px solid grey;
+    border: 1px solid #f66c39;
     padding: 15px;
     border-radius: 20px;
 
     .el-slider__bar {
-        background-color: gray;
+        background-color: #f66c39;
     }
 
     .el-slider__button {
@@ -141,7 +177,7 @@
     input {
         border-radius: 4px;
         height: 40px;
-        width: 150px;
+        width: 190px    ;
         border: 1px solid #DCDFE6;
         outline: none;
     }
