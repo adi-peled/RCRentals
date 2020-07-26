@@ -120,10 +120,6 @@
     .profile-router i {
         font-size: 2rem;
     }
-    .profile-router:hover {
-        cursor: pointer;
-        color: #f66c39;
-    }
     .user-info {
         padding: 20px;
         text-align: left;
@@ -155,6 +151,10 @@
         }
         .profile-router {
             font-size: 1.3rem;
+            &:hover {
+                cursor: pointer;
+                color: #f66c39;
+            }
         }
         .profile-router i {
             font-size: 1.3rem;

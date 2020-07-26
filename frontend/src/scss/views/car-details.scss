@@ -221,12 +221,15 @@
         background-color: rgb(29, 187, 29)
     }
 }
-
+.review-head{
+    width: 400px;
+}
 .btn-review {
     margin-top: 5px;
     justify-content: center;
     text-align: center;
     width: 100px;
+    height: 30px;
     outline: none;
     padding: 0;
     background-color: lighten($clr1, 20%);

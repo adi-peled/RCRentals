@@ -1,9 +1,10 @@
 <template>
   <section>
-    <h1 class="title capi">{{category}} cars rental </h1>
+    <h1 class="title capi">{{category}} cars rental</h1>
     <div class="app-container"></div>
     <div class="sub-container">
-      <car-filter @filter="setFilter"></car-filter>
+      <button @click="showModal" class="filter-btn">filter</button>
+      <car-filter @filter="setFilter" v-show="isFilterShow" @close="closeModal"></car-filter>
       <car-list @updateUserFavs="updateUserFavs" @removeCar="removeCar" :cars="cars"></car-list>
     </div>
   </section>
@@ -13,7 +14,7 @@
 export default {
   name: "browse-cars",
   data() {
-    return { category: "" };
+    return { category: "", isFilterShow: false };
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
@@ -34,6 +35,12 @@ export default {
         isLiked,
         user: this.loggedInUser
       });
+    },
+    showModal() {
+      this.isFilterShow = true;
+    },
+    closeModal() {
+      this.isFilterShow = false;
     }
   },
   computed: {
