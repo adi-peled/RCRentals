@@ -8,8 +8,8 @@
     </router-link>
     <button @click="toggle" class="btn-menu">☰</button>
     <div @click="toggle" class="flex nav" :class="{'menu-open': open}">
-      <button @click="addCar">List your car</button>
-        <router-link  v-if="loggedInUser" :to="'/userslist/'+loggedInUser._id">Chat</router-link>
+      <button @click="addCar" v-if="loggedInUser">List your car</button>
+      <router-link v-if="loggedInUser" :to="'/userslist/'+loggedInUser._id">Chat</router-link>
       <router-link to="/car/">All Cars</router-link>
       <template v-if="!loggedInUser">
         <router-link to="/login">Log In</router-link>
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       open: false,
-      id: ""
+      id: "",
     };
   },
   created() {},
@@ -45,13 +45,13 @@ export default {
     },
     close() {
       this.open = false;
-    }
+    },
   },
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
