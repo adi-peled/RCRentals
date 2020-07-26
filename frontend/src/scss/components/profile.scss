@@ -1,10 +1,10 @@
 .profile {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 50px;
-    row-gap: 1em;
-    text-align: center;
-    padding: 20px;
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // column-gap: 50px;
+    // row-gap: 1em;
+    // text-align: center;
+    // padding: 20px;
 
     h1 {
         font-size: 2rem;
@@ -15,14 +15,13 @@
     }
 
     .profile-nav {
+        width: 30%;
         padding: 20px 0;
-        box-shadow: 0px 10px 20px -9px rgba(0, 0, 0, 0.58);
         height: 610px;
     }
 
     .order-list {
         text-align: left;
-        border-bottom: 1px solid grey;
 
         h2 {
             color: black;
@@ -72,7 +71,11 @@
         }
     }
 
-    .fav-container {}
+    .fav-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 350px);
+        gap: 10px;
+    }
 
 
     .details {
@@ -106,10 +109,16 @@
     }
 
     .profile-info {
-        display: grid;
-        padding: 20px;
-        grid-column: span 2;
-        box-shadow: 0px 10px 20px -9px rgba(0, 0, 0, 0.58);
+
+        width: 70%;
+
+        // padding: 20px;
+        // grid-column: span 2;
+        // box-shadow: 0px 10px 20px -9px rgba(0, 0, 0, 0.58);
+
+        // .w350 {
+        //     width: 350px;
+        // }
     }
 
     .profile-cars button {
@@ -202,7 +211,6 @@
 
 @media (max-width:950px) {
     .profile {
-        display: block;
 
         .profile-info {
             overflow-y: unset;

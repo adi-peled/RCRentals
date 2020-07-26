@@ -1,5 +1,5 @@
 <template>
-  <section class="profile">
+  <section class="profile flex">
     <div class="profile-nav">
       <div class="flex align-center user-info">
         <img v-if="!loggedInUser || !loggedInUser.imgUrl" src="../assets/default-user.jpg" width="85" height="85" />
