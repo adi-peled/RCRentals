@@ -3,7 +3,7 @@
     <div>
       <ul v-if="chat" >
         <li  v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
-          <p :class="{fromMe:isFromMe(msg)}"   class="flex">
+          <p :class="{fromMe:isFromMe(msg)}"   class="flex ">
             
            <span class="chat-txt"> {{msg.txt}}</span>
             <img v-if="!msg.from.url" src="../assets/default-user.jpg" class="msg-img"  />
