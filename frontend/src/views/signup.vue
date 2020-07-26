@@ -21,14 +21,6 @@
         <label>Password</label>
         <input v-model="password" class="signup-form-group" type="password" />
       </div>
-      <label>
-        <input class="form-checkbox" type="checkbox" /> I agree to the
-        <button class="button-link">terms of service</button> and
-        <button class="button-link">privacy policy.</button>
-      </label>
-      <label>
-        <input class="form-checkbox" type="checkbox" /> Yes, send me deals, discounts and updates!
-      </label>
          <el-upload
           ref="upload"
           :limit="1"
@@ -40,8 +32,16 @@
           :file-list="fileList"
           list-type="picture"
         >
-          <el-button size="small" type="primary">Click to upload</el-button>
+          <el-button class="upload-btn" size="small" type="primary">Upload your profile picture</el-button>
         </el-upload>
+      <label>
+        <input class="form-checkbox" type="checkbox" /> I agree to the
+        <button class="button-link">terms of service</button> and
+        <button class="button-link">privacy policy.</button>
+      </label>
+      <label>
+      </label>
+        <input class="form-checkbox" type="checkbox" /> Yes, send me deals, discounts and updates!
       <button class="signup-button">Sign Up</button>
     </form>
   </section>
@@ -81,7 +81,6 @@ export default {
     async onUploadImg(file, fileList) {
       var img = await uploadImg(file.raw);
       img.uid = file.raw.uid;
-      debugger;
       this.imgUrl = img.url;
     },
   }
