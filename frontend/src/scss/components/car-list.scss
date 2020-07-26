@@ -8,31 +8,26 @@
 }
 
 .cards-container {
-    
+
     justify-content: center;
     margin-top: 20px;
 
     width: 100%;
     padding: 10px;
     grid-template-columns: repeat(auto-fill, 350px);
-    gap: 40px
+    gap: 20px
 }
-.total-rating{
+
+.total-rating {
     color: grey;
 }
 
-.car-card {
-    width: 100%;
-    border-bottom: 1px solid grey;
-    text-transform: capitalize;
 
-}
-
-@media (max-width: 500px){
-   .car-list{
-       .cards-container{
-           .car-card{
-               justify-content: center;
+@media (max-width: 500px) {
+    .car-list {
+        .cards-container {
+            .car-card {
+                justify-content: center;
             }
         }
     }
