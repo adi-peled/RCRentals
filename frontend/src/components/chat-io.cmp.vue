@@ -4,7 +4,7 @@
       <ul v-if="chat" >
         <li  v-for="(msg,idx) in msgs" :msg="msg" :key="idx">
           <p :class="{fromme:isFromMe(msg)}">
-            <span class="capi" v-if="!isFromMe(msg)">{{msg.from.fullName}}:</span>
+            <span class="capi incoming-msg" v-if="!isFromMe(msg)"></span>
             {{msg.txt}}
             <img v-if="!msg.from.url" src="../assets/default-user.jpg" class="msg-img" width="85" height="85" />
             <img v-else :src="msg.from.url" class="msg-img" width="50" height="50" /> 
