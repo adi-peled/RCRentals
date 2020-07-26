@@ -36,6 +36,9 @@ async created(){
   
   socket.setup()
   socket.on('messege recieved',chat=>{
+    if(this.chat._id!==chat._id){
+      return
+    }
     this.chat=chat
   })
     this.usersList= await this.$store.dispatch({ type: "loadUsers", filterBy: this.filter });
