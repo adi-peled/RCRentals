@@ -71,11 +71,12 @@
         }
     }
 
-    .price {
-        bottom: unset;
-        right: unset;
-        color: black;
+    .fav-container {
+        .section {
+            width: 350px;
+        }
     }
+
 
     .details {
         justify-content: center;
