@@ -3,7 +3,7 @@
   <section class="car-list flex">
     <div class="cards-container grid">
       <car-preview
-        class="car-card"
+       
         @updateUserFavs="updateUserFavs"
         @removeCar="removeCar"
         v-for="car in cars"

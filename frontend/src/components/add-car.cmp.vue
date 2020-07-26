@@ -178,7 +178,7 @@ export default {
         doorsCount: 4.0,
         kpl: 12.0,
       }),
-        (this.car.city = "LA");
+        (this.car.city = "Denver");
       (this.car.owner = {
         _id: this.loggedInUser._id,
         fullName: this.loggedInUser.fullName,
@@ -204,7 +204,7 @@ export default {
           searies: "",
         },
         disabledDates: {
-          ranges: []
+          ranges: [],
         },
         price: 200,
         desc: "",

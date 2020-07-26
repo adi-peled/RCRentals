@@ -8,6 +8,21 @@
     justify-content: center;
 }
 
+
+.home-page {    
+
+    .top-cars {
+        width: 100%;
+        justify-content: space-between;
+
+        a {
+            align-self: center;
+            color: gray;
+            font-size: 1.1rem;
+        }
+    }
+}
+
 .bgc-img {
     background-image: url('~@/assets/drifthero.jpg');
     background-size: cover;
@@ -109,10 +124,7 @@
 }
 
 .category-head {
-    a {
-        color: gray;
-        font-size: 1.5rem;
-    }
+
 
     align-items: center;
 }
@@ -132,7 +144,7 @@
             height: 200px;
         }
 
-        .card-img {}
+       
     }
 
     div {

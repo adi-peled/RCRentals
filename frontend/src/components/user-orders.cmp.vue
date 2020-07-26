@@ -1,6 +1,6 @@
 <template>
   <section class="profile-cars">
-    <h1>Your orders:</h1>
+    <h1>Your orders</h1>
 
     <div v-for="order in orders" :order="order" :key="order._id" class="order-list">
       <!-- {{order}} -->

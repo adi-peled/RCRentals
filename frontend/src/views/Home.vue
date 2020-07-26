@@ -1,14 +1,14 @@
 <template>
-  <section>
-
+  <section class="home-page">
     <div class="bgc-img">
-      <div class="text-img"><h1>Rent a life style </h1></div>
+      <div class="text-img">
+        <h1>Rent a life style</h1>
+      </div>
     </div>
     <section class="flex home-section">
       <main class="home">
         <div class="category-head flex space-between">
           <h2>Browse by category</h2>
-          <router-link :to="'/car/'">See all cars</router-link>
         </div>
         <div class="browse-category flex wrap space-around">
           <div v-for="category in categorys" :category="category" :key="category">
@@ -18,12 +18,15 @@
             </router-link>
           </div>
         </div>
-        <h2>Top Rated</h2>
-     
-        <div class="might-like-category">
-          <carPreview
+        <div class="top-cars flex ">
+          <h2>Top Rated</h2>
+          <router-link :to="'/car/'">See all cars</router-link>
+        </div>
+
+        <div class="might-like-category ">
+          <carPreview 
             @updateUserFavs="updateUserFavs"
-            v-for="car in cars.slice(cars.length-4)"
+            v-for="car in cars.slice(cars.length-12)"
             :car="car"
             :key="car._id"
           ></carPreview>
@@ -55,11 +58,11 @@ import carPreview from "@/components/car-preview.cmp.vue";
 export default {
   name: "Home",
   components: {
-    carPreview
+    carPreview,
   },
   data() {
     return {
-      categorys: ["sport", "custom", "luxury", "convertible"]
+      categorys: ["sport", "custom", "luxury", "convertible"],
     };
   },
   created() {
@@ -75,9 +78,9 @@ export default {
         type: "updateFavs",
         car,
         isLiked,
-        user: this.loggedInUser
+        user: this.loggedInUser,
       });
-    }
+    },
   },
   computed: {
     cars() {
@@ -85,7 +88,7 @@ export default {
     },
     loggedInUser() {
       return this.$store.getters.loggedInUser;
-    }
-  }
+    },
+  },
 };
 </script>

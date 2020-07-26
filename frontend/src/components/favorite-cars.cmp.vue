@@ -1,6 +1,6 @@
 <template>
   <section class="profile-cars">
-    <h1>Your favorite cars:</h1>
+    <h1>Your favorite cars</h1>
     <div class="car-preview" v-for="car in favCars" :car="car" :key="car._id">
       <router-link :to="'/car/details/'+car._id">
         <div class="under-img flex">
