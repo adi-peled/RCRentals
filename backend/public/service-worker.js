@@ -11,24 +11,10 @@
  * See https://goo.gl/2aRDsh
  */
 
-if (workbox) {
-  console.log(`Workbox is loaded`);
-
-  workbox.precaching.precacheAndRoute(self.__precacheManifest);
-
-} 
-else {
-  console.log(`Workbox didn't load`);
-}
-
-
-
-
-
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.30fd57d6ed247a642fc9de03544cc203.js"
+  "/precache-manifest.70555f3302051285c1b27b91ad536be2.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "rcrentals"});
