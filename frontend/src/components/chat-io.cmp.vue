@@ -45,6 +45,9 @@ export default {
   },
   methods: {
     addMsg(msg) {
+      if(msg.from._id!==this.carOwner._id){
+        return
+      }
       this.msgs.unshift(msg);
     },
        isFromMe(msg){
