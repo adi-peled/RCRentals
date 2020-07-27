@@ -2,16 +2,18 @@
   <section class="profile-cars">
     <h1>Requests</h1>
     <div v-for="order in orders" :order="order" :key="order._id" class="order-list flex">
-        <img :src="order.car.imgUrl.url" />
-      <div class="request-details">
-        <h3 class="capi">From: {{order.buyer.fullName}}</h3>
-        <h3>Contact: {{order.buyer.email}}</h3>
-        <h3>Pickup date: {{changeDateForm(order.pickupDate)}}</h3>
-        <h3>Return date {{changeDateForm(order.returnDate)}}</h3>
-        <h3>Total sum: ${{order.price}}</h3>
+      <img :src="order.car.imgUrl.url" />
+      <div class="request-details flex column">
+        <div class="flex column">
+          <span class="capi">From: {{order.buyer.fullName}}</span>
+          <span>Contact: {{order.buyer.email}}</span>
+          <span>Pickup date: {{changeDateForm(order.pickupDate)}}</span>
+          <span>Return date {{changeDateForm(order.returnDate)}}</span>
+          <span>Total sum: ${{order.price}}</span>
+        </div>
         <div class="order-btn" v-if="order.status==='pending'">
-          <button class="accept" @click="updateOrderStatus(order,'accept')">accept</button>
-          <button class="decline" @click="updateOrderStatus(order,'decline')">decline</button>
+          <button class="accept-btn" @click="updateOrderStatus(order,'accept')">accept</button>
+          <button class="decline-btn" @click="updateOrderStatus(order,'decline')">decline</button>
         </div>
         <div
           class="order-status"
@@ -19,7 +21,6 @@
           v-else
         >{{order.status}}</div>
       </div>
-    
     </div>
   </section>
 </template>
