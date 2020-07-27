@@ -15,7 +15,7 @@
               <span
                 class="order-status"
                 :class="{accept:isAccept(order),decline:isDecline(order)}"
-              >status: {{order.status}}</span>
+              >Status: {{order.status}}</span>
             </div>
             <button
               class="cancel-btn"

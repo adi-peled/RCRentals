@@ -95,7 +95,7 @@
               <p>Distance included
               450 km
               $2.00/km fee for additional miles driven</p>
-              <p>
+            
                 <span class="free-cancellation">
               <img src="@/assets/img/like.png" /> Free cancellation
             </span>
@@ -103,7 +103,7 @@
             <div>
                 Total Price:
                 <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
-              </p>
+              
             </div>
               <div class="btn-book flex column">
                 <button @click="toggleBookModal">Book</button>
