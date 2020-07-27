@@ -1,0 +1,55 @@
+.order-container {
+    grid-template-columns: repeat(auto-fill, 650px);
+    gap: 10px;
+
+    a {
+        justify-content: space-between;
+    }
+}
+
+.order-list {
+    margin-bottom: 15px;
+
+    div {
+        width: 45%;
+
+    }
+
+    img {
+
+        width: 350px;
+
+        height: 350px;
+    }
+
+    .cancell {
+        width: 60%;
+
+    }
+
+    button {
+        background-color: $clr1;
+        color: white;
+    }
+}
+
+
+@media (max-width:950px) {
+
+  
+
+}
+
+
+
+@media(max-width:560px) {
+    .order-container {
+        margin-left: 0px;
+
+        a {
+            flex-direction: column
+        }
+    }
+
+
+}

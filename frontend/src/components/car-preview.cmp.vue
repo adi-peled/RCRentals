@@ -1,7 +1,7 @@
 
 
 <template>
-  <section class="flex">
+  <section class="flex preview-section">
     <div class="car-preview">
       <div class="card-img">
         <img
@@ -51,7 +51,7 @@ export default {
   props: ["car"],
   data() {
     return {
-      isLike: null
+      isLike: null,
     };
   },
 
@@ -63,7 +63,7 @@ export default {
     getImgUrl(imageName) {
       var images = require.context("../assets/cars/", false, /\.jpg$/);
       return images("./" + imageName + ".jpg");
-    }
+    },
   },
   created() {
     this.isLike = this.isLiked;
@@ -76,7 +76,7 @@ export default {
     isLiked() {
       if (this.loggedInUser) {
         return this.loggedInUser.favCars.some(
-          favCar => favCar._id === this.car._id
+          (favCar) => favCar._id === this.car._id
         );
       } else {
         return false;
@@ -91,8 +91,8 @@ export default {
         return acc;
       }, 0);
       return (sum / this.car.reviews.length).toFixed(1);
-    }
-  }
+    },
+  },
 };
 </script> 
 

@@ -1,8 +1,13 @@
 <template>
-  <section class="profile">
+  <section class="profile flex">
     <div class="profile-nav">
       <div class="flex align-center user-info">
-        <img v-if="!loggedInUser || !loggedInUser.imgUrl" src="../assets/default-user.jpg" width="85" height="85" />
+        <img
+          v-if="!loggedInUser || !loggedInUser.imgUrl"
+          src="../assets/default-user.jpg"
+          width="85"
+          height="85"
+        />
         <img v-else :src="loggedInUser.imgUrl" width="85" height="85" />
         <div>
           <h1 class="capi">{{loggedInUser.fullName}}</h1>
@@ -14,8 +19,8 @@
           </div>
         </div>
       </div>
-      <div class="flex wrap">
-        <div class="column profile-router"  @click="addCar">
+      <div class="flex wrap inner-nav">
+        <div class="column profile-router" @click="addCar">
           <div>
             <i class="el-icon-circle-plus-outline"></i>
             List your car
@@ -46,7 +51,8 @@
         <div class="column profile-router" @click="getRequestedOrders">
           <div>
             <i class="el-icon-collection"></i>
-            Pending requests <span>({{orders.length}})</span>
+            Pending requests
+            <span>({{orders.length}})</span>
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
@@ -72,10 +78,6 @@ export default {
     return {
       tab: "",
       info: {},
-      favCars:false,
-      requestsOrders:false,
-      userOrders:false,
-      listCar:false
     };
   },
   computed: {
@@ -83,16 +85,24 @@ export default {
       return this.$store.getters.loggedInUser;
     },
     orders() {
-      return this.$store.getters.orders.filter(order => order.owner.fullName === this.loggedInUser.fullName).filter(order => order.status === 'pending');
+      return this.$store.getters.orders
+        .filter((order) => order.owner.fullName === this.loggedInUser.fullName)
+        .filter((order) => order.status === "pending");
     },
     ownedCars() {
       return this.$store.getters.cars.filter(
-        car => this.loggedInUser._id === car.owner._id
+        (car) => this.loggedInUser._id === car.owner._id
       );
     },
     requests() {
-      return this.$store.getters.orders.filter(order => order.status === 'accept' && order.owner.fullName === this.loggedInUser.fullName).reduce((acc, order) => acc + order.price, 0);
-    }
+      return this.$store.getters.orders
+        .filter(
+          (order) =>
+            order.status === "accept" &&
+            order.owner.fullName === this.loggedInUser.fullName
+        )
+        .reduce((acc, order) => acc + order.price, 0);
+    },
   },
   methods: {
     getFavCars() {
@@ -106,7 +116,7 @@ export default {
     async getOwnedCars() {
       const cars = await this.$store.getters.cars;
       this.ownedCars = cars.filter(
-        car => this.loggedInUser._id === car.owner._id
+        (car) => this.loggedInUser._id === car.owner._id
       );
       this.tab = "ownedCars";
       this.info.ownedCars = this.ownedCars;
@@ -114,18 +124,17 @@ export default {
     async getUserOrders() {
       const orders = await this.$store.getters.orders;
       this.info.orders = orders.filter(
-        order => order.buyer.fullName === this.loggedInUser.fullName
+        (order) => order.buyer.fullName === this.loggedInUser.fullName
       );
       this.tab = "userOrders";
     },
     async getRequestedOrders() {
       const orders = await this.$store.getters.orders;
       this.info.requestedOrders = orders.filter(
-        order => order.owner.fullName === this.loggedInUser.fullName
+        (order) => order.owner.fullName === this.loggedInUser.fullName
       );
       this.tab = "requestedOrders";
     },
-   
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
@@ -146,9 +155,9 @@ export default {
     ownedCars,
     userOrders,
     requestedOrders,
-    addCar
+    addCar,
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style>

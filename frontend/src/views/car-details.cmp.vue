@@ -20,7 +20,6 @@
         <div class="car-info flex">
           <div class="details flex">
             <div>
-              
               <span
                 class="capi bold model"
               >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
@@ -53,25 +52,26 @@
                 </span>
               </div>
                 <div class="flex column location-day">
-              <div class="location">
-                <img src="@/assets/img/pin.png" alt />
-                <span class="capi">location: {{car.city}}</span>
+                  <div class="location">
+                    <img src="@/assets/img/pin.png" alt />
+                    <span class="capi">location: {{car.city}}</span>
+                  </div>
+                  <div class="dolar flex">
+                    <img src="@/assets/img/dolar.png" alt />
+                    <span>
+                      Price:
+                      <span class="pricer">$ {{car.price}}</span> / Day
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div class="dolar flex">
-                <img src="@/assets/img/dolar.png" alt />
-                <span>Price: <span class="pricer">$ {{car.price}}</span> / Day</span>
-              </div>
-              
-            </div>
-            </div>
               <p>{{car.desc}}</p>
             </div>
             <span class="free-cancellation">
-                <img src="@/assets/img/like.png" /> Free cancellation
-              </span>
+              <img src="@/assets/img/like.png" /> Free cancellation
+            </span>
           </div>
           <div class="payment-details flex">
-          
             <div class="date-pickers flex column">
               <div class="flex dates-div column">
               <div>
@@ -92,12 +92,14 @@
                 ></date-picker>
               </div>
               </div>
-                <p >Total Price:<span class="pricer" v-if="totalPrice"> ${{totalPrice}}</span></p>
+              <p>
+                Total Price:
+                <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
+              </p>
               <div class="btn-book flex column">
-              <button @click="toggleBookModal">Book</button>
+                <button @click="toggleBookModal">Book</button>
+              </div>
             </div>
-            </div>
-            
           </div>
         </div>
         <h4>Add a review</h4>
@@ -113,16 +115,15 @@
             <button class="btn-review" @click="toggleReview" hidden>close</button>
           <button @click="toggleChat" class="chat-with">Chat with owner</button>
           </div>
-        <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
+          <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
         </form>
-        <div class="flex action-btns">
-        </div>
+        <div class="flex action-btns"></div>
         <h4>Reviews</h4>
 
         <div v-if="car.reviews" class="reviews">
           <div v-for="review in showReviews" :key="review.id" class="review flex">
             <!-- <img class="review-img" src="@/assets/profile.jpg" /> -->
-            <img 
+            <img
               v-if="!review.byUser.imgUrl || !(review.byUser.imgUrl.length > 7)"
               src="@/assets/profile.jpg"
               width="70"
@@ -181,7 +182,7 @@ export default {
       // disabledDates: null,
       car: null,
       disabledDates: {
-        range: []
+        range: [],
       },
       bookModal: false,
       email: "",
@@ -192,17 +193,17 @@ export default {
         pickupDate: "",
         returnDate: "",
         carId: this.$route.params.id,
-        status: "pending"
+        status: "pending",
       },
       review: {
         rating: null,
-        txt: ""
+        txt: "",
       },
       colors: ["2D383A", "#2D383A", "#2D383A"],
       addingReview: false,
       count: 5,
       showMore: false,
-      innerWidth: ""
+      innerWidth: "",
     };
   },
 
@@ -211,7 +212,7 @@ export default {
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
-    socket.on("gotChat", chat => (this.chat = chat));
+    socket.on("gotChat", (chat) => (this.chat = chat));
     this.disabledDates = this.car.disabledDates;
     // this.disabledDates.ranges.push({from:Date.now()})
     window.addEventListener("load", this.updateWidth());
@@ -226,14 +227,14 @@ export default {
         user1: {
           fullName: this.loggedInUser.fullName,
           _id: this.loggedInUser._id,
-          imgUrl: this.loggedInUser.imgUrl
+          imgUrl: this.loggedInUser.imgUrl,
         },
         user2: {
           fullName: this.car.owner.fullName,
           _id: this.car.owner._id,
-          imgUrl: this.car.owner.imgUrl
+          imgUrl: this.car.owner.imgUrl,
         },
-        msgs: []
+        msgs: [],
       };
       socket.emit("get chat", chat);
     },
@@ -241,7 +242,6 @@ export default {
       this.chatting = !this.chatting;
     },
     switchImg(idx) {
-
       var savedImg = this.car.imgsUrl[idx];
       this.car.imgsUrl[idx] = this.car.imgsUrl[0];
       this.car.imgsUrl[0] = savedImg;
@@ -258,11 +258,15 @@ export default {
           buyer: {
             email: this.loggedInUser.email,
             fullName: this.loggedInUser.fullName,
-            imgUrl: this.loggedInUser.imgUrl
+            imgUrl: this.loggedInUser.imgUrl,
           },
           pickupDate: this.order.pickupDate,
           returnDate: this.order.returnDate,
-          status: this.order.status
+          status: this.order.status,
+          car: {
+            _id:this.car._id,
+            imgUrl: this.car.imgsUrl[0],
+          },
         };
         eventBus.$emit("sendSwal", "Booked !", "success");
         this.saveOrder(this.order);
@@ -280,7 +284,7 @@ export default {
       this.review.byUser = {
         fullName: this.loggedInUser.fullName,
         imgUrl: this.loggedInUser.imgUrl,
-        email: this.loggedInUser.email
+        email: this.loggedInUser.email,
       };
       this.review.id = "r" + Math.floor(Math.random() * 999 + 1);
       this.review.createdAt = Date.now();
@@ -316,13 +320,13 @@ export default {
 
       var range = {
         from: order.pickupDate,
-        to: order.returnDate
+        to: order.returnDate,
       };
       this.car.disabledDates.ranges.push(range);
       this.$store.dispatch({ type: "saveCar", car: this.car });
       this.$store.dispatch({
         type: "saveOrder",
-        order: this.order
+        order: this.order,
       });
       eventBus.$emit("sendSwal", "Booked !", "success");
       if (!this.loggedInUser) {
@@ -331,7 +335,7 @@ export default {
     },
     updateWidth() {
       this.innerWidth = window.innerWidth;
-    }
+    },
   },
   computed: {
     loggedInUser() {
@@ -362,9 +366,9 @@ export default {
     showReviews() {
       // return this.car.reviews.slice(this.car.reviews.length - this.count);
       return this.car.reviews.slice(0, this.count);
-    }
+    },
   },
-  components: { guestModal, datePicker, carousel, chat }
+  components: { guestModal, datePicker, carousel, chat },
 };
 </script>
 
