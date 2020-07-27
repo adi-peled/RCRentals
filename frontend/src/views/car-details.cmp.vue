@@ -99,8 +99,25 @@
             
           </div>
         </div>
-
+        <h4>Add a review</h4>
+        <form class="review-add flex">
+          <div class="add-details">
+            <div class="block">
+              <el-rate v-model="  review.rating" :colors="colors"></el-rate>
+            </div>
+            <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
+          </div>
+          <div class="review-btns flex">
+            <button class="btn-review" @click.prevent="saveReview">save</button>
+            <button class="btn-review" @click="toggleReview">close</button>
+          <button @click="toggleChat" class="chat-with">Chat with owner</button>
+          </div>
+        <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
+        </form>
+        <div class="flex action-btns">
+        </div>
         <h4>Reviews</h4>
+
         <div v-if="car.reviews" class="reviews">
           <div v-for="review in showReviews" :key="review.id" class="review flex">
             <!-- <img class="review-img" src="@/assets/profile.jpg" /> -->
@@ -134,23 +151,9 @@
             @click="showMoreReviews(false)"
           >See less</button>
         </div>
-        <div class="flex action-btns">
-          <button @click="toggleChat" class="btn-review">Chat with owner</button>
-          <button class="btn-review flex" v-if="!addingReview" @click="toggleReview">add review</button>
-        </div>
+        
 
-        <form class="review-add flex" v-if="addingReview">
-          <div class="add-details">
-            <div class="block">
-              <el-rate v-model="  review.rating" :colors="colors"></el-rate>
-            </div>
-            <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
-          </div>
-          <div class="review-btns flex">
-            <button class="btn-review" @click.prevent="saveReview">save</button>
-            <button class="btn-review" @click="toggleReview">close</button>
-          </div>
-        </form>
+        
 
         <chat class="chat-details align-self" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
       </div>
@@ -209,6 +212,7 @@ export default {
     this.car = car;
     socket.on("gotChat", chat => (this.chat = chat));
     this.disabledDates = this.car.disabledDates;
+    // this.disabledDates.ranges.push({from:Date.now()})
     window.addEventListener("load", this.updateWidth());
     window.addEventListener("resize", this.updateWidth);
     this.startChat();

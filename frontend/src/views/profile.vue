@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="flex wrap">
-        <div class="column profile-router" @click="addCar">
+        <div class="column profile-router"  @click="addCar">
           <div>
             <i class="el-icon-circle-plus-outline"></i>
             List your car
@@ -36,17 +36,17 @@
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>-->
-        <div class="column profile-router" @click="getUserOrders">
-          <div>
+        <div  class="column profile-router" @click="getUserOrders">
+          <div >
             <i class="el-icon-s-order"></i>
-            My orders
+            Booked cars
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
         <div class="column profile-router" @click="getRequestedOrders">
           <div>
             <i class="el-icon-collection"></i>
-            Requests <span>({{orders.length}})</span>
+            Pending requests <span>({{orders.length}})</span>
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>
@@ -71,7 +71,11 @@ export default {
   data() {
     return {
       tab: "",
-      info: {}
+      info: {},
+      favCars:false,
+      requestsOrders:false,
+      userOrders:false,
+      listCar:false
     };
   },
   computed: {
@@ -120,7 +124,8 @@ export default {
         order => order.owner.fullName === this.loggedInUser.fullName
       );
       this.tab = "requestedOrders";
-    }
+    },
+   
   },
   created() {
     this.$store.dispatch({ type: "loadCars" });
