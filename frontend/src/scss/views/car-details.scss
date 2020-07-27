@@ -14,11 +14,12 @@
     gap: 10px;
 }
 
-textarea{
+textarea {
     width: 500px;
     resize: none;
     outline: none;
 }
+
 .user-img {
     margin: 0px 10px;
 }
@@ -64,24 +65,22 @@ textarea{
 }
 
 .car-info {
-    height: 310px;
+    height: 230px;
     .details {
         .count {
             color: gray;
         }
         flex-direction: column;
         justify-content: space-between;
-        height: 300px;
+        height: 230px;
     }
 }
 
 .payment-details {
-    // position: fixed;
-    margin-left: 5px;
-    right: 370px;
-    justify-content: flex-end;
+    width: 100%;
+    margin-left: 10px;
     height: 500px;
-    width: 40%;
+    justify-content: flex-end;
     button {
         cursor: pointer;
         font-size: 24px;
@@ -91,8 +90,8 @@ textarea{
         background-color: $clr1;
         color: #fff;
         border: 1px solid $clr1;
-        transition: .9s; 
-        &:hover{
+        transition: .9s;
+        &:hover {
             color: #f66c39;
         }
     }
@@ -119,7 +118,6 @@ textarea{
 }
 
 .rest-page {
-    width: 75.625rem;
     flex-direction: column;
     align-self: center;
     .chat-details {
@@ -150,9 +148,18 @@ textarea{
 
 .dates-div {
     justify-content: space-between;
-    h3{
+    h3 {
         font-size: 1.5rem;
         margin-top: unset;
+    }
+    input {
+        width: 100%;
+    }
+}
+
+.add-details {
+    textarea {
+        width: 390px
     }
 }
 
@@ -236,9 +243,11 @@ textarea{
         background-color: rgb(29, 187, 29)
     }
 }
-.review-head{
+
+.review-head {
     width: 350px;
 }
+
 .btn-review {
     margin-top: 5px;
     justify-content: center;
@@ -283,6 +292,7 @@ textarea{
 
 .date-pickers {
     width: 60%;
+    display: flex;
     p {
         font-size: 25px;
     }
@@ -323,7 +333,9 @@ textarea{
         font-size: 18px;
     }
     .pricer {
-        color: rgba(130, 206, 130, 0.603);
+        // color: rgba(130, 206, 130, 0.603);
+        font-weight: bolder;
+        color: black;
     }
     img {
         width: 22px;
@@ -358,19 +370,15 @@ textarea{
 }
 
 @media (max-width:1400px) {
-    .review-container{
+    .review-container {
         width: 800px;
         margin: 0 auto;
-    } 
+    }
     .imgs-container {
         grid-template-columns: none;
     }
     .payment-details {
-        display: grid;
-        width: 400px;
-        margin-left: 0;
-        grid-template-columns: 340px;
-        p{
+        p {
             width: 300px;
         }
     }
@@ -381,16 +389,15 @@ textarea{
         width: 400px;
     }
     .car-info {
-        margin: 0 auto;
-        height: 320px;
+        height: 230px;
         .details {
             width: 400px;
-            height: 300px;
+            height: 230px;
         }
-        .free-cancellation{
+        .free-cancellation {
             margin: unset;
         }
-    }   
+    }
     .reviews {
         display: grid;
         grid-template-columns: 400px 400px;
@@ -399,13 +406,13 @@ textarea{
     .action-btns {
         align-self: center;
     }
-    .review-btns{
+    .review-btns {
         width: 600px;
     }
 }
 
 @media(max-width:850px) {
-    .location-day{
+    .location-day {
         height: 70px;
     }
     .rest-page {
@@ -416,15 +423,15 @@ textarea{
             width: 250px;
         }
     }
-    .feature-container{
+    .feature-container {
         flex-direction: column;
     }
     .reviews {
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
         width: 40%;
     }
-    .payment-details{
+    .payment-details {
         height: 250px;
     }
     .review-add {
@@ -445,20 +452,18 @@ textarea{
     .car-info {
         flex-direction: column;
     }
-    .dates-div{
+    .dates-div {
         flex-direction: column;
     }
-    
     .features {
         height: 130px;
         grid-template-columns: 150px 150px
     }
-    .rest-page{
-        .chat-details{
+    .rest-page {
+        .chat-details {
             width: 40%;
         }
-    }    
-
+    }
 }
 
 @media(max-width:580px) {
@@ -466,8 +471,7 @@ textarea{
         display: flex;
         flex-direction: column;
     }
-   
-    .payment-details{
+    .payment-details {
         justify-content: unset;
     }
     .action-btns {
@@ -489,26 +493,25 @@ textarea{
     .reviews {
         width: 320px;
     }
-    textarea{
+    textarea {
         width: 350px;
     }
-    .rest-page{
-        .chat-details{
+    .rest-page {
+        .chat-details {
             width: 25%;
-            input{
+            input {
                 width: 75%;
             }
-            button{
+            button {
                 width: 20%;
             }
         }
-
-    } 
-    textarea{
+    }
+    textarea {
         width: 300px;
     }
-    .action-btns{
-        .btn-review{
+    .action-btns {
+        .btn-review {
             width: 110px;
         }
     }

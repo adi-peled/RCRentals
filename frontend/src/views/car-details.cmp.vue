@@ -73,7 +73,7 @@
           <div class="payment-details flex">
             <div class="date-pickers flex column">
               <div class="flex dates-div column">
-                <div class="flex column align-center">
+                <div class="flex column">
                   <h3>Book {{car.vendor.company}} today</h3>
                   <label>Pick Up Date</label>
                   <date-picker
