@@ -1,9 +1,23 @@
+.accept {
+    color: green !important;
+}
 
+.decline {
+    color: red !important;
 
+}
 
+.request-details {
+    margin-left: 10px;
+}
 
+@media(max-width:560px) {
 
+    .profile-cars {
+        .order-list {
+            flex-direction: column
+        }
 
-.accept{
-    color: green;
+    }
+
 }

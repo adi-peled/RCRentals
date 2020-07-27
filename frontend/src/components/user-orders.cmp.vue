@@ -3,13 +3,19 @@
     <h1>Your orders</h1>
     <div class="order-container grid">
       <div v-for="order in orders" :order="order" :key="order._id" class="order-list">
-        <router-link :to="'/car/details/'+order.carId" class="column">
-          <h2 class="capi">owner: {{order.owner.fullName}}</h2>
-          <h2>Pickup date: {{pickupDate(order.pickupDate)}}</h2>
-          <h2>Total price: ${{order.price}}</h2>
-          <h2>status: {{order.status}}</h2>
+        <router-link :to="'/car/details/'+order.car._id" class="flex">
+          <div class="cancell">
+            <img :src="order.car.imgUrl.url" />
+          </div>
+          <div class="details">
+            <h2 class="capi">owner: {{order.owner.fullName}}</h2>
+            <h2>Pickup date: {{changeDateForm(order.pickupDate)}}</h2>
+            <h2>Return date:{{changeDateForm(order.returnDate)}}</h2>
+            <h2>Total price: ${{order.price}}</h2>
+            <h2 :class="{accept:isAccept(order),decline:isDecline(order)}">status: {{order.status}}</h2>
+            <button @click.prevent="removeOrder" v-if="order.status==='pending'">cancell order</button>
+          </div>
         </router-link>
-        
       </div>
     </div>
   </section>
@@ -36,17 +42,20 @@ export default {
   },
   computed: {},
   methods: {
-    getImgUrl(imageName) {
-      var images = require.context("../assets/cars/", false, /\.jpg$/);
-      return images("./" + imageName + ".jpg");
-    },
-    pickupDate(date) {
+    changeDateForm(date) {
       console.log(date);
       var idx = date.indexOf("T");
       var miniDate = date.substring(0, idx);
-      console.log(miniDate);
       return miniDate;
     },
+    isAccept(order) {
+      return order.status === "accept";
+    },
+    isDecline(order) {
+      return order.status === "decline";
+    },
+
+    removeOrder() {},
   },
 };
 </script>
