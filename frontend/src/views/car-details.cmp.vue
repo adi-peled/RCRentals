@@ -66,9 +66,7 @@
               </div>
               <p>{{car.desc}}</p>
             </div>
-            <span class="free-cancellation">
-              <img src="@/assets/img/like.png" /> Free cancellation
-            </span>
+            
           </div>
           <div class="payment-details flex">
             <!-- <div class="date-pickers flex column"> -->
@@ -95,12 +93,18 @@
 
               </div>
               <p>Distance included
-450 km
-$2.00/km fee for additional miles driven</p>
+              450 km
+              $2.00/km fee for additional miles driven</p>
               <p>
+                <span class="free-cancellation">
+              <img src="@/assets/img/like.png" /> Free cancellation
+            </span>
+                <p>Insurance included</p>
+            <div>
                 Total Price:
                 <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
               </p>
+            </div>
               <div class="btn-book flex column">
                 <button @click="toggleBookModal">Book</button>
               </div>

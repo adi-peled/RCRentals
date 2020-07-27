@@ -152,9 +152,12 @@ textarea {
         font-size: 1.5rem;
         margin-top: unset;
     }
-    div {}
+    div {
+        width: 100%;
+    }
     input {
-        width: 40%;
+        margin-top: 10px;
+        width: 90%;
     }
 }
 
@@ -364,6 +367,13 @@ textarea {
     padding: 0;
     background-color: #5a6f73;
     color: white;
+}
+
+.review-container {
+    h4 {
+        margin-top: 50px;
+        margin-bottom: 0px;
+    }
 }
 
 .model {
