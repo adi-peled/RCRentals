@@ -66,52 +66,49 @@
               </div>
               <p>{{car.desc}}</p>
             </div>
-            
           </div>
           <div class="payment-details flex">
             <!-- <div class="date-pickers flex column"> -->
-                  <h2>Book {{car.vendor.company}} today</h2>
-              <div class="flex dates-div column">
-                <!-- <div class="flex column"> -->
-                  <div>
-                  <label>Pick Up Date</label>
-                  <date-picker
-                    v-model="order.pickupDate"
-                    :disabled-dates="disabledDates"
-                    :full-month-name="false"
-                  ></date-picker>
-                  </div>
-                  <div>
-                    <label>Return Date</label>
-                    <date-picker
-                      v-model="order.returnDate"
-                      :disabled-dates="disabledDates"
-                      :full-month-name="false"
-                    ></date-picker>
-                  </div>
-                <!-- </div> -->
-
+            <h2>Book {{car.vendor.company}} today</h2>
+            <div class="flex dates-div column">
+              <!-- <div class="flex column"> -->
+              <div>
+                <label>Pick Up Date</label>
+                <date-picker
+                  v-model="order.pickupDate"
+                  :disabled-dates="disabledDates"
+                  :full-month-name="false"
+                ></date-picker>
               </div>
-              <p>
+              <div>
+                <label>Return Date</label>
+                <date-picker
+                  v-model="order.returnDate"
+                  :disabled-dates="disabledDates"
+                  :full-month-name="false"
+                ></date-picker>
+              </div>
+              <!-- </div> -->
+            </div>
+            <p>
               Distance included
               450 km
               $2.00/km fee for additional miles driven
-              </p>
-                <span class="free-cancellation">
+            </p>
+            <span class="free-cancellation">
               <img src="@/assets/img/like.png" /> Free cancellation
             </span>
-                <p>Insurance included</p>
+            <p>Insurance included</p>
             <div class="div-price">
-                Total Price:
-                <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
+              Total Price:
+              <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
             </div>
-              <div class="btn-book flex column">
-                <button @click="toggleBookModal">Book</button>
-              </div>
+            <div class="btn-book flex column">
+              <button @click="toggleBookModal">Book</button>
+            </div>
             <!-- </div> -->
           </div>
         </div>
-
         <div class="review-container flex column">
           <h4>Add a review</h4>
           <form class="review-add flex">
@@ -130,7 +127,6 @@
           </form>
         </div>
         <div class="flex action-btns"></div>
-        
         <h4>Reviews</h4>
         <div v-if="car.reviews" class="reviews">
           <div v-for="review in showReviews" :key="review.id" class="review flex">
@@ -148,13 +144,11 @@
               </div>
               <div class="flex review-name-date">
                 <span class="reviwer-name capi">{{review.byUser.fullName}}</span>
-
                 <span class="reviwe-time">{{new Date(review.createdAt).toLocaleDateString()}}</span>
               </div>
               <p>{{review.txt}}</p>
             </div>
           </div>
-          
           <button
             class="btn-feedback"
             @click="showMoreReviews(true)"
@@ -166,15 +160,12 @@
             @click="showMoreReviews(false)"
           >See less</button>
         </div>
-
         <!-- <chat class="chat-details align-self" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat> -->
       </div>
     </div>
-
     <guest-modal :totalPrice="totalPrice" @close="saveOrder" v-if="bookModal"></guest-modal>
   </section>
 </template>
-
 <script>
 import chat from "../components/chat-io.cmp.vue";
 import socket from "../main-services/socketService.js";
@@ -216,7 +207,6 @@ export default {
       innerWidth: "",
     };
   },
-
   async created() {
     socket.setup();
     const carId = this.$route.params.id;
@@ -229,7 +219,6 @@ export default {
     window.addEventListener("resize", this.updateWidth);
     this.startChat();
   },
-
   methods: {
     async startChat() {
       var chat = {
@@ -290,6 +279,8 @@ export default {
         fullName: this.loggedInUser.fullName,
         imgUrl: this.loggedInUser.imgUrl,
         email: this.loggedInUser.email,
+
+        10: 35,
       };
       this.review.id = "r" + Math.floor(Math.random() * 999 + 1);
       this.review.createdAt = Date.now();
@@ -306,13 +297,11 @@ export default {
       }
       this.showMore = boolean;
     },
-
     saveOrder(order) {
       if (!order) {
         this.toggleBookModal();
         return;
       }
-
       if (!order.buyer.fullName && !order.buyer.email) {
         return;
       }
@@ -322,7 +311,6 @@ export default {
         this.order.buyer.email = order.buyer.email;
         this.order.buyer.fullName = order.buyer.fullName;
       }
-
       var range = {
         from: order.pickupDate,
         to: order.returnDate,
@@ -376,6 +364,5 @@ export default {
   components: { guestModal, datePicker, carousel, chat },
 };
 </script>
-
 <style>
 </style>
