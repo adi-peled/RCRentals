@@ -57,7 +57,7 @@
                     <span class="capi">location: {{car.city}}</span>
                   </div>
                   <div class="dolar flex">
-                    <img src="@/assets/img/dolar.png" alt />
+                    <img src="@/assets/img/dolar.png" al  t />
                     <span>
                       Price:
                       <span class="pricer">$ {{car.price}}</span> / Day
@@ -74,15 +74,14 @@
           <div class="payment-details flex">
             <div class="date-pickers flex column">
               <div class="flex dates-div column">
-              <div>
-                <h3>book {{car.vendor.company}} today</h3>
+              <div class="flex column align-center">
+                <h3>Book {{car.vendor.company}} today</h3>
                 <label>Pick Up Date</label>
                 <date-picker
                   v-model="order.pickupDate"
                   :disabled-dates="disabledDates"
                   :full-month-name="false"
                 ></date-picker>
-              </div>
               <div>
                 <label>Return Date</label>
                 <date-picker
@@ -90,6 +89,7 @@
                   :disabled-dates="disabledDates"
                   :full-month-name="false"
                 ></date-picker>
+              </div>
               </div>
               </div>
               <p>
@@ -102,6 +102,9 @@
             </div>
           </div>
         </div>
+        
+        
+        <div class="review-container flex column">
         <h4>Add a review</h4>
         <form class="review-add flex">
           <div class="add-details">
@@ -110,13 +113,14 @@
             </div>
             <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
           </div>
-          <div class="review-btns flex space-around">
+          <div class="review-btns flex">
             <button class="btn-review" @click.prevent="saveReview">save</button>
             <button class="btn-review" @click="toggleReview" hidden>close</button>
           <button @click="toggleChat" class="chat-with">Chat with owner</button>
           </div>
           <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
         </form>
+        </div>
         <div class="flex action-btns"></div>
         <h4>Reviews</h4>
 
