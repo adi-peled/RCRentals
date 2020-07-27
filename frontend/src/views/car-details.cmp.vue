@@ -211,6 +211,7 @@ export default {
     this.car = car;
     socket.on("gotChat", chat => (this.chat = chat));
     this.disabledDates = this.car.disabledDates;
+    // this.disabledDates.ranges.push({from:Date.now()})
     window.addEventListener("load", this.updateWidth());
     window.addEventListener("resize", this.updateWidth);
     this.startChat();
