@@ -33,6 +33,11 @@
         }
 
 
+        button {
+            margin-top: 2px;
+            border-radius: 15px;
+        }
+
         button.accept {
             padding: 5px 15px;
             background-color: white;
@@ -41,9 +46,9 @@
         }
 
         button.accept:hover {
+            color: ivory !important;
             background-color: green;
             outline: none;
-            color: ivory;
         }
 
         button:hover {
@@ -60,7 +65,7 @@
         button.decline:hover {
             background-color: red;
             outline: none;
-            color: ivory;
+            color: ivory !important;
         }
     }
 
@@ -184,6 +189,8 @@
                 cursor: pointer;
                 color: #f66c39;
             }
+
+
         }
 
         .profile-router i {
@@ -285,4 +292,11 @@
 
 .on-focus {
     color: #f66c39;
+}
+
+
+@media (max-width:400px) {
+    .profile-router {
+        font-size: 13px;
+    }
 }

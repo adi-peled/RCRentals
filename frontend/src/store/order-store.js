@@ -22,10 +22,6 @@ export const orderStore = {
             const idx = state.orders.findIndex(orders => orders._id === savedOrder._id)
             state.orders.splice(idx, 1, savedOrder)
         },
-        // removeOrder(state, { id }) {
-        //     const idx = state.orders.findIndex(order => order._id === id)
-        //     state.orders.splice(idx, 1);
-        //   },
     },
     actions: {
         async getOrders({ commit }) {
@@ -45,13 +41,5 @@ export const orderStore = {
                 console.log(err);
             }
         },
-        // async removeOrder({ commit }, { orderId }) {
-        //     try{
-        //         await orderService.remove(orderId);
-        //         commit({ type: 'removeOrder', orderId })
-        //     }catch(err){
-        //     }
-        // },
-
     }
 }
