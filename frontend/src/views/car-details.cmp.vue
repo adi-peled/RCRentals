@@ -66,48 +66,46 @@
               </div>
               <p>{{car.desc}}</p>
             </div>
-            
           </div>
           <div class="payment-details flex">
             <!-- <div class="date-pickers flex column"> -->
-                  <h2>Book {{car.vendor.company}} today</h2>
-              <div class="flex dates-div column">
-                <!-- <div class="flex column"> -->
-                  <div>
-                  <label>Pick Up Date</label>
-                  <date-picker
-                    v-model="order.pickupDate"
-                    :disabled-dates="disabledDates"
-                    :full-month-name="false"
-                  ></date-picker>
-                  </div>
-                  <div>
-                    <label>Return Date</label>
-                    <date-picker
-                      v-model="order.returnDate"
-                      :disabled-dates="disabledDates"
-                      :full-month-name="false"
-                    ></date-picker>
-                  </div>
-                <!-- </div> -->
-
+            <h2>Book {{car.vendor.company}} today</h2>
+            <div class="flex dates-div column">
+              <!-- <div class="flex column"> -->
+              <div>
+                <label>Pick Up Date</label>
+                <date-picker
+                  v-model="order.pickupDate"
+                  :disabled-dates="disabledDates"
+                  :full-month-name="false"
+                ></date-picker>
               </div>
-              <p>Distance included
+              <div>
+                <label>Return Date</label>
+                <date-picker
+                  v-model="order.returnDate"
+                  :disabled-dates="disabledDates"
+                  :full-month-name="false"
+                ></date-picker>
+              </div>
+              <!-- </div> -->
+            </div>
+            <p>
+              Distance included
               450 km
-              $2.00/km fee for additional miles driven</p>
-              <p>
-                <span class="free-cancellation">
+              $2.00/km fee for additional miles driven
+            </p>
+            <span class="free-cancellation">
               <img src="@/assets/img/like.png" /> Free cancellation
             </span>
-                <p>Insurance included</p>
+            <p>Insurance included</p>
             <div>
-                Total Price:
-                <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
-              </p>
+              Total Price:
+              <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
             </div>
-              <div class="btn-book flex column">
-                <button @click="toggleBookModal">Book</button>
-              </div>
+            <div class="btn-book flex column">
+              <button @click="toggleBookModal">Book</button>
+            </div>
             <!-- </div> -->
           </div>
         </div>
