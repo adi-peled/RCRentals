@@ -113,7 +113,7 @@
           <div class="review-btns flex space-around">
             <button class="btn-review" @click.prevent="saveReview">save</button>
             <button class="btn-review" @click="toggleReview" hidden>close</button>
-          <button @click="toggleChat" class="chat-with">Chat with owner</button>
+          <button @click="toggleChat" class="chat-with">Contact owner</button>
           </div>
           <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
         </form>
