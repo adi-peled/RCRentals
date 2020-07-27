@@ -77,10 +77,8 @@ textarea {
 }
 
 .payment-details {
-    width: 100%;
-    margin-left: 10px;
-    height: 500px;
-    justify-content: flex-end;
+    flex-direction: column;
+    width: 40%;
     button {
         cursor: pointer;
         font-size: 24px;
@@ -118,6 +116,7 @@ textarea {
 }
 
 .rest-page {
+    width: 75%;
     flex-direction: column;
     align-self: center;
     .chat-details {
@@ -148,12 +147,14 @@ textarea {
 
 .dates-div {
     justify-content: space-between;
+    flex-direction: row;
     h3 {
         font-size: 1.5rem;
         margin-top: unset;
     }
+    div {}
     input {
-        width: 100%;
+        width: 40%;
     }
 }
 
@@ -378,6 +379,7 @@ textarea {
         grid-template-columns: none;
     }
     .payment-details {
+        flex-direction: column;
         p {
             width: 300px;
         }

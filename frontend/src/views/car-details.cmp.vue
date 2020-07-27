@@ -71,16 +71,18 @@
             </span>
           </div>
           <div class="payment-details flex">
-            <div class="date-pickers flex column">
+            <!-- <div class="date-pickers flex column"> -->
+                  <h2>Book {{car.vendor.company}} today</h2>
               <div class="flex dates-div column">
-                <div class="flex column">
-                  <h3>Book {{car.vendor.company}} today</h3>
+                <!-- <div class="flex column"> -->
+                  <div>
                   <label>Pick Up Date</label>
                   <date-picker
                     v-model="order.pickupDate"
                     :disabled-dates="disabledDates"
                     :full-month-name="false"
                   ></date-picker>
+                  </div>
                   <div>
                     <label>Return Date</label>
                     <date-picker
@@ -89,8 +91,12 @@
                       :full-month-name="false"
                     ></date-picker>
                   </div>
-                </div>
+                <!-- </div> -->
+
               </div>
+              <p>Distance included
+450 km
+$2.00/km fee for additional miles driven</p>
               <p>
                 Total Price:
                 <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
@@ -98,7 +104,7 @@
               <div class="btn-book flex column">
                 <button @click="toggleBookModal">Book</button>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
 
@@ -137,7 +143,7 @@
                 <span v-for="(star,idx) in  (review.rating)" :key="idx" class="star">★</span>
               </div>
               <div class="flex review-name-date">
-                <span class="reviwer-name">{{review.byUser.fullName}}</span>
+                <span class="reviwer-name capi">{{review.byUser.fullName}}</span>
 
                 <span class="reviwe-time">{{new Date(review.createdAt).toLocaleDateString()}}</span>
               </div>
