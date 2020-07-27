@@ -26,7 +26,7 @@ textarea {
 
 .details {
     p {
-        padding-right: 15px;
+        margin-bottom: 0;
     }
 }
 
@@ -64,15 +64,24 @@ textarea {
     }
 }
 
+.details-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .car-info {
-    height: 230px;
     .details {
         .count {
             color: gray;
         }
         flex-direction: column;
         justify-content: space-between;
-        height: 230px;
+        // height: 230px;
+    }
+    p {
+        width: 80%;
     }
 }
 
@@ -228,8 +237,17 @@ textarea {
     }
 }
 
+.div-price {
+    margin-bottom: 20px;
+    font-size: larger;
+    font-weight: bolder;
+}
+
 .review-details {
     flex-direction: column;
+    p {
+        width: 500px;
+    }
 }
 
 .review-btns {
@@ -370,10 +388,14 @@ textarea {
 }
 
 .review-container {
+    margin-top: 30px;
     h4 {
-        margin-top: 50px;
         margin-bottom: 0px;
     }
+}
+
+.vendor-header {
+    margin: 20px 0;
 }
 
 .model {

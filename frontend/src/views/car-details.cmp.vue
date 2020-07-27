@@ -18,10 +18,10 @@
       <div class="rest-page flex">
         <div class="car-info flex">
           <div class="details flex">
-            <div>
-              <span
-                class="capi bold model"
-              >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
+            <div class="details-div">
+              <h2
+                class="capi bold model vendor-header"
+              >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</h2>
               <h3>
                 <span v-if="car.reviews">{{calcRating}}</span>
                 <span v-else>no rating yet</span>
@@ -99,7 +99,7 @@
               <img src="@/assets/img/like.png" /> Free cancellation
             </span>
             <p>Insurance included</p>
-            <div>
+            <div class="div-price">
               Total Price:
               <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
             </div>
@@ -109,7 +109,6 @@
             <!-- </div> -->
           </div>
         </div>
-
         <div class="review-container flex column">
           <h4>Add a review</h4>
           <form class="review-add flex">
@@ -120,16 +119,15 @@
               <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
             </div>
             <div class="review-btns flex">
-              <button class="btn-review" @click.prevent="saveReview">save</button>
+              <button class="btn-review" @click.prevent="saveReview">Save</button>
               <button class="btn-review" @click="toggleReview" hidden>close</button>
-              <button @click="toggleChat" class="chat-with">Chat with owner</button>
+              <button @click="toggleChat" class="chat-with">Contact owner</button>
             </div>
             <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
           </form>
         </div>
         <div class="flex action-btns"></div>
         <h4>Reviews</h4>
-
         <div v-if="car.reviews" class="reviews">
           <div v-for="review in showReviews" :key="review.id" class="review flex">
             <!-- <img class="review-img" src="@/assets/profile.jpg" /> -->
@@ -146,7 +144,6 @@
               </div>
               <div class="flex review-name-date">
                 <span class="reviwer-name capi">{{review.byUser.fullName}}</span>
-
                 <span class="reviwe-time">{{new Date(review.createdAt).toLocaleDateString()}}</span>
               </div>
               <p>{{review.txt}}</p>
@@ -163,15 +160,12 @@
             @click="showMoreReviews(false)"
           >See less</button>
         </div>
-
         <!-- <chat class="chat-details align-self" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat> -->
       </div>
     </div>
-
     <guest-modal :totalPrice="totalPrice" @close="saveOrder" v-if="bookModal"></guest-modal>
   </section>
 </template>
-
 <script>
 import chat from "../components/chat-io.cmp.vue";
 import socket from "../main-services/socketService.js";
@@ -213,20 +207,18 @@ export default {
       innerWidth: "",
     };
   },
-
   async created() {
     socket.setup();
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
-    socket.on("gotChat", (chat) => (this.chat = chat));
+    socket.on("gotChat", (chat) => (this.chat = chat[0]));
     this.disabledDates = this.car.disabledDates;
     // this.disabledDates.ranges.push({from:Date.now()})
     window.addEventListener("load", this.updateWidth());
     window.addEventListener("resize", this.updateWidth);
     this.startChat();
   },
-
   methods: {
     async startChat() {
       var chat = {
@@ -287,6 +279,8 @@ export default {
         fullName: this.loggedInUser.fullName,
         imgUrl: this.loggedInUser.imgUrl,
         email: this.loggedInUser.email,
+
+        10: 35,
       };
       this.review.id = "r" + Math.floor(Math.random() * 999 + 1);
       this.review.createdAt = Date.now();
@@ -303,13 +297,11 @@ export default {
       }
       this.showMore = boolean;
     },
-
     saveOrder(order) {
       if (!order) {
         this.toggleBookModal();
         return;
       }
-
       if (!order.buyer.fullName && !order.buyer.email) {
         return;
       }
@@ -319,7 +311,6 @@ export default {
         this.order.buyer.email = order.buyer.email;
         this.order.buyer.fullName = order.buyer.fullName;
       }
-
       var range = {
         from: order.pickupDate,
         to: order.returnDate,
@@ -373,6 +364,5 @@ export default {
   components: { guestModal, datePicker, carousel, chat },
 };
 </script>
-
 <style>
 </style>
