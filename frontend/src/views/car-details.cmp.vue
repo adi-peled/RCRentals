@@ -32,25 +32,25 @@
                   {{car.owner.fullName}}
                 </span>
               </h3>
-              <div class="flex">
-                <div class="features grid">
-                  <span>
-                    <img src="@/assets/img/seat.png" />
-                    {{car.features.seatsCount}} seats
-                  </span>
-                  <span>
-                    <img src="@/assets/img/door.png" />
-                    {{car.features.doorsCount}} doors
-                  </span>
-                  <span>
-                    <img src="@/assets/img/gas.png" />
-                    Gas
-                  </span>
-                  <span>
-                    <img src="@/assets/img/kpl.png" />
-                    {{car.features.kpl}} kpl
-                  </span>
-                </div>
+              <div class="flex feature-container">
+              <div class="features grid">
+                <span>
+                  <img src="@/assets/img/seat.png" />
+                  {{car.features.seatsCount}} seats
+                </span>
+                <span>
+                  <img src="@/assets/img/door.png" />
+                  {{car.features.doorsCount}} doors
+                </span>
+                <span>
+                  <img src="@/assets/img/gas.png" />
+                  Gas
+                </span>
+                <span>
+                  <img src="@/assets/img/kpl.png" />
+                  {{car.features.kpl}} kpl
+                </span>
+              </div>
                 <div class="flex column location-day">
                   <div class="location">
                     <img src="@/assets/img/pin.png" alt />
@@ -73,23 +73,23 @@
           </div>
           <div class="payment-details flex">
             <div class="date-pickers flex column">
-              <div class="flex dates-div">
-                <div>
-                  <label>Pick Up Date</label>
-                  <date-picker
-                    v-model="order.pickupDate"
-                    :disabled-dates="disabledDates"
-                    :full-month-name="false"
-                  ></date-picker>
-                </div>
-                <div>
-                  <label>Return Date</label>
-                  <date-picker
-                    v-model="order.returnDate"
-                    :disabled-dates="disabledDates"
-                    :full-month-name="false"
-                  ></date-picker>
-                </div>
+              <div class="flex dates-div column">
+              <div>
+                <label>Pick Up Date</label>
+                <date-picker
+                  v-model="order.pickupDate"
+                  :disabled-dates="disabledDates"
+                  :full-month-name="false"
+                ></date-picker>
+              </div>
+              <div>
+                <label>Return Date</label>
+                <date-picker
+                  v-model="order.returnDate"
+                  :disabled-dates="disabledDates"
+                  :full-month-name="false"
+                ></date-picker>
+              </div>
               </div>
               <p>
                 Total Price:
@@ -152,6 +152,11 @@
             @click="showMoreReviews(false)"
           >See less</button>
         </div>
+        
+
+        
+
+        <chat class="chat-details align-self" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
       </div>
     </div>
 
@@ -208,6 +213,7 @@ export default {
     this.car = car;
     socket.on("gotChat", (chat) => (this.chat = chat));
     this.disabledDates = this.car.disabledDates;
+    // this.disabledDates.ranges.push({from:Date.now()})
     window.addEventListener("load", this.updateWidth());
     window.addEventListener("resize", this.updateWidth);
     this.startChat();

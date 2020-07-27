@@ -41,8 +41,8 @@
           </div>
           <i class="el-icon-arrow-right"></i>
         </div>-->
-        <div class="column profile-router" @click="getUserOrders">
-          <div>
+        <div  class="column profile-router" @click="getUserOrders">
+          <div >
             <i class="el-icon-s-order"></i>
             Booked cars
           </div>
