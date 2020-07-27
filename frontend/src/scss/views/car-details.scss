@@ -26,7 +26,7 @@
 
 .features {
     grid-template-columns: repeat(2, minmax(rem(100px), rem(150px)));
-    grid-gap: 40px;
+    grid-gap: 5px;
     img {
         width: rem(30px);
         height: rem(30px);
@@ -356,7 +356,8 @@
         display: grid;
         width: 400px;
         margin-left: 0;
-        grid-template-columns: 170px 170px;
+        grid-template-columns: 340px;
+        align-items: center;
         p{
             width: 300px;
         }

@@ -75,6 +75,7 @@
             <div class="date-pickers flex column">
               <div class="flex dates-div column">
               <div>
+                <h3>book {{car.vendor.company}} today</h3>
                 <label>Pick Up Date</label>
                 <date-picker
                   v-model="order.pickupDate"
@@ -107,9 +108,9 @@
             </div>
             <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
           </div>
-          <div class="review-btns flex">
+          <div class="review-btns flex space-around">
             <button class="btn-review" @click.prevent="saveReview">save</button>
-            <button class="btn-review" @click="toggleReview">close</button>
+            <button class="btn-review" @click="toggleReview" hidden>close</button>
           <button @click="toggleChat" class="chat-with">Chat with owner</button>
           </div>
         <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
@@ -155,7 +156,7 @@
 
         
 
-        <chat class="chat-details align-self" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
+        <!-- <chat class="chat-details align-self" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat> -->
       </div>
     </div>
 
