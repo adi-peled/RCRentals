@@ -51,7 +51,7 @@
         <div class="column profile-router" @click="getRequestedOrders">
           <div>
             <i class="el-icon-collection"></i>
-            Pending requests
+            Requests
             <span>({{orders.length}})</span>
           </div>
           <i class="el-icon-arrow-right"></i>
