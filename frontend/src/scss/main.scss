@@ -29,7 +29,6 @@
 @import './views/signin.scss';
 @import './views/car-details.scss';
 @import './views/browse-cars.scss';
-
 * {
     box-sizing: border-box;
     font-family: Opensans;
@@ -43,11 +42,23 @@ body {
     border: .25em solid #2D383A !important;
 }
 
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+    border-color: #2D383A;
+    color: #2D383A;
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+    background-color: #2D383A;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #2D383A;
+    color: #2D383A;
+}
+
 a {
     text-decoration: none;
 }
-
-
 
 html,
 body {
@@ -58,7 +69,6 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-
 }
 
 body {

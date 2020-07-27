@@ -31,10 +31,10 @@ export default {
     eventBus.$on('startChat',this.toggleChat)
 
   },methods:{
-    swalMsg(msg,sentIcon){
+    swalMsg(msg,sentIcon,pos){
       const Toast = Swal.mixin({
         toast: true,
-    position: 'top-end',
+    position: pos,
     showConfirmButton: false,
     timer: 1000,
     timerProgressBar: true,

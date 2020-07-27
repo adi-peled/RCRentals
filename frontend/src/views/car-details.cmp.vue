@@ -242,7 +242,7 @@ export default {
     },
     toggleBookModal() {
       if (!this.order.pickupDate || !this.order.returnDate) {
-        eventBus.$emit("sendSwal", "Please fill the form !", "warning");
+        eventBus.$emit("sendSwal", "Please fill the form !", "warning",'center');
         return;
       }
       if (!this.loggedInUser) {
