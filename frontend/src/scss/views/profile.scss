@@ -12,6 +12,7 @@
         width: 27%;
         padding: 20px 0;
         margin-right: 25px;
+
         .profile-router {
 
             &:hover {
@@ -233,6 +234,10 @@
         .profile-info {
             margin-top: unset;
             margin: 0 auto;
+        }
+
+        .profile-cars {
+            margin-left: 7px;
         }
 
 
