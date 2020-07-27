@@ -4,9 +4,8 @@
     <div class="order-container grid">
       <div v-for="order in orders" :order="order" :key="order._id" class="order-list">
         <router-link :to="'/car/details/'+order.car._id" class="flex">
-          <div class="cancell">
-            <img :src="order.car.imgUrl.url" />
-          </div>
+          <img class="cancell" :src="order.car.imgUrl.url" />
+
           <div class="details">
             <h2 class="capi">owner: {{order.owner.fullName}}</h2>
             <h2>Pickup date: {{changeDateForm(order.pickupDate)}}</h2>

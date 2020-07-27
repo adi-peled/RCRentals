@@ -6,7 +6,6 @@
           <img :class="{ small:false ,big:true}" :src="car.imgsUrl[0].url" />
           <img
             v-for="(img,idx) in car.imgsUrl.slice(1, car.imgsUrl.length)"
-            @click="switchImg(idx)"
             :class="{small:true, big:false}"
             :src="img.url"
             :key="idx"
@@ -33,24 +32,24 @@
                 </span>
               </h3>
               <div class="flex feature-container">
-              <div class="features grid">
-                <span>
-                  <img src="@/assets/img/seat.png" />
-                  {{car.features.seatsCount}} seats
-                </span>
-                <span>
-                  <img src="@/assets/img/door.png" />
-                  {{car.features.doorsCount}} doors
-                </span>
-                <span>
-                  <img src="@/assets/img/gas.png" />
-                  Gas
-                </span>
-                <span>
-                  <img src="@/assets/img/kpl.png" />
-                  {{car.features.kpl}} kpl
-                </span>
-              </div>
+                <div class="features grid">
+                  <span>
+                    <img src="@/assets/img/seat.png" />
+                    {{car.features.seatsCount}} seats
+                  </span>
+                  <span>
+                    <img src="@/assets/img/door.png" />
+                    {{car.features.doorsCount}} doors
+                  </span>
+                  <span>
+                    <img src="@/assets/img/gas.png" />
+                    Gas
+                  </span>
+                  <span>
+                    <img src="@/assets/img/kpl.png" />
+                    {{car.features.kpl}} kpl
+                  </span>
+                </div>
                 <div class="flex column location-day">
                   <div class="location">
                     <img src="@/assets/img/pin.png" alt />
@@ -74,23 +73,23 @@
           <div class="payment-details flex">
             <div class="date-pickers flex column">
               <div class="flex dates-div column">
-              <div>
-                <h3>book {{car.vendor.company}} today</h3>
-                <label>Pick Up Date</label>
-                <date-picker
-                  v-model="order.pickupDate"
-                  :disabled-dates="disabledDates"
-                  :full-month-name="false"
-                ></date-picker>
-              </div>
-              <div>
-                <label>Return Date</label>
-                <date-picker
-                  v-model="order.returnDate"
-                  :disabled-dates="disabledDates"
-                  :full-month-name="false"
-                ></date-picker>
-              </div>
+                <div>
+                  <h3>book {{car.vendor.company}} today</h3>
+                  <label>Pick Up Date</label>
+                  <date-picker
+                    v-model="order.pickupDate"
+                    :disabled-dates="disabledDates"
+                    :full-month-name="false"
+                  ></date-picker>
+                </div>
+                <div>
+                  <label>Return Date</label>
+                  <date-picker
+                    v-model="order.returnDate"
+                    :disabled-dates="disabledDates"
+                    :full-month-name="false"
+                  ></date-picker>
+                </div>
               </div>
               <p>
                 Total Price:
@@ -113,7 +112,7 @@
           <div class="review-btns flex space-around">
             <button class="btn-review" @click.prevent="saveReview">save</button>
             <button class="btn-review" @click="toggleReview" hidden>close</button>
-          <button @click="toggleChat" class="chat-with">Chat with owner</button>
+            <button @click="toggleChat" class="chat-with">Chat with owner</button>
           </div>
           <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
         </form>
@@ -153,9 +152,6 @@
             @click="showMoreReviews(false)"
           >See less</button>
         </div>
-        
-
-        
 
         <!-- <chat class="chat-details align-self" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat> -->
       </div>
@@ -241,11 +237,6 @@ export default {
     toggleChat() {
       this.chatting = !this.chatting;
     },
-    switchImg(idx) {
-      var savedImg = this.car.imgsUrl[idx];
-      this.car.imgsUrl[idx] = this.car.imgsUrl[0];
-      this.car.imgsUrl[0] = savedImg;
-    },
     toggleBookModal() {
       if (!this.order.pickupDate || !this.order.returnDate) {
         eventBus.$emit("sendSwal", "Please fill the form !", "warning");
@@ -264,7 +255,7 @@ export default {
           returnDate: this.order.returnDate,
           status: this.order.status,
           car: {
-            _id:this.car._id,
+            _id: this.car._id,
             imgUrl: this.car.imgsUrl[0],
           },
         };

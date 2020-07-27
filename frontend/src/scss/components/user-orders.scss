@@ -16,16 +16,11 @@
     }
 
     img {
-
+        margin-right: 15px;
         width: 350px;
 
-        height: 350px;
     }
 
-    .cancell {
-        width: 60%;
-
-    }
 
     button {
         background-color: $clr1;
@@ -34,11 +29,7 @@
 }
 
 
-@media (max-width:950px) {
-
-  
-
-}
+@media (max-width:950px) {}
 
 
 
