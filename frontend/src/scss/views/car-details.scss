@@ -30,7 +30,7 @@
     img {
         width: rem(30px);
         height: rem(30px);
-        margin-right: 13px;
+        // margin-right: 13px;
     }
     span {
         height: 40px;
@@ -69,7 +69,7 @@
 }
 
 .payment-details {
-    position: fixed;
+    // position: fixed;
     margin-left: 5px;
     right: 370px;
     justify-content: flex-end;
@@ -84,7 +84,10 @@
         background-color: $clr1;
         color: #fff;
         border: 1px solid $clr1;
-        transition: .9s;
+        transition: .9s; 
+        &:hover{
+            color: #f66c39;
+        }
     }
 }
 
@@ -212,13 +215,14 @@
     justify-content: space-evenly;
 }
 .review-head{
-    width: 400px;
+    width: 350px;
 }
 .btn-review {
     margin-top: 5px;
     justify-content: center;
     text-align: center;
-    width: 100px;
+    align-items: center;
+    width: 120px;
     height: 30px;
     outline: none;
     padding: 0;
@@ -341,7 +345,10 @@
         display: grid;
         width: 400px;
         margin-left: 0;
-        grid-template-columns: 200px 200px;
+        grid-template-columns: 170px 170px;
+        p{
+            width: 300px;
+        }
     }
     .big {
         width: 800px;
@@ -371,6 +378,9 @@
 }
 
 @media(max-width:850px) {
+    .location-day{
+        height: 70px;
+    }
     .rest-page {
         margin-top: 30px;
     }
@@ -379,8 +389,16 @@
             width: 250px;
         }
     }
+    .feature-container{
+        flex-direction: column;
+    }
     .reviews {
-        grid-template-columns: 1fr 1fr
+        display: flex;
+        flex-direction: column; 
+        width: 40%;
+    }
+    .payment-details{
+        height: 250px;
     }
     .review-add {
         align-self: center;
@@ -400,10 +418,23 @@
     .car-info {
         flex-direction: column;
     }
+    .dates-div{
+        flex-direction: column;
+    }
+    
     .features {
         height: 130px;
         grid-template-columns: 150px 150px
     }
+    textarea{
+        width: 500px;
+    }
+    .rest-page{
+        .chat-details{
+            width: 40%;
+        }
+    }    
+
 }
 
 @media(max-width:580px) {
@@ -411,8 +442,12 @@
         display: flex;
         flex-direction: column;
     }
+   
+    .payment-details{
+        justify-content: unset;
+    }
     .action-btns {
-        width: 500px;
+        width: 360px;
     }
 }
 
@@ -425,8 +460,32 @@
     .payment-details {
         grid-template-columns: none;
         width: 100%;
+        height: 300px;
     }
     .reviews {
-        width: 376px;
+        width: 320px;
+    }
+    textarea{
+        width: 350px;
+    }
+    .rest-page{
+        .chat-details{
+            width: 25%;
+            input{
+                width: 75%;
+            }
+            button{
+                width: 20%;
+            }
+        }
+
+    } 
+    textarea{
+        width: 300px;
+    }
+    .action-btns{
+        .btn-review{
+            width: 110px;
+        }
     }
 }

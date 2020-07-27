@@ -33,7 +33,7 @@
                   {{car.owner.fullName}}
                 </span>
               </h3>
-              <div class="flex">
+              <div class="flex feature-container">
               <div class="features grid">
                 <span>
                   <img src="@/assets/img/seat.png" />
@@ -73,7 +73,7 @@
           <div class="payment-details flex">
           
             <div class="date-pickers flex column">
-              <div class="flex dates-div">
+              <div class="flex dates-div column">
               <div>
                 <label>Pick Up Date</label>
                 <date-picker
@@ -152,7 +152,7 @@
           </div>
         </form>
 
-        <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
+        <chat class="chat-details align-self" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
       </div>
     </div>
 
