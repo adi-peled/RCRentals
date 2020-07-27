@@ -7,14 +7,21 @@
           <img class="cancel" :src="order.car.imgUrl.url" />
 
           <div class="details flex column">
-            <div class="flex column ">
-            <span class="capi">owner: {{order.owner.fullName}}</span>
-            <span>Pickup date: {{changeDateForm(order.pickupDate)}}</span>
-            <span>Return date:{{changeDateForm(order.returnDate)}}</span>
-            <span>Total price: ${{order.price}}</span>
-            <span :class="{accept:isAccept(order),decline:isDecline(order)}">status: {{order.status}}</span>
+            <div class="flex column">
+              <span class="capi">owner: {{order.owner.fullName}}</span>
+              <span>Pickup date: {{changeDateForm(order.pickupDate)}}</span>
+              <span>Return date:{{changeDateForm(order.returnDate)}}</span>
+              <span>Total price: ${{order.price}}</span>
+              <span
+                class="order-status"
+                :class="{accept:isAccept(order),decline:isDecline(order)}"
+              >status: {{order.status}}</span>
             </div>
-            <button class="cancel-btn" @click.prevent="removeOrder" v-if="order.status==='pending'">cancel order</button>
+            <button
+              class="cancel-btn"
+              @click.prevent="removeOrder"
+              v-if="order.status==='pending'"
+            >cancel order</button>
           </div>
         </router-link>
       </div>
@@ -44,7 +51,6 @@ export default {
   computed: {},
   methods: {
     changeDateForm(date) {
-      console.log(date);
       var idx = date.indexOf("T");
       var miniDate = date.substring(0, idx);
       return miniDate;

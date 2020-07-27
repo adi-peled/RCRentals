@@ -11,7 +11,7 @@
           <span>Return date {{changeDateForm(order.returnDate)}}</span>
           <span>Total sum: ${{order.price}}</span>
         </div>
-        <div class="order-btn" v-if="order.status==='pending'">
+        <div class="order-btn flex" v-if="order.status==='pending'">
           <button class="accept-btn" @click="updateOrderStatus(order,'accept')">accept</button>
           <button class="decline-btn" @click="updateOrderStatus(order,'decline')">decline</button>
         </div>
