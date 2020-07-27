@@ -18,10 +18,10 @@
       <div class="rest-page flex">
         <div class="car-info flex">
           <div class="details flex">
-            <div>
-              <span
-                class="capi bold model"
-              >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</span>
+            <div class="details-div">
+              <h2
+                class="capi bold model vendor-header"
+              >{{car.vendor.company}} {{car.vendor.searies}} {{car.model}}</h2>
               <h3>
                 <span v-if="car.reviews">{{calcRating}}</span>
                 <span v-else>no rating yet</span>
@@ -92,18 +92,18 @@
                 <!-- </div> -->
 
               </div>
-              <p>Distance included
-              450 km
-              $2.00/km fee for additional miles driven</p>
               <p>
+              Distance included
+              450 km
+              $2.00/km fee for additional miles driven
+              </p>
                 <span class="free-cancellation">
               <img src="@/assets/img/like.png" /> Free cancellation
             </span>
                 <p>Insurance included</p>
-            <div>
+            <div class="div-price">
                 Total Price:
                 <span class="pricer" v-if="totalPrice">${{totalPrice}}</span>
-              </p>
             </div>
               <div class="btn-book flex column">
                 <button @click="toggleBookModal">Book</button>
@@ -122,16 +122,16 @@
               <textarea name id cols="80" rows="3" v-model="review.txt"></textarea>
             </div>
             <div class="review-btns flex">
-              <button class="btn-review" @click.prevent="saveReview">save</button>
+              <button class="btn-review" @click.prevent="saveReview">Save</button>
               <button class="btn-review" @click="toggleReview" hidden>close</button>
-              <button @click="toggleChat" class="chat-with">Chat with owner</button>
+              <button @click="toggleChat" class="chat-with">Contact owner</button>
             </div>
             <chat class="chat-details" v-if="chatting" :carOwner="car.owner" :chat="chat"></chat>
           </form>
         </div>
         <div class="flex action-btns"></div>
+        
         <h4>Reviews</h4>
-
         <div v-if="car.reviews" class="reviews">
           <div v-for="review in showReviews" :key="review.id" class="review flex">
             <!-- <img class="review-img" src="@/assets/profile.jpg" /> -->
@@ -154,6 +154,7 @@
               <p>{{review.txt}}</p>
             </div>
           </div>
+          
           <button
             class="btn-feedback"
             @click="showMoreReviews(true)"
@@ -221,7 +222,7 @@ export default {
     const carId = this.$route.params.id;
     const car = await carService.getById(carId);
     this.car = car;
-    socket.on("gotChat", (chat) => (this.chat = chat));
+    socket.on("gotChat", (chat) => (this.chat = chat[0]));
     this.disabledDates = this.car.disabledDates;
     // this.disabledDates.ranges.push({from:Date.now()})
     window.addEventListener("load", this.updateWidth());
