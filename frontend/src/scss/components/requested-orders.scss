@@ -8,6 +8,33 @@
 }
 
 
+.request-details {
+    justify-content: space-between;
+
+    span {
+        display: block;
+        margin-bottom: 1px;
+    }
+
+}
+
+
+
+.decline-btn {
+
+    &:hover {
+        color: red;
+    }
+}
+
+.accept-btn {
+
+    &:hover {
+        color: green;
+
+    }
+}
+
 
 @media(max-width:560px) {
 

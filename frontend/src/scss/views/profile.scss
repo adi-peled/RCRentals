@@ -11,7 +11,7 @@
     .profile-nav {
         width: 27%;
         padding: 20px 0;
-
+        margin-right: 25px;
         .profile-router {
 
             &:hover {
@@ -38,35 +38,6 @@
             border-radius: 15px;
         }
 
-        button.accept {
-            padding: 5px 15px;
-            background-color: white;
-            border: 1px solid green;
-            color: green;
-        }
-
-        button.accept:hover {
-            color: ivory !important;
-            background-color: green;
-            outline: none;
-        }
-
-        button:hover {
-            opacity: 0.8;
-        }
-
-        button.decline {
-            background-color: white;
-            border: 1px solid red;
-            padding: 5px 15px;
-            color: red;
-        }
-
-        button.decline:hover {
-            background-color: red;
-            outline: none;
-            color: ivory !important;
-        }
     }
 
     .fav-container {
@@ -77,7 +48,6 @@
 
 
     .details {
-        justify-content: center;
         color: black;
     }
 

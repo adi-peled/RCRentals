@@ -2,25 +2,32 @@
     grid-template-columns: repeat(auto-fill, 650px);
     gap: 10px;
 
-    a {
-        justify-content: space-between;
-    }
+    a {}
 }
 
 .order-list {
     margin-bottom: 15px;
 
-    div {
-        width: 45%;
+    .details {
+        justify-content: space-between;
 
+        span {
+            display: block;
+            margin-bottom: 1px;
+
+        }
+
+        .cancel-btn {
+            outline: none;
+        }
     }
+
+    div {}
 
     img {
         margin-right: 15px;
         width: 350px;
-
     }
-
 
     button {
         background-color: $clr1;
@@ -40,6 +47,10 @@
         a {
             flex-direction: column
         }
+    }
+
+    .cancel-btn {
+        width: 340px;
     }
 
 

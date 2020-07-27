@@ -6,13 +6,15 @@
         <router-link :to="'/car/details/'+order.car._id" class="flex">
           <img class="cancel" :src="order.car.imgUrl.url" />
 
-          <div class="details">
-            <h2 class="capi">owner: {{order.owner.fullName}}</h2>
-            <h2>Pickup date: {{changeDateForm(order.pickupDate)}}</h2>
-            <h2>Return date:{{changeDateForm(order.returnDate)}}</h2>
-            <h2>Total price: ${{order.price}}</h2>
-            <h2 :class="{accept:isAccept(order),decline:isDecline(order)}">status: {{order.status}}</h2>
-            <button @click.prevent="removeOrder" v-if="order.status==='pending'">cancel order</button>
+          <div class="details flex column">
+            <div class="flex column ">
+            <span class="capi">owner: {{order.owner.fullName}}</span>
+            <span>Pickup date: {{changeDateForm(order.pickupDate)}}</span>
+            <span>Return date:{{changeDateForm(order.returnDate)}}</span>
+            <span>Total price: ${{order.price}}</span>
+            <span :class="{accept:isAccept(order),decline:isDecline(order)}">status: {{order.status}}</span>
+            </div>
+            <button class="cancel-btn" @click.prevent="removeOrder" v-if="order.status==='pending'">cancel order</button>
           </div>
         </router-link>
       </div>
